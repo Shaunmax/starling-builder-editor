@@ -11,19 +11,21 @@ package starlingbuilder.editor.helper
 
     public class CustomComponentHelper
     {
-        private static const NAME:String = "EmbeddedComponents";
-
-        public static function load(workspace:File):void
+        public static function load(workspace:File, name:String, libsMonitor:LibsMonitor):void
         {
             try
             {
-                var cls:Class = getDefinitionByName(NAME) as Class;
-                var template:String = new cls["custom_component_template"]().toString();
-                TemplateData.load(template, workspace);
+                var cls:Class = getDefinitionByName(name) as Class;
+
+                if ("custom_component_template" in cls)
+                {
+                    var template:Object = JSON.parse(new cls["custom_component_template"]());
+                    libsMonitor.updateTemplateChecksum(name, template);
+                    TemplateData.load(template, workspace);
+                }
             }
             catch (e:Error)
             {
-                TemplateData.load(null, workspace);
             }
         }
     }

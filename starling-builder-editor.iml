@@ -14,7 +14,13 @@
             <entry library-id="08011c12-ce9c-4cee-9c3d-c1f76e999a10">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="3b2d11db-1834-417f-90e7-7439176a46be">
+            <entry library-id="bba55579-a0bc-4b4c-abdd-3e5f8f91962c">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="d497df1d-f97c-4ed2-b068-bc4e343f25b9">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="d3e16a22-04ac-4c93-8670-61006b567f60">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -199,17 +205,6 @@
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="3b2d11db-1834-417f-90e7-7439176a46be" />
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/libs" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
         <properties id="f122fd91-8eab-495b-8d2e-567134463088" />
         <CLASSES>
           <root url="file://$MODULE_DIR$/libs" />
@@ -228,6 +223,36 @@
         <JAVADOC />
         <SOURCES />
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="bba55579-a0bc-4b4c-abdd-3e5f8f91962c" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/feathers.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="d497df1d-f97c-4ed2-b068-bc4e343f25b9" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/as3corelib.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="d3e16a22-04ac-4c93-8670-61006b567f60" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/starling.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>
