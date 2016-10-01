@@ -76,7 +76,7 @@ package starlingbuilder.editor.ui
 
         override protected function createContent(container:LayoutGroup):void
         {
-            initClass(_targetParam.supportedClasses);
+            initClass(getSupportedClasses());
 
             container.layout = new VerticalLayout();
 
@@ -121,18 +121,14 @@ package starlingbuilder.editor.ui
             if (index == 0)
             {
                 if (hasEmptyTexture())
-                {
                     InfoPopup.show("Please select a texture", ["OK"]);
-                }
-                else
-                {
-                    _onComplete(_target);
-                    return;
-                }
+                _onComplete(_target);
             }
-
-            _owner[_targetParam.name] = _oldTarget;
-            _onComplete = null;
+            else
+            {
+                _owner[_targetParam.name] = _oldTarget;
+                _onComplete = null;
+            }
         }
 
         private function createNewComponent(cls:String):void
@@ -153,6 +149,22 @@ package starlingbuilder.editor.ui
             }
 
             return false;
+        }
+
+        private function getSupportedClasses():Array
+        {
+            if (_targetParam.supportedClasses)
+            {
+                return _targetParam.supportedClasses;
+            }
+            else if (_targetParam.supportedGroup)
+            {
+                return TemplateData.editor_template["group"][_targetParam.supportedGroup];
+            }
+            else
+            {
+                return [];
+            }
         }
     }
 }
