@@ -1,5 +1,13 @@
 # Starling Builder Release Notes:
 
+## 1.2 (2.2)
+* [editor] Update to Starling 2.1 and Feathers 3.0.4
+* [editor] Improve template merge strategy
+* [editor] Support multiple custom components extensions
+* [template] Support DisplayObject.mask property
+* [extension] Support DistanceFieldStyle, LightStyle and TextureMaskStyle (2.x only)
+* [demo] Add DistanceFieldStyle, LightStyle examples (2.x only)
+
 ## 0.9.3
 * [engine] Modify UIBuilder.copy() to support multiple items copy/paste
 * [editor] Implement multiple items copy/paste
