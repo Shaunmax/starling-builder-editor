@@ -1536,6 +1536,8 @@ package starlingbuilder.editor.themes
 
         protected function setHeaderStyles(header:Header):void
         {
+            header.titleFactory = textRendererFactory;
+
             header.minWidth = this.gridSize;
             header.minHeight = this.gridSize;
             header.paddingTop = this.smallGutterSize;
