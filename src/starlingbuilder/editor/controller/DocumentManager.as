@@ -601,9 +601,6 @@ package starlingbuilder.editor.controller
         {
             //trace("dx:", dx, "dy:", dy);
 
-            if (_selectManager.selectedObjects.length != 1)
-                ignoreSnapPixel = true;
-
             if (_selectManager.selectedObjects.length == 0)
                 return false;
 
@@ -613,7 +610,7 @@ package starlingbuilder.editor.controller
             {
                 _snapContainer.removeChildren(0, -1, true);
 
-                data = PixelSnapper.snap(selectedObject, selectedObject.parent, _container.parent, new Point(dx, dy));
+                data = PixelSnapper.snap(_selectManager.selectedObjects, selectedObject.parent, _container.parent, new Point(dx, dy));
 
                 if (data)
                 {
