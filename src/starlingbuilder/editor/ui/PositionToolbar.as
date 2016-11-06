@@ -52,6 +52,8 @@ package starlingbuilder.editor.ui
         public static const ALIGN_HORIZONTAL:String = "align horizontal";
         public static const ALIGN_VERTICAL:String = "align vertical";
 
+        public static const ALIGN_GRID:String = "align grid";
+
         [Embed(source="position_tool.png")]
         public static const POSITION_TOOL_PNG:Class;
 
@@ -66,12 +68,23 @@ package starlingbuilder.editor.ui
         private var _horizontalPadding:Object;
         private var _verticalPadding:Object;
 
+        private var _gridPadding:Object;
+        private var _gridPaddingParams:Array;
+
         public function PositionToolbar()
         {
             _documentManager = UIEditorApp.instance.documentManager;
 
             _horizontalPadding = {padding:0};
             _verticalPadding = {padding:0};
+
+            _gridPadding = {fixture:"column", number:3, columnPadding:0, rowPadding:0};
+            _gridPaddingParams = [
+                {name:"fixture", component:"pickerList", options:["column", "row"]},
+                {name:"number", type:"Number", min:1},
+                {name:"columnPadding", type:"Number", min:1},
+                {name:"rowPadding", type:"Number", min:1}
+            ]
 
             createButtons();
         }
@@ -123,6 +136,8 @@ package starlingbuilder.editor.ui
 
                 {name:ALIGN_HORIZONTAL, textureName:"", triggered:onButtonClick},
                 {name:ALIGN_VERTICAL, textureName:"", triggered:onButtonClick},
+
+                {name:ALIGN_GRID, textureName:"", triggered:onButtonClick},
             ]
         }
 
@@ -213,6 +228,12 @@ package starlingbuilder.editor.ui
                     };
                     PopUpManager.addPopUp(new SimpleEditPropertyPopup(_verticalPadding, [{name:"padding", type:"Number"}], alignVertical, alignVertical));
                     break;
+                case ALIGN_GRID:
+                    var alignGrid:Function = function():void{
+                        doAlignGrid(_gridPadding);
+                    }
+                    PopUpManager.addPopUp(new SimpleEditPropertyPopup(_gridPadding, _gridPaddingParams, alignGrid, alignGrid));
+                    break;
             }
         }
 
@@ -236,6 +257,69 @@ package starlingbuilder.editor.ui
                 var y2:Number = obj.y - r.y;
                 obj.y = y1 + y2 + padding;
             });
+        }
+
+        private function doAlignGrid(grid:Object):void
+        {
+            var objects:Array = _documentManager.selectedObjects;
+
+            if (objects.length == 0) return;
+
+            var maxWidth:Number = 0, maxHeight = 0;
+            var i:int, x:int, y:int;
+            var w:Number, h:Number;
+            var r:Rectangle;
+            var obj:DisplayObject;
+
+
+            var first:DisplayObject = objects[0];
+            r = first.getBounds(first.parent);
+            var firstX:Number = r.x;
+            var firstY:Number = r.y;
+
+            for (i = 0; i < objects.length; ++i)
+            {
+                obj = objects[i];
+                maxWidth = Math.max(maxWidth, obj.width);
+                maxHeight = Math.max(maxHeight, obj.height);
+            }
+
+            w = maxWidth + grid.columnPadding;
+            h = maxHeight + grid.rowPadding;
+
+            var ops:Array = [];
+
+            for (i = 0; i < objects.length; ++i)
+            {
+                obj = objects[i];
+
+                if (grid.fixture == "column")
+                {
+                    x = i % grid.number;
+                    y = int(i / grid.number);
+                }
+                else
+                {
+                    x = int(i / grid.number);
+                    y = i % grid.number;
+                }
+
+                r = obj.getBounds(obj.parent);
+                var deltaX:Number = obj.x - r.x;
+                var deltaY:Number = obj.y - r.y;
+
+                var oldX:Number = obj.x;
+                var oldY:Number = obj.y;
+                obj.x = firstX + x * w + deltaX;
+                obj.y = firstY + y * h + deltaY;
+                var dx:Number = obj.x - oldX;
+                var dy:Number = obj.y - oldY;
+
+                ops.push(new MoveOperation(obj, dx, dy));
+            }
+
+            _documentManager.historyManager.add(new CompositeHistoryOperation(ops));
+            _documentManager.setChanged();
         }
 
         private function changePosition(sortFunc:Function, opFunc:Function):void

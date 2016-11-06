@@ -14,4 +14,5 @@
     <SubTexture name="align_width" x="2" y="2" width="36" height="44" frameX="-4" frameY="0" frameWidth="44" frameHeight="44"/>
     <SubTexture name="distribute_horizontal" x="40" y="2" width="32" height="44" frameX="-6" frameY="0" frameWidth="44" frameHeight="44"/>
     <SubTexture name="distribute_vertical" x="408" y="2" width="44" height="32" frameX="0" frameY="-6" frameWidth="44" frameHeight="44"/>
+    <SubTexture name="align_grid" x="502" y="2" width="42" height="42" frameX="-1" frameY="-1" frameWidth="44" frameHeight="44"/>
 </TextureAtlas>
