@@ -7,6 +7,7 @@
  */
 package starlingbuilder.editor.ui
 {
+    import feathers.controls.TextInput;
     import feathers.controls.renderers.IListItemRenderer;
     import feathers.controls.text.TextBlockTextRenderer;
     import feathers.controls.text.TextFieldTextRenderer;
@@ -33,6 +34,7 @@ package starlingbuilder.editor.ui
     {
         private var _assetManager:AssetManager;
 
+        private var _searchTextInput:TextInput;
         private var _list:List;
 
         protected var _supportedTypes:Array;
@@ -50,6 +52,11 @@ package starlingbuilder.editor.ui
             this.layoutData = anchorLayoutData;
 
             layout = new AnchorLayout();
+
+            _searchTextInput = new TextInput();
+            _searchTextInput.prompt = "Search...";
+            _searchTextInput.addEventListener(Event.CHANGE, onSearch);
+            addChild(_searchTextInput);
 
             listAssets();
         }
@@ -102,28 +109,53 @@ package starlingbuilder.editor.ui
             }
             _list.itemRendererProperties.height = 50;
 
-            var data:ListCollection = new ListCollection();
-
-            for each (var name:String in _supportedTypes)
-            {
-                data.push({label:name});
-            }
-
-            _list.dataProvider = data;
-
             _list.addEventListener(Event.CHANGE, onListChange);
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
             anchorLayoutData.top = 0;
             anchorLayoutData.bottom = 0;
+            anchorLayoutData.topAnchorDisplayObject = _searchTextInput;
             _list.layoutData = anchorLayoutData;
 
             addChild(_list);
+
+            updateData();
+        }
+
+        private function updateData():void
+        {
+            var data:ListCollection = new ListCollection();
+
+            var text:String = _searchTextInput.text.toLocaleLowerCase();
+
+            var supportedTypes:Array;
+            if (text.length)
+            {
+                supportedTypes = _supportedTypes.filter(function(value:String, index:int, arr:Array):Boolean{
+                    return value.toLowerCase().indexOf(text) != -1;
+                });
+            }
+            else
+            {
+                supportedTypes = _supportedTypes;
+            }
+
+            for each (var name:String in supportedTypes)
+            {
+                data.push({label: name});
+            }
+
+            _list.dataProvider = data;
         }
 
         protected function listItemRenderer():IListItemRenderer
         {
             return new ComponentItemRenderer(DragToCanvasHelper.CONTAINER_TAB);
+        }
+
+        private function onSearch(event:Event):void
+        {
+            updateData();
         }
     }
 }
