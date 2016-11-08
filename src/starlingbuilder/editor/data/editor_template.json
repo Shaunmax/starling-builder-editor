@@ -223,7 +223,9 @@
             "cls":"feathers.controls.Label",
             "params":[
                 {"name":"text"},
-                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"}
+                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"},
+                {"name":"padding", "default_value":0},
+                {"name":"wordWrap", "component":"check", "default_value":false}
             ],
             "tag":"feathers"
         },
@@ -398,7 +400,11 @@
                 {"name":"horizontalAlign", "component":"pickerList", "options":["left", "center", "right"], "default_value":"center"},
                 {"name":"verticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"},
                 {"name":"requestedRowCount", "min":0, "default_value":0},
-                {"name":"requestedColumnCount", "min":0, "default_value":0}
+                {"name":"requestedColumnCount", "min":0, "default_value":0},
+                {"name":"tileHorizontalAlign", "component":"pickerList", "options":["left", "center", "right"], "default_value":"center"},
+                {"name":"tileVerticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"},
+                {"name":"useSquareTiles", "component":"check", "default_value":true},
+                {"name":"paging", "component":"pickerList", "options":["none", "horizontal", "vertical"], "default_value":"none"}
             ]
         },
 
@@ -410,7 +416,11 @@
                 {"name":"horizontalAlign", "component":"pickerList", "options":["left", "center", "right"], "default_value":"center"},
                 {"name":"verticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"},
                 {"name":"requestedRowCount", "min":0, "default_value":0},
-                {"name":"requestedColumnCount", "min":0, "default_value":0}
+                {"name":"requestedColumnCount", "min":0, "default_value":0},
+                {"name":"tileHorizontalAlign", "component":"pickerList", "options":["left", "center", "right"], "default_value":"center"},
+                {"name":"tileVerticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"},
+                {"name":"useSquareTiles", "component":"check", "default_value":true},
+                {"name":"paging", "component":"pickerList", "options":["none", "horizontal", "vertical"], "default_value":"none"}
             ]
         },
 
@@ -420,7 +430,8 @@
                 {"name":"gap", "default_value":0},
                 {"name":"padding", "default_value":0},
                 {"name":"horizontalAlign", "component":"pickerList", "options":["left", "center", "right"], "default_value":"center"},
-                {"name":"verticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"}
+                {"name":"verticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"},
+                {"name":"rowVerticalAlign", "component":"pickerList", "options":["top", "middle", "bottom"], "default_value":"top"}
             ]
         },
 
@@ -601,6 +612,6 @@
 
     "version":2.0,
 
-    "revision":10006
+    "revision":10007
 
 }
