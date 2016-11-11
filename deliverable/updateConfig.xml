@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>2.2</versionNumber>
-       <url>http://starlingbuilder.github.io/download/2.x/v2.2/starling-builder.air</url>
+       <versionNumber>2.2.2</versionNumber>
+       <url>http://starlingbuilder.github.io/download/2.x/v2.2.2/starling-builder.air</url>
        <description>
-           [editor] Update to Starling 2.1 and Feathers 3.0.4
-           [editor] Improve template merge strategy
-           [editor] Support multiple custom components extensions
-           [template] Support DisplayObject.mask property
-           [extension] Support DistanceFieldStyle, LightStyle and TextureMaskStyle
-           [demo] Add DistanceFieldStyle, LightStyle examples
+[editor] PositionToolbar supports align grid
+[editor] PixelSnapper supports multiple selected objects
+[editor] double click on LayoutItemRenderer can change name
+[editor] add search box to container tab and feathers tab
+[editor] fix custom theme with BitmapFontTextRenderer breaks TweenSettingPanel
+[template] add more properties to feathers layouts
        </description>
     </update>
