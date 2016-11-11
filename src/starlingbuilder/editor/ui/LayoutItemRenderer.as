@@ -10,6 +10,7 @@ package starlingbuilder.editor.ui
     import feathers.controls.Check;
     import feathers.controls.Label;
     import feathers.controls.LayoutGroup;
+    import feathers.controls.TextInput;
     import feathers.controls.ToggleButton;
     import feathers.controls.renderers.DefaultListItemRenderer;
     import feathers.dragDrop.DragData;
@@ -17,6 +18,7 @@ package starlingbuilder.editor.ui
     import feathers.dragDrop.IDragSource;
     import feathers.dragDrop.IDropTarget;
     import feathers.events.DragDropEvent;
+    import feathers.events.FeathersEventType;
     import feathers.layout.HorizontalLayout;
     import feathers.layout.VerticalLayout;
 
@@ -39,9 +41,11 @@ package starlingbuilder.editor.ui
     import starlingbuilder.editor.controller.DocumentManager;
     import starlingbuilder.editor.data.EmbeddedImages;
     import starlingbuilder.editor.history.MoveLayerOperation;
+    import starlingbuilder.editor.history.PropertyChangeOperation;
     import starlingbuilder.editor.themes.BaseMetalWorksDesktopTheme2;
     import starlingbuilder.util.KeyboardWatcher;
     import starlingbuilder.util.feathers.FeathersUIUtil;
+    import starlingbuilder.util.history.IHistoryOperation;
 
     public class LayoutItemRenderer extends DefaultListItemRenderer implements IDragSource, IDropTarget
     {
@@ -70,6 +74,7 @@ package starlingbuilder.editor.ui
         private var _group2:LayoutGroup;
         private var _sign:Button;
         private var _nameLabel:Label;
+        private var _nameTextInput:TextInput;
 
         private var _dropLine:Quad;
 
@@ -153,11 +158,15 @@ package starlingbuilder.editor.ui
             _sign.addEventListener(Event.TRIGGERED, onTrigger);
 
             _nameLabel = new Label();
+            _nameLabel.addEventListener(TouchEvent.TOUCH, onNameLabel);
+
             _group2.addChild(_group);
             _group2.addChild(_sign);
             _group2.addChild(_nameLabel);
 
-
+            _nameTextInput = new TextInput();
+            _nameTextInput.addEventListener(FeathersEventType.ENTER, onNameTextInput);
+            _nameTextInput.addEventListener(FeathersEventType.FOCUS_OUT, onNameTextInput);
         }
 
         private function layoutIconFunction(item:Object):DisplayObject
@@ -407,6 +416,44 @@ package starlingbuilder.editor.ui
             }
         }
 
+        private function onNameLabel(event:TouchEvent):void
+        {
+            var touch:Touch = event.getTouch(event.target as DisplayObject);
+            if (touch && touch.phase == TouchPhase.ENDED && touch.tapCount == 2)
+            {
+                _nameLabel.removeFromParent();
+                _group2.addChild(_nameTextInput);
+                _nameTextInput.text = _nameLabel.text;
+                _nameTextInput.setFocus();
+                _nameTextInput.selectRange(0, _nameTextInput.text.length);
+            }
+        }
+
+        private function onNameTextInput(event:Event):void
+        {
+            var oldName:String = _nameLabel.text;
+            var name:String = _nameTextInput.text;
+
+            if (name != oldName)
+            {
+                _data.obj.name = name;
+                _nameLabel.text = name;
+
+                var operation:IHistoryOperation = new PropertyChangeOperation(_data.obj, "name", oldName, name);
+                _documentManager.historyManager.add(operation);
+                _documentManager.setChanged();
+            }
+
+            _nameTextInput.removeFromParent();
+            _group2.addChild(_nameLabel);
+        }
+
+        override public function dispose():void
+        {
+            _nameLabel.dispose();
+            _nameTextInput.dispose();
+            super.dispose();
+        }
 
     }
 }

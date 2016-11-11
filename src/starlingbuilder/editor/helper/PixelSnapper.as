@@ -25,7 +25,7 @@ package starlingbuilder.editor.helper
         private static const MIDDLE:int = 1;
         private static const MAX:int = 2;
 
-        public static function snap(selectObj:DisplayObject, container:DisplayObjectContainer, canvas:DisplayObjectContainer, delta:Point, threshold:Number = 3):PixelSnapperData
+        public static function snap(selectObjs:Array, container:DisplayObjectContainer, canvas:DisplayObjectContainer, delta:Point, threshold:Number = 3):PixelSnapperData
         {
             var i:int, j:int, k:int;
             var x1:Number, x2:Number, y1:Number, y2:Number;
@@ -47,8 +47,8 @@ package starlingbuilder.editor.helper
             var deltaY:Number;
 
 
-            var sbx:Array = getXBoundary(selectObj);
-            var sby:Array = getYBoundary(selectObj);
+            var sbx:Array = getXBoundary(selectObjs);
+            var sby:Array = getYBoundary(selectObjs);
 
             var objects:Array = [];
 
@@ -60,7 +60,7 @@ package starlingbuilder.editor.helper
 
                 if (!obj.visible || !obj.touchable) continue;
 
-                if (selectObj === obj) continue;
+                if (selectObjs.indexOf(obj) >= 0) continue;
 
                 objects.push(obj);
             }
@@ -147,7 +147,7 @@ package starlingbuilder.editor.helper
 
             if (canSnap)
             {
-                return new PixelSnapperData(selectObj, targetObjX, targetObjY, selectObjSnapXType, selectObjSnapYType, targetObjSnapXType, targetObjSnapYType, deltaX, deltaY);
+                return new PixelSnapperData(selectObjs, targetObjX, targetObjY, selectObjSnapXType, selectObjSnapYType, targetObjSnapXType, targetObjSnapYType, deltaX, deltaY);
             }
             else
             {
@@ -157,11 +157,26 @@ package starlingbuilder.editor.helper
 
         }
 
-        private static function getXBoundary(obj:DisplayObject):Array
+        private static function getXBoundary(object:Object):Array
         {
-            if (obj)
+            var rect:Rectangle;
+
+            if (object is Array)
             {
-                var rect:Rectangle = obj.getBounds(Starling.current.stage);
+                var minX:Number = Number.MAX_VALUE, maxX:Number = Number.MIN_VALUE;
+
+                for each (var obj:DisplayObject in object)
+                {
+                    rect = obj.getBounds(Starling.current.stage);
+                    minX = Math.min(minX, rect.x);
+                    maxX = Math.max(maxX, rect.x + rect.width);
+                }
+
+                return [minX, (minX + maxX) * 0.5, maxX];
+            }
+            else if (object is DisplayObject)
+            {
+                rect = object.getBounds(Starling.current.stage);
                 return [rect.x, rect.x + rect.width * 0.5, rect.x + rect.width];
             }
             else
@@ -170,11 +185,24 @@ package starlingbuilder.editor.helper
             }
         }
 
-        private static function getYBoundary(obj:DisplayObject):Array
+        private static function getYBoundary(object:Object):Array
         {
-            if (obj)
+            if (object is Array)
             {
-                var rect:Rectangle = obj.getBounds(Starling.current.stage);
+                var minY:Number = Number.MAX_VALUE, maxY:Number = Number.MIN_VALUE;
+
+                for each (var obj:DisplayObject in object)
+                {
+                    var rect:Rectangle = obj.getBounds(Starling.current.stage);
+                    minY = Math.min(minY, rect.y);
+                    maxY = Math.max(maxY, rect.y + rect.height);
+                }
+
+                return [minY, (minY + maxY) * 0.5, maxY];
+            }
+            else if (object is DisplayObject)
+            {
+                rect = object.getBounds(Starling.current.stage);
                 return [rect.y, rect.y + rect.height * 0.5, rect.y + rect.height];
             }
             else
@@ -214,8 +242,8 @@ package starlingbuilder.editor.helper
             var x1:Number, x2:Number, y1:Number, y2:Number;
             var global1:Point, global2:Point;
 
-            var selectObjXBound:Array = getXBoundary(data.selectObj);
-            var selectObjYBound:Array = getYBoundary(data.selectObj);
+            var selectObjXBound:Array = getXBoundary(data.selectObjs);
+            var selectObjYBound:Array = getYBoundary(data.selectObjs);
             var targetXXBound:Array = getXBoundary(data.targetObjX);
             var targetXYBound:Array = getYBoundary(data.targetObjX);
             var targetYXBound:Array = getXBoundary(data.targetObjY);

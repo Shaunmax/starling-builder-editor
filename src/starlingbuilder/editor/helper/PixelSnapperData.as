@@ -11,7 +11,7 @@ package starlingbuilder.editor.helper
 
     public class PixelSnapperData
     {
-        public var selectObj:DisplayObject;
+        public var selectObjs:Array;
         public var targetObjX:DisplayObject;
         public var targetObjY:DisplayObject;
 
@@ -24,11 +24,11 @@ package starlingbuilder.editor.helper
         public var deltaX:Number;
         public var deltaY:Number;
 
-        public function PixelSnapperData(selectObj:DisplayObject, targetObjX:DisplayObject, targetObjY:DisplayObject,
+        public function PixelSnapperData(selectObjs:Array, targetObjX:DisplayObject, targetObjY:DisplayObject,
                                          selectObjSnapXType:int, selectObjSnapYType:int, targetObjSnapXType:int, targetObjSnapYType:int,
                                          deltaX:Number, deltaY:Number)
         {
-            this.selectObj = selectObj;
+            this.selectObjs = selectObjs;
             this.targetObjX = targetObjX;
             this.targetObjY = targetObjY;
             this.selectObjSnapXType = selectObjSnapXType;
