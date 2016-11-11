@@ -1140,7 +1140,7 @@ package starlingbuilder.editor.themes
             layout.verticalAlign = VerticalAlign.TOP;
             layout.resetTypicalItemDimensionsOnMeasure = true;
             list.layout = layout;
-            list.maxHeight = this.wideControlSize;
+            list.maxHeight = this.wideControlSize * 2;
         }
 
         //-------------------------
@@ -1536,6 +1536,8 @@ package starlingbuilder.editor.themes
 
         protected function setHeaderStyles(header:Header):void
         {
+            header.titleFactory = textRendererFactory;
+
             header.minWidth = this.gridSize;
             header.minHeight = this.gridSize;
             header.paddingTop = this.smallGutterSize;
