@@ -25,7 +25,9 @@ package starlingbuilder.editor
     import starlingbuilder.editor.helper.LibsMonitor;
     import starlingbuilder.editor.helper.LoadSwfHelper;
     import starlingbuilder.editor.helper.TemplateLoader;
+    import starlingbuilder.editor.ui.AssetManagerLogPopup;
     import starlingbuilder.editor.ui.CenterPanel;
+    import starlingbuilder.editor.ui.CrashPopup;
     import starlingbuilder.editor.ui.LeftPanel;
     import starlingbuilder.editor.ui.LoadingPopup;
     import starlingbuilder.editor.ui.MainMenu;
@@ -34,6 +36,8 @@ package starlingbuilder.editor
     import starlingbuilder.editor.ui.SettingPopup;
     import starlingbuilder.editor.ui.Toolbar;
     import starlingbuilder.util.FileLoader;
+    import starlingbuilder.util.LogAssetManager;
+    import starlingbuilder.util.WatchDog;
     import starlingbuilder.util.feathers.FeathersUIUtil;
 
     import feathers.controls.Button;
@@ -281,14 +285,28 @@ package starlingbuilder.editor
 
             var libsMonitor:LibsMonitor = new LibsMonitor(_workspaceDir);
 
-            var libFiles:Array = FileListingHelper.getFileList(_workspaceDir, _workspaceSetting.libraryPath, ["swf"]);
-            LoadSwfHelper.loads(libFiles, _assetManager, onComplete);
+            var libFiles:Array = [];
+
+            var watchDog:WatchDog = new WatchDog(_workspaceDir.resolvePath("settings/crash.json"));
+            if (watchDog.cleared)
+            {
+                watchDog.mark();
+                libFiles = FileListingHelper.getFileList(_workspaceDir, _workspaceSetting.libraryPath, ["swf"]);
+                LoadSwfHelper.loads(libFiles, _assetManager, onComplete);
+            }
+            else
+            {
+                PopUpManager.addPopUp(new CrashPopup());
+                onComplete();
+            }
 
             _filesMonitor = new FilesMonitor(_workspaceSetting, _workspaceDir);
             _filesMonitor.addEventListener(Event.CHANGE, onFilesChange);
 
             function onComplete():void
             {
+                watchDog.clearMark();
+
                 TemplateLoader.load(_workspaceDir, "ui_builder", UIBuilderTemplate);
 
                 TemplateData.load(null, _workspaceDir);

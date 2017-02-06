@@ -7,6 +7,8 @@
  */
 package starlingbuilder.editor.ui
 {
+    import feathers.core.PopUpManager;
+
     import flash.geom.Point;
 
     import starlingbuilder.editor.SupportedWidget;
@@ -100,6 +102,8 @@ package starlingbuilder.editor.ui
 
             createBrowseButton();
 
+            createLogButton();
+
             createBottomContainer();
 
             listAssets();
@@ -154,6 +158,15 @@ package starlingbuilder.editor.ui
                 {
                     file.openWithDefaultApplication();
                 }
+
+            }));
+        }
+
+        private function createLogButton():void
+        {
+            _topContainer.addChild(FeathersUIUtil.buttonWithLabel("log", function():void{
+
+                PopUpManager.addPopUp(new  AssetManagerLogPopup());
 
             }));
         }

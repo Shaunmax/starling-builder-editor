@@ -19,6 +19,8 @@ package starlingbuilder.editor
     import starlingbuilder.editor.ui.AbstractPropertyPopup;
     import starlingbuilder.util.AppUpdater;
 
+    import starlingbuilder.util.LogAssetManager;
+
     public class UIEditorApp extends Sprite
     {
         public static var SWF_VERSION:int;
@@ -52,7 +54,7 @@ package starlingbuilder.editor
 
         private function setup():void
         {
-            _assetManager = new AssetManager();
+            _assetManager = new LogAssetManager();
             _assetManager.numConnections = 100;
             _assetManager.keepFontXmls = true;
             _notificationDispatcher = new EventDispatcher();
