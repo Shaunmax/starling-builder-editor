@@ -42,5 +42,11 @@ package starlingbuilder.engine
             record("getObject", name);
             return expectedReturnFor();
         }
+
+        public function getCustomData(type:String, name:String):Object
+        {
+            record("getCustomData", type, name);
+            return expectedReturnFor();
+        }
     }
 }
