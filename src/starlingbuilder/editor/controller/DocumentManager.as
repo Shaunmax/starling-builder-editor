@@ -964,9 +964,10 @@ package starlingbuilder.editor.controller
             _uiBuilder.setExternalSource(param, name);
 
             //create the external element
-            var result:Object = _uiBuilder.load(data, false);
+            var result:Object = _uiBuilder.load(data);
             var root:DisplayObjectContainer = result.object;
             container.addChild(root);
+            param.externalParams = result.params;
 
             addFrom(container, param, getParent());
         }
