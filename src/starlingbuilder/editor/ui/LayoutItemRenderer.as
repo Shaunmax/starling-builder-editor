@@ -199,7 +199,7 @@ package starlingbuilder.editor.ui
 
         private function onTouch(event:TouchEvent):void
         {
-            if (DragDropManager.isDragging)
+            if (DragDropManager.isDragging || _data.search)
             {
                 return;
             }

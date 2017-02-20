@@ -7,6 +7,7 @@
  */
 package starlingbuilder.editor.ui
 {
+    import feathers.controls.TextInput;
     import feathers.layout.VerticalLayout;
 
     import flash.desktop.NativeApplication;
@@ -35,7 +36,7 @@ package starlingbuilder.editor.ui
 
     import starlingbuilder.util.feathers.FeathersUIUtil;
 
-    public class LayoutTab extends LayoutGroup
+    public class LayoutTab extends SearchableTab
     {
         private var _list:List;
 
@@ -61,6 +62,8 @@ package starlingbuilder.editor.ui
             _buttonGroup2 = createToolButtons(createTextButtons2(), _buttonGroup3);
             _buttonGroup1 = createToolButtons(createTextButtons1(), _buttonGroup2);
             _buttonGroup = createToolButtons(createTextButtons(), _buttonGroup1);
+
+            createTopContainer();
 
             createList();
 
@@ -96,6 +99,7 @@ package starlingbuilder.editor.ui
             anchorLayoutData.top = 0
             anchorLayoutData.bottom = 0;
             anchorLayoutData.bottomAnchorDisplayObject = _buttonGroup;
+            anchorLayoutData.topAnchorDisplayObject = _searchTextInput;
             _list.layoutData = anchorLayoutData;
 
             addChild(_list);
@@ -316,6 +320,11 @@ package starlingbuilder.editor.ui
                         remove();
                     break;
             }
+        }
+
+        override protected function onSearch(event:Event):void
+        {
+            _documentManager.layoutSearchString = _searchTextInput.text;
         }
     }
 }

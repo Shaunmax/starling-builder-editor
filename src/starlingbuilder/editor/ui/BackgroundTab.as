@@ -8,6 +8,7 @@
 package starlingbuilder.editor.ui
 {
     import feathers.controls.ButtonGroup;
+    import feathers.controls.TextInput;
 
     import flash.geom.Rectangle;
 
@@ -37,7 +38,7 @@ package starlingbuilder.editor.ui
     import starling.events.Event;
     import starling.utils.AssetManager;
 
-    public class BackgroundTab extends LayoutGroup
+    public class BackgroundTab extends SearchableTab
     {
         private var _assetManager:AssetManager;
         private var _documentManager:DocumentManager;
@@ -70,6 +71,8 @@ package starlingbuilder.editor.ui
             createResetButton();
 
             createPropertyPanel();
+
+            createTopContainer();
 
             listAssets();
         }
@@ -149,26 +152,18 @@ package starlingbuilder.editor.ui
                 return new IconItemRenderer();
             }
 
-            var array:Array = FileListingHelper.getFileList(UIEditorScreen.instance.workspaceDir, UIEditorScreen.instance.workspaceSetting.backgroundPath, ["png", "jpg", "atf"]);
-
-            var data:ListCollection = new ListCollection();
-
-            for each (var name:String in array)
-            {
-                data.push({label:name});
-            }
-
-            _list.dataProvider = data;
-
             _list.addEventListener(Event.CHANGE, onListChange);
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
             anchorLayoutData.top = 0;
             anchorLayoutData.bottom = 10;
             anchorLayoutData.bottomAnchorDisplayObject = _propertyPanel;
+            anchorLayoutData.topAnchorDisplayObject = _searchTextInput;
             _list.layoutData = anchorLayoutData;
 
             addChild(_list);
+
+            updateData();
         }
 
         private function createComponent(name:String):void
@@ -205,6 +200,28 @@ package starlingbuilder.editor.ui
             object.y = rect.y;
             object.width = rect.width;
             object.height = rect.height;
+        }
+
+        private function updateData():void
+        {
+            var array:Array = FileListingHelper.getFileList(UIEditorScreen.instance.workspaceDir, UIEditorScreen.instance.workspaceSetting.backgroundPath, ["png", "jpg", "atf"]);
+
+            var data:ListCollection = new ListCollection();
+
+            var searchText = _searchTextInput.text.toLowerCase();
+
+            for each (var name:String in array)
+            {
+                if (searchText == "" || name.toLowerCase().indexOf(searchText) != -1)
+                    data.push({label:name});
+            }
+
+            _list.dataProvider = data;
+        }
+
+        override protected function onSearch(event:Event):void
+        {
+            updateData();
         }
     }
 }
