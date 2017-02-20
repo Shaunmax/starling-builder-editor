@@ -7,10 +7,8 @@
  */
 package starlingbuilder.editor.ui
 {
-    import feathers.controls.TextInput;
     import feathers.controls.renderers.IListItemRenderer;
     import feathers.controls.text.TextBlockTextRenderer;
-    import feathers.controls.text.TextFieldTextRenderer;
     import feathers.core.ITextRenderer;
 
     import flash.geom.Point;
@@ -21,7 +19,6 @@ package starlingbuilder.editor.ui
     import starlingbuilder.editor.helper.UIComponentHelper;
     import starlingbuilder.engine.util.ParamUtil;
 
-    import feathers.controls.LayoutGroup;
     import feathers.controls.List;
     import feathers.data.ListCollection;
     import feathers.layout.AnchorLayout;
@@ -30,11 +27,10 @@ package starlingbuilder.editor.ui
     import starling.events.Event;
     import starling.utils.AssetManager;
 
-    public class ContainerTab extends LayoutGroup
+    public class ContainerTab extends SearchableTab
     {
         private var _assetManager:AssetManager;
 
-        private var _searchTextInput:TextInput;
         private var _list:List;
 
         protected var _supportedTypes:Array;
@@ -53,10 +49,7 @@ package starlingbuilder.editor.ui
 
             layout = new AnchorLayout();
 
-            _searchTextInput = new TextInput();
-            _searchTextInput.prompt = "Search...";
-            _searchTextInput.addEventListener(Event.CHANGE, onSearch);
-            addChild(_searchTextInput);
+            createTopContainer();
 
             listAssets();
         }
@@ -153,7 +146,7 @@ package starlingbuilder.editor.ui
             return new ComponentItemRenderer(DragToCanvasHelper.CONTAINER_TAB);
         }
 
-        private function onSearch(event:Event):void
+        override protected function onSearch(event:Event):void
         {
             updateData();
         }

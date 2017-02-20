@@ -1,5 +1,13 @@
 # Starling Builder Release Notes:
 
+## 1.2.2 (2.2.2)
+* [editor] PositionToolbar supports align grid
+* [editor] PixelSnapper supports multiple selected objects
+* [editor] double click on LayoutItemRenderer can change name
+* [editor] add search box to container tab and feathers tab
+* [editor] fix custom theme with BitmapFontTextRenderer breaks TweenSettingPanel
+* [template] add more properties to feathers layouts
+
 ## 1.2 (2.2)
 * [editor] Update to Starling 2.1 and Feathers 3.0.4
 * [editor] Improve template merge strategy

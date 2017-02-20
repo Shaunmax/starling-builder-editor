@@ -179,8 +179,6 @@ package starlingbuilder.util.feathers
 
             _container.width = MIN_INPUT_WIDTH * _gridLayout.columnCount;
 
-            var i:int;
-
             var input:TextInput;
 
             var button:Button;
@@ -228,7 +226,7 @@ package starlingbuilder.util.feathers
                 //value
                 input = new TextInput();
 
-                var item:Object = _data[key];
+                var item:* = _data[key];
 
                 if (item is String) input.text = item as String;
                 else if (item != undefined)

@@ -7,10 +7,7 @@
  */
 package starlingbuilder.editor.ui
 {
-    import feathers.controls.Button;
-    import feathers.controls.LayoutGroup;
     import feathers.controls.List;
-    import feathers.controls.TextInput;
     import feathers.data.ListCollection;
     import feathers.layout.AnchorLayout;
     import feathers.layout.AnchorLayoutData;
@@ -24,12 +21,9 @@ package starlingbuilder.editor.ui
     import starlingbuilder.editor.helper.FileListingHelper;
     import starlingbuilder.util.feathers.FeathersUIUtil;
 
-    public class FilesTab extends LayoutGroup
+    public class FilesTab extends SearchableTab
     {
         private var _list:List;
-
-        private var _searchTextInput:TextInput;
-        private var _refreshButton:Button;
 
         public function FilesTab()
         {
@@ -40,7 +34,6 @@ package starlingbuilder.editor.ui
 
             layout = new AnchorLayout();
 
-
             createTopContainer();
 
             listAssets();
@@ -48,25 +41,21 @@ package starlingbuilder.editor.ui
             addEventListener(Event.ADDED_TO_STAGE, onAddToStage);
         }
 
-        private function createTopContainer():void
+        override protected function createTopContainer():void
         {
-            var topContainer:LayoutGroup = FeathersUIUtil.layoutGroupWithHorizontalLayout();
+            super.createTopContainer();
 
-            _searchTextInput = new TextInput();
-            _searchTextInput.prompt = "Search...";
-            _searchTextInput.addEventListener(Event.CHANGE, onSearch);
-
-            _refreshButton = FeathersUIUtil.buttonWithLabel("refresh", updateData);
-
-            topContainer.addChild(_searchTextInput);
-            topContainer.addChild(_refreshButton);
-
-            addChild(topContainer);
+            createRefreshButton();
         }
 
-        private function onSearch(event:Event):void
+        override protected function onSearch(event:Event):void
         {
             updateData();
+        }
+
+        private function createRefreshButton():void
+        {
+            _topContainer.addChild(FeathersUIUtil.buttonWithLabel("refresh", updateData));
         }
 
         private function onListChange(event:Event):void
