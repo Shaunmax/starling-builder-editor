@@ -20,7 +20,7 @@ package starlingbuilder.util.feathers.popup
 
     public class InfoPopup extends BasePopupDev
     {
-        private var _buttonContainer:LayoutGroup;
+        protected var _buttonContainer:LayoutGroup;
 
         public function InfoPopup(w:Number = 400, h:Number = 400)
         {
@@ -65,7 +65,7 @@ package starlingbuilder.util.feathers.popup
             }
         }
 
-        private function onButtonTrigger(event:Event):void
+        protected function onButtonTrigger(event:Event):void
         {
             for (var i:int = 0; i < _buttonContainer.numChildren; i++)
             {
