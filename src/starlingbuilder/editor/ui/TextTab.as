@@ -10,12 +10,10 @@ package starlingbuilder.editor.ui
     import flash.geom.Point;
 
     import starlingbuilder.editor.UIEditorApp;
-    import starlingbuilder.editor.UIEditorScreen;
     import starlingbuilder.editor.data.TemplateData;
     import starlingbuilder.editor.helper.FontHelper;
     import starlingbuilder.editor.helper.UIComponentHelper;
 
-    import feathers.controls.LayoutGroup;
     import feathers.controls.List;
     import feathers.controls.PickerList;
     import feathers.controls.renderers.IListItemRenderer;
@@ -26,7 +24,7 @@ package starlingbuilder.editor.ui
     import starling.events.Event;
     import starling.utils.AssetManager;
 
-    public class TextTab extends LayoutGroup
+    public class TextTab extends SearchableTab
     {
         public static const DEFAULT_TEXT:String = "Abc123";
         public static const DEFAULT_SIZE:int = 46;
@@ -45,6 +43,8 @@ package starlingbuilder.editor.ui
             _assetManager = UIEditorApp.instance.assetManager;
 
             createPickerList();
+
+            createTopContainer();
 
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
@@ -110,32 +110,40 @@ package starlingbuilder.editor.ui
             _list.width = 330;
             _list.height = 800;
             _list.selectedIndex = -1;
-
-            var fonts:Array = FontHelper.getBitmapFontNames();
-
-            var data:ListCollection = new ListCollection();
-
-            for each (var name:String in fonts)
-            {
-                data.push({label:name});
-            }
-
-            _list.dataProvider = data;
-
             _list.addEventListener(Event.CHANGE, onListChange);
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
             anchorLayoutData.top = 0;
             anchorLayoutData.bottom = 0;
             anchorLayoutData.bottomAnchorDisplayObject = _typePicker;
+            anchorLayoutData.topAnchorDisplayObject = _searchTextInput;
             _list.layoutData = anchorLayoutData;
 
             addChild(_list);
+
+            updateData();
         }
 
+        private function updateData():void
+        {
+            var fonts:Array = FontHelper.getBitmapFontNames();
 
+            var data:ListCollection = new ListCollection();
 
+            var searchText = _searchTextInput.text.toLowerCase();
 
+            for each (var name:String in fonts)
+            {
+                if (searchText == "" || name.toLowerCase().indexOf(searchText) != -1)
+                    data.push({label: name});
+            }
 
+            _list.dataProvider = data;
+        }
+
+        override protected function onSearch(event:Event):void
+        {
+            updateData();
+        }
     }
 }

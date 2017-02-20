@@ -51,7 +51,7 @@ package starlingbuilder.editor.ui
 
     import starling.textures.TextureAtlas;
 
-    public class AssetTab extends LayoutGroup
+    public class AssetTab extends SearchableTab
     {
         private static const linker:Array = [DefaultCreateComponentPopup, DefaultEditPropertyPopup, ImageGridPopup, TexturePropertyPopup, DisplayObjectPropertyPopup, TextureConstructorPopup,
             ObjectPropertyPopup, XmlPropertyPopup, ListCollectionPopup, HierarchicalCollectionPopup];
@@ -74,10 +74,6 @@ package starlingbuilder.editor.ui
 
         private var _supportedTypes:Array;
 
-        private var _searchTextInput:TextInput;
-
-        private var _topContainer:LayoutGroup;
-
         private var _bottomContainer:LayoutGroup;
 
         public function AssetTab()
@@ -97,21 +93,17 @@ package starlingbuilder.editor.ui
 
             createTopContainer();
 
-            createSearchTextInput();
-
-            createBrowseButton();
-
-            createLogButton();
-
             createBottomContainer();
 
             listAssets();
         }
 
-        private function createTopContainer():void
+        override protected function createTopContainer():void
         {
-            _topContainer = FeathersUIUtil.layoutGroupWithHorizontalLayout();
-            addChild(_topContainer);
+            super.createTopContainer();
+
+            createBrowseButton();
+            createLogButton();
         }
 
         private function createBottomContainer():void
@@ -138,18 +130,9 @@ package starlingbuilder.editor.ui
             _supportedTypes = TemplateData.getSupportedComponent("asset");
         }
 
-        private function createSearchTextInput():void
-        {
-            _searchTextInput = new TextInput();
-            _searchTextInput.prompt = "Search...";
-            _searchTextInput.addEventListener(Event.CHANGE, onSearch);
-
-            _topContainer.addChild(_searchTextInput);
-        }
-
         private function createBrowseButton():void
         {
-            _topContainer.addChild(FeathersUIUtil.buttonWithLabel("open folder", function():void{
+            _topContainer.addChild(FeathersUIUtil.buttonWithLabel("browse", function():void{
 
                 var file:File = UIEditorScreen.instance.workspaceDir.resolvePath("textures");
 
@@ -451,7 +434,7 @@ package starlingbuilder.editor.ui
             }
         }
 
-        private function onSearch(event:Event):void
+        override protected function onSearch(event:Event):void
         {
             refreshList();
         }

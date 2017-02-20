@@ -127,6 +127,8 @@ package starlingbuilder.editor.controller
 
         private var _collapseMap:Dictionary;
 
+        private var _layoutSearchString:String;
+
         public function DocumentManager(assetManager:AssetManager, localizationManager:LocalizationManager)
         {
             _assetManager = assetManager;
@@ -412,13 +414,22 @@ package starlingbuilder.editor.controller
         private function sortDataProvider():void
         {
             var result:Array = [];
-
-            getObjectsByPreorderTraversal(_root, _extraParamsDict, result, _collapseMap);
-
             _dataProvider = new ListCollection();
-            for each (var obj:DisplayObject in result)
+
+            if (_layoutSearchString)
             {
-                _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), collapse:_collapseMap[obj]});
+                getObjectsByPreorderTraversal(_root, _extraParamsDict, result);
+                for each (var obj:DisplayObject in result)
+                {
+                    if (obj.name.toLowerCase().indexOf(_layoutSearchString.toLowerCase()) != -1)
+                        _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), search:true});
+                }
+            }
+            else
+            {
+                getObjectsByPreorderTraversal(_root, _extraParamsDict, result, _collapseMap);
+                for each (var obj:DisplayObject in result)
+                    _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), collapse:_collapseMap[obj]});
             }
         }
 
@@ -1793,6 +1804,21 @@ package starlingbuilder.editor.controller
             centerPanel.verticalScrollPosition = Math.min(
                     Math.max(centerPanel.minVerticalScrollPosition, centerPanel.verticalScrollPosition - dy),
                     centerPanel.maxVerticalScrollPosition);
+        }
+
+        public function get layoutSearchString():String
+        {
+            return _layoutSearchString;
+        }
+
+        public function set layoutSearchString(value:String):void
+        {
+            if (_layoutSearchString != value)
+            {
+                _layoutSearchString = value;
+                setLayerChanged();
+                setChanged();
+            }
         }
     }
 }
