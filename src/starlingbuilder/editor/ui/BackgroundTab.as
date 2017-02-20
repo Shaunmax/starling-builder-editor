@@ -208,7 +208,7 @@ package starlingbuilder.editor.ui
 
             var data:ListCollection = new ListCollection();
 
-            var searchText = _searchTextInput.text.toLowerCase();
+            var searchText:String = _searchTextInput.text.toLowerCase();
 
             for each (var name:String in array)
             {
