@@ -416,10 +416,12 @@ package starlingbuilder.editor.controller
             var result:Array = [];
             _dataProvider = new ListCollection();
 
+            var obj:DisplayObject;
+
             if (_layoutSearchString)
             {
                 getObjectsByPreorderTraversal(_root, _extraParamsDict, result);
-                for each (var obj:DisplayObject in result)
+                for each (obj in result)
                 {
                     if (obj.name.toLowerCase().indexOf(_layoutSearchString.toLowerCase()) != -1)
                         _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), search:true});
@@ -428,7 +430,7 @@ package starlingbuilder.editor.controller
             else
             {
                 getObjectsByPreorderTraversal(_root, _extraParamsDict, result, _collapseMap);
-                for each (var obj:DisplayObject in result)
+                for each (obj in result)
                     _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), collapse:_collapseMap[obj]});
             }
         }
