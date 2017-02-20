@@ -265,7 +265,7 @@ package starlingbuilder.editor.ui
 
             if (objects.length == 0) return;
 
-            var maxWidth:Number = 0, maxHeight = 0;
+            var maxWidth:Number = 0, maxHeight:Number = 0;
             var i:int, x:int, y:int;
             var w:Number, h:Number;
             var r:Rectangle;

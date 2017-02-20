@@ -127,6 +127,8 @@ package starlingbuilder.editor.controller
 
         private var _collapseMap:Dictionary;
 
+        private var _layoutSearchString:String;
+
         public function DocumentManager(assetManager:AssetManager, localizationManager:LocalizationManager)
         {
             _assetManager = assetManager;
@@ -412,13 +414,24 @@ package starlingbuilder.editor.controller
         private function sortDataProvider():void
         {
             var result:Array = [];
-
-            getObjectsByPreorderTraversal(_root, _extraParamsDict, result, _collapseMap);
-
             _dataProvider = new ListCollection();
-            for each (var obj:DisplayObject in result)
+
+            var obj:DisplayObject;
+
+            if (_layoutSearchString)
             {
-                _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), collapse:_collapseMap[obj]});
+                getObjectsByPreorderTraversal(_root, _extraParamsDict, result);
+                for each (obj in result)
+                {
+                    if (obj.name.toLowerCase().indexOf(_layoutSearchString.toLowerCase()) != -1)
+                        _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), search:true});
+                }
+            }
+            else
+            {
+                getObjectsByPreorderTraversal(_root, _extraParamsDict, result, _collapseMap);
+                for each (obj in result)
+                    _dataProvider.push({label:obj.name, hidden:!obj.visible, lock:!obj.touchable, obj:obj, layer:getLayerFromObject(obj), collapse:_collapseMap[obj]});
             }
         }
 
@@ -964,9 +977,10 @@ package starlingbuilder.editor.controller
             _uiBuilder.setExternalSource(param, name);
 
             //create the external element
-            var result:Object = _uiBuilder.load(data, false);
+            var result:Object = _uiBuilder.load(data);
             var root:DisplayObjectContainer = result.object;
             container.addChild(root);
+            param.externalParams = result.params;
 
             addFrom(container, param, getParent());
         }
@@ -1792,6 +1806,21 @@ package starlingbuilder.editor.controller
             centerPanel.verticalScrollPosition = Math.min(
                     Math.max(centerPanel.minVerticalScrollPosition, centerPanel.verticalScrollPosition - dy),
                     centerPanel.maxVerticalScrollPosition);
+        }
+
+        public function get layoutSearchString():String
+        {
+            return _layoutSearchString;
+        }
+
+        public function set layoutSearchString(value:String):void
+        {
+            if (_layoutSearchString != value)
+            {
+                _layoutSearchString = value;
+                setLayerChanged();
+                setChanged();
+            }
         }
     }
 }

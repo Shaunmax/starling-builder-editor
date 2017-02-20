@@ -72,6 +72,7 @@
                 {"name":"format", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
                     "supportedClasses":["starling.text.TextFormat"]},
                 {"name":"batchable", "component":"check", "default_value":false},
+                {"name":"isHtmlText", "component":"check", "default_value":false},
                 {"name":"style", "component":"popup", "cls":true, "disable":true, "default_value":{"cls":"starling.styles.MeshStyle"}, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup", "supportedGroup":"style"}
             ],
             "constructorParams":
@@ -612,6 +613,6 @@
 
     "version":2.0,
 
-    "revision":10007
+    "revision":10008
 
 }
