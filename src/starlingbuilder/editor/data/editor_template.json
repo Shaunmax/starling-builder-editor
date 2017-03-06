@@ -33,7 +33,7 @@
             ],
             "createComponentClass":"starlingbuilder.editor.ui.DefaultCreateComponentPopup",
             "createButton":true,
-            "tag":"asset"
+            "tag":"container"
         },
         {
             "cls":"starling.display.Button",
@@ -216,7 +216,7 @@
             ],
             "createComponentClass":"starlingbuilder.editor.ui.DefaultCreateComponentPopup",
             "createButton":true,
-            "tag":"asset"
+            "tag":"container"
         },
 
         {
@@ -630,5 +630,5 @@
 
     "version":1.0,
     
-    "revision":37
+    "revision":38
 }
