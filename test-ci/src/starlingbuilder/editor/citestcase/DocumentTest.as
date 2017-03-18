@@ -253,7 +253,7 @@ package starlingbuilder.editor.citestcase
             },
 
             function():void{
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(Sprite);
             },
 

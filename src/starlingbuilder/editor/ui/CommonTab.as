@@ -56,6 +56,7 @@ package starlingbuilder.editor.ui
 
         protected function createPickerList():void
         {
+            //"container" tag is for back-compat
             _supportedTypes = TemplateData.getSupportedComponent("common").concat(TemplateData.getSupportedComponent("container"));
         }
 
@@ -143,7 +144,7 @@ package starlingbuilder.editor.ui
 
         protected function listItemRenderer():IListItemRenderer
         {
-            return new ComponentItemRenderer(DragToCanvasHelper.CONTAINER_TAB);
+            return new ComponentItemRenderer(DragToCanvasHelper.COMMON_TAB);
         }
 
         override protected function onSearch(event:Event):void

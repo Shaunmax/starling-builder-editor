@@ -101,7 +101,7 @@ package starlingbuilder.editor.ui
                 case DragToCanvasHelper.TEXT_TAB:
                     tabPanel = leftPanel.textTab;
                     break;
-                case DragToCanvasHelper.CONTAINER_TAB:
+                case DragToCanvasHelper.COMMON_TAB:
                     tabPanel = leftPanel.commonTab;
                     break;
                 case DragToCanvasHelper.FEATHERS_TAB:
