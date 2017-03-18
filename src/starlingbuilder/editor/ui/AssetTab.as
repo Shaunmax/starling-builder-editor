@@ -71,8 +71,6 @@ package starlingbuilder.editor.ui
 
         private var _scaleDataGroup:LayoutGroup;
 
-        private var _createButton:Button;
-
         private var _supportedTypes:Array;
 
         private var _bottomContainer:LayoutGroup;
@@ -122,8 +120,6 @@ package starlingbuilder.editor.ui
             createPickerList(_bottomContainer);
 
             createScaleData(_bottomContainer);
-
-            createCreateButton(_bottomContainer);
         }
 
         private function createSupportedTypes():void
@@ -361,7 +357,7 @@ package starlingbuilder.editor.ui
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
             anchorLayoutData.bottom = 0;
-            anchorLayoutData.bottomAnchorDisplayObject = _createButton;
+            anchorLayoutData.bottomAnchorDisplayObject = _scaleDataGroup;
             _typePicker.layoutData = anchorLayoutData;
 
             container.addChild(_typePicker);
@@ -379,19 +375,6 @@ package starlingbuilder.editor.ui
             _scaleDataGroup.visible = false;
 
             container.addChild(_scaleDataGroup);
-        }
-
-        private function createCreateButton(container:Sprite):void
-        {
-            _createButton = FeathersUIUtil.buttonWithLabel("create");
-            _createButton.addEventListener(Event.TRIGGERED, onCreateButton);
-            _createButton.visible = false;
-
-            var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
-            anchorLayoutData.bottom = 0;
-            _createButton.layoutData = anchorLayoutData;
-
-            container.addChild(_createButton);
         }
 
         private function onCreateButton(event:Event):void
@@ -423,16 +406,6 @@ package starlingbuilder.editor.ui
             {
                 _textInput.text = "";
                 _scaleDataGroup.visible = false;
-            }
-
-
-            if (ParamUtil.createButton(TemplateData.editor_template, cls))
-            {
-                _createButton.visible = true;
-            }
-            else
-            {
-                _createButton.visible = false;
             }
         }
 

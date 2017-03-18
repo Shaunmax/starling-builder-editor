@@ -11,7 +11,9 @@ package starlingbuilder.util.ui.inspector
         {
             super(propertyRetriever, param, customParam, setting);
 
+            _textArea.width = 270;
             _textArea.height = 100;
+            _textArea.addEventListener(Event.CHANGE, onTextInput);
         }
 
         override protected function onTextInput(event:Event):void

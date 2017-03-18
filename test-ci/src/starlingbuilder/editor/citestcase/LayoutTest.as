@@ -29,7 +29,7 @@ package starlingbuilder.editor.citestcase
         public static const LAYOUTS:Array = [
             function():void{
                 documentManager.clear();
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(LayoutGroup);
             },
 
@@ -92,7 +92,7 @@ package starlingbuilder.editor.citestcase
         public static const ANCHOR_LAYOUT:Array = [
             function():void{
                 documentManager.clear();
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(LayoutGroup);
                 changeInspectorProperty({width:500, height:500}, UIEditorScreen.instance.rightPanel);
                 selectLayout(AnchorLayout);

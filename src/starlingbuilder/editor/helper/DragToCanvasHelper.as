@@ -30,7 +30,7 @@ package starlingbuilder.editor.helper
     {
         public static const ASSET_TAB:String = "asset";
         public static const TEXT_TAB:String = "text";
-        public static const CONTAINER_TAB:String = "container";
+        public static const COMMON_TAB:String = "common";
         public static const FEATHERS_TAB:String = "feathers";
 
         public static const LABEL:String = "label";
