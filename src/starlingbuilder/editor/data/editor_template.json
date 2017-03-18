@@ -509,8 +509,24 @@
                 {"name":"right", "default_value":"NaN"},
                 {"name":"bottom", "default_value":"NaN"},
                 {"name":"left", "default_value":"NaN"},
-                {"name":"horizontalCenter", "component":"slider", "min":-200, "max":200, "step":1, "default_value":"NaN"},
-                {"name":"verticalCenter", "component":"slider", "min":-200, "max":200, "step":1, "default_value":"NaN"},
+                {"name":"horizontalCenter", "default_value":"NaN"},
+                {"name":"verticalCenter", "default_value":"NaN"},
+                {"name":"percentWidth", "min":0, "default_value":"NaN"},
+                {"name":"percentHeight", "min":0, "default_value":"NaN"}
+            ]
+        },
+
+        {
+            "cls":"feathers.layout.HorizontalLayoutData",
+            "params":[
+                {"name":"percentWidth", "min":0, "default_value":"NaN"},
+                {"name":"percentHeight", "min":0, "default_value":"NaN"}
+            ]
+        },
+
+        {
+            "cls":"feathers.layout.VerticalLayoutData",
+            "params":[
                 {"name":"percentWidth", "min":0, "default_value":"NaN"},
                 {"name":"percentHeight", "min":0, "default_value":"NaN"}
             ]
@@ -622,7 +638,7 @@
     {
         "filter":[null, "starling.filters.BlurFilter", "starlingbuilder.extensions.filters.DropShadowFilter", "starlingbuilder.extensions.filters.GlowFilter", "starlingbuilder.extensions.filters.ColorFilter"],
         "layout":[null, "feathers.layout.HorizontalLayout", "feathers.layout.VerticalLayout", "feathers.layout.AnchorLayout", "feathers.layout.FlowLayout", "feathers.layout.TiledRowsLayout", "feathers.layout.TiledColumnsLayout", "feathers.layout.WaterfallLayout"],
-        "layoutData":[null, "feathers.layout.AnchorLayoutData"],
+        "layoutData":[null, "feathers.layout.AnchorLayoutData", "feathers.layout.HorizontalLayoutData", "feathers.layout.VerticalLayoutData"],
         "mask":[null, "starling.display.Quad", "starling.display.Image"]
     },
 
