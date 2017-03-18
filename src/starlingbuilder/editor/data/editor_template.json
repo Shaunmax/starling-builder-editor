@@ -32,8 +32,7 @@
                 {"type":"Number", "value":50, "name":"height"}
             ],
             "createComponentClass":"starlingbuilder.editor.ui.DefaultCreateComponentPopup",
-            "createButton":true,
-            "tag":"container"
+            "tag":"common"
         },
         {
             "cls":"starling.display.Button",
@@ -155,7 +154,7 @@
                 {"name":"includeInLayout", "component":"check", "default_value":true}
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -169,7 +168,7 @@
                     "supportedGroup":"layoutData"}
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -181,7 +180,7 @@
                 {"name":"scaleY", "step":0.01, "default_value":1}
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -200,7 +199,7 @@
 
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -215,8 +214,7 @@
                 {"name":"numFrames", "read_only":true, "disable":true}
             ],
             "createComponentClass":"starlingbuilder.editor.ui.DefaultCreateComponentPopup",
-            "createButton":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {

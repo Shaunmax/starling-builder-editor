@@ -9,7 +9,7 @@ package starlingbuilder.editor.ui
 {
     import starlingbuilder.editor.data.TemplateData;
 
-    public class FeathersTab extends ContainerTab
+    public class FeathersTab extends CommonTab
     {
         public function FeathersTab()
         {

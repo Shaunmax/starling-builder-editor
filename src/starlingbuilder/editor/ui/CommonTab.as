@@ -27,7 +27,7 @@ package starlingbuilder.editor.ui
     import starling.events.Event;
     import starling.utils.AssetManager;
 
-    public class ContainerTab extends SearchableTab
+    public class CommonTab extends SearchableTab
     {
         private var _assetManager:AssetManager;
 
@@ -35,7 +35,7 @@ package starlingbuilder.editor.ui
 
         protected var _supportedTypes:Array;
 
-        public function ContainerTab()
+        public function CommonTab()
         {
             _assetManager = UIEditorApp.instance.assetManager;
 
@@ -56,7 +56,7 @@ package starlingbuilder.editor.ui
 
         protected function createPickerList():void
         {
-            _supportedTypes = TemplateData.getSupportedComponent("container");
+            _supportedTypes = TemplateData.getSupportedComponent("common").concat(TemplateData.getSupportedComponent("container"));
         }
 
         private function onListChange(event:Event):void
