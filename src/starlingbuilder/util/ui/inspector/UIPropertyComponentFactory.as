@@ -41,6 +41,7 @@ package starlingbuilder.util.ui.inspector
             "colorPicker":["textInputHex", "colorPicker"],
             "textInput":["textInput"],
             "textArea":["textArea"],
+            "textAreaString":["textAreaString"],
             "popup":["textInput", "popup"],
             "check":["check"],
             "editPath":["textAreaString", "editPath"],

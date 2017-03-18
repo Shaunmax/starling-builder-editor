@@ -65,7 +65,7 @@
             "params":[
                 {"name":"width", "min":0},
                 {"name":"height", "min":0},
-                {"name":"text"},
+                {"name":"text", "component":"textAreaString"},
                 {"name":"autoScale", "component":"check", "default_value":false},
                 {"name":"autoSize", "component":"pickerList", "options":["none", "horizontal", "vertical", "bothDirections"], "default_value":"none"},
                 {"name":"format", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
@@ -221,7 +221,7 @@
         {
             "cls":"feathers.controls.Label",
             "params":[
-                {"name":"text"},
+                {"name":"text", "component":"textAreaString"},
                 {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"},
                 {"name":"padding", "default_value":0},
                 {"name":"wordWrap", "component":"check", "default_value":false}
@@ -324,7 +324,7 @@
         {
             "cls":"feathers.controls.TextArea",
             "params":[
-                {"name":"text"}
+                {"name":"text", "component":"textAreaString"}
             ],
             "tag":"feathers"
         },
