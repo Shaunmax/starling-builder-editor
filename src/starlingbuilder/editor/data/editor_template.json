@@ -88,7 +88,8 @@
             "params":[
                 {"name":"width", "min":0, "explicitField":"explicitWidth"},
                 {"name":"height", "min":0, "explicitField":"explicitHeight"},
-                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"},
+                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
+                    "supportedGroup":"mask"},
                 {"name":"layout", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
                 "supportedGroup":"layout"},
                 {"name":"layoutData", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
@@ -222,7 +223,8 @@
             "cls":"feathers.controls.Label",
             "params":[
                 {"name":"text", "component":"textAreaString"},
-                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"},
+                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
+                    "supportedGroup":"mask"},
                 {"name":"padding", "default_value":0},
                 {"name":"wordWrap", "component":"check", "default_value":false}
             ],
@@ -451,8 +453,24 @@
                 {"name":"right", "default_value":"NaN"},
                 {"name":"bottom", "default_value":"NaN"},
                 {"name":"left", "default_value":"NaN"},
-                {"name":"horizontalCenter", "component":"slider", "min":-200, "max":200, "step":1, "default_value":"NaN"},
-                {"name":"verticalCenter", "component":"slider", "min":-200, "max":200, "step":1, "default_value":"NaN"},
+                {"name":"horizontalCenter", "default_value":"NaN"},
+                {"name":"verticalCenter", "default_value":"NaN"},
+                {"name":"percentWidth", "min":0, "default_value":"NaN"},
+                {"name":"percentHeight", "min":0, "default_value":"NaN"}
+            ]
+        },
+
+        {
+            "cls":"feathers.layout.HorizontalLayoutData",
+            "params":[
+                {"name":"percentWidth", "min":0, "default_value":"NaN"},
+                {"name":"percentHeight", "min":0, "default_value":"NaN"}
+            ]
+        },
+
+        {
+            "cls":"feathers.layout.VerticalLayoutData",
+            "params":[
                 {"name":"percentWidth", "min":0, "default_value":"NaN"},
                 {"name":"percentHeight", "min":0, "default_value":"NaN"}
             ]
@@ -604,7 +622,7 @@
     {
         "filter":[null, "starling.filters.BlurFilter", "starling.filters.DropShadowFilter", "starling.filters.GlowFilter", "starlingbuilder.extensions.filters.ColorFilter"],
         "layout":[null, "feathers.layout.HorizontalLayout", "feathers.layout.VerticalLayout", "feathers.layout.AnchorLayout", "feathers.layout.FlowLayout", "feathers.layout.TiledRowsLayout", "feathers.layout.TiledColumnsLayout", "feathers.layout.WaterfallLayout"],
-        "layoutData":[null, "feathers.layout.AnchorLayoutData"],
+        "layoutData":[null, "feathers.layout.AnchorLayoutData", "feathers.layout.HorizontalLayoutData", "feathers.layout.VerticalLayoutData"],
         "style":[null, "starling.styles.DistanceFieldStyle"],
         "mask":[null, "starling.display.Quad", "starling.display.Image"]
     },

@@ -11,6 +11,8 @@ package starlingbuilder.editor.ui
 
     import starling.utils.Color;
 
+    import starlingbuilder.editor.SupportedWidget;
+
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.controller.ComponentRenderSupport;
 
@@ -29,8 +31,6 @@ package starlingbuilder.editor.ui
 
     public class ImageGridPopup extends DefaultEditPropertyPopup
     {
-        public static const DEFAULT_SCALE9_GRID:Array = [0.3, 0.3, 0.4, 0.4];
-
         private static const MAX_SIZE:int = 700;
 
         private var _gridContainer:Sprite;
@@ -127,10 +127,10 @@ package starlingbuilder.editor.ui
 
             if (rect)
             {
-                rect.x = Math.round(DEFAULT_SCALE9_GRID[0] * _image.width);
-                rect.y = Math.round(DEFAULT_SCALE9_GRID[1] * _image.height);
-                rect.width = Math.round(DEFAULT_SCALE9_GRID[2] * _image.width);
-                rect.height = Math.round(DEFAULT_SCALE9_GRID[3] * _image.height);
+                rect.x = Math.round(SupportedWidget.DEFAULT_SCALE9_RATIO[0] * _image.width);
+                rect.y = Math.round(SupportedWidget.DEFAULT_SCALE9_RATIO[1] * _image.height);
+                rect.width = Math.round(SupportedWidget.DEFAULT_SCALE9_RATIO[2] * _image.width);
+                rect.height = Math.round(SupportedWidget.DEFAULT_SCALE9_RATIO[3] * _image.height);
             }
         }
     }
