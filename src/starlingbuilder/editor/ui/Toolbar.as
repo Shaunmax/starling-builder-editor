@@ -555,7 +555,7 @@ package starlingbuilder.editor.ui
         }
 
         public static const DOCUMENTATION_PAGE:String = "http://wiki.starling-framework.org/builder/start";
-        public static const GITHUB_PAGE:String = "https://github.com/mindjolt/starling-builder-editor";
+        public static const GITHUB_PAGE:String = "https://github.com/yuhengh/starling-builder-editor";
 
         private function onDocumentation():void
         {
