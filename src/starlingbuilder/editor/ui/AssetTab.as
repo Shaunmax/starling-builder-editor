@@ -66,12 +66,6 @@ package starlingbuilder.editor.ui
 
         private var _typePicker:PickerList;
 
-        private var _textInput:TextInput;
-
-        private var _scaleDataGroup:LayoutGroup;
-
-        private var _createButton:Button;
-
         private var _supportedTypes:Array;
 
         private var _bottomContainer:LayoutGroup;
@@ -119,10 +113,6 @@ package starlingbuilder.editor.ui
             createListButtons(_bottomContainer);
 
             createPickerList(_bottomContainer);
-
-            createScaleData(_bottomContainer);
-
-            createCreateButton(_bottomContainer);
         }
 
         private function createSupportedTypes():void
@@ -167,10 +157,6 @@ package starlingbuilder.editor.ui
         {
             var editorData:Object = {name:label, textureName:label};
             editorData.cls = _supportedTypes[_typePicker.selectedIndex];
-            if (_textInput.text != "")
-            {
-                editorData.scaleData = JSON.parse(_textInput.text) as Array;
-            }
 
             if (position)
             {
@@ -353,43 +339,13 @@ package starlingbuilder.editor.ui
             _typePicker = new PickerList();
 
             _typePicker.dataProvider = new ListCollection(_supportedTypes);
-            _typePicker.addEventListener(Event.CHANGE, onTypePickerChange);
             _typePicker.selectedIndex = 0;
-
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
             anchorLayoutData.bottom = 0;
-            anchorLayoutData.bottomAnchorDisplayObject = _createButton;
             _typePicker.layoutData = anchorLayoutData;
 
             container.addChild(_typePicker);
-        }
-
-        private function createScaleData(container:Sprite):void
-        {
-            var label:Label = FeathersUIUtil.labelWithText("scale data");
-            _textInput = new TextInput();
-
-            _scaleDataGroup = new LayoutGroup();
-            _scaleDataGroup.layout = new HorizontalLayout();
-            _scaleDataGroup.addChild(label);
-            _scaleDataGroup.addChild(_textInput);
-            _scaleDataGroup.visible = false;
-
-            container.addChild(_scaleDataGroup);
-        }
-
-        private function createCreateButton(container:Sprite):void
-        {
-            _createButton = FeathersUIUtil.buttonWithLabel("create");
-            _createButton.addEventListener(Event.TRIGGERED, onCreateButton);
-            _createButton.visible = false;
-
-            var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
-            anchorLayoutData.bottom = 0;
-            _createButton.layoutData = anchorLayoutData;
-
-            container.addChild(_createButton);
         }
 
         private function onCreateButton(event:Event):void
@@ -400,38 +356,6 @@ package starlingbuilder.editor.ui
 
             var editorData:Object = {name:name, textureName:name, cls:cls};
             UIComponentHelper.createComponent(editorData);
-        }
-
-        private function onTypePickerChange(event:Event):void
-        {
-            var cls:String = _typePicker.selectedItem as String;
-
-
-            if (ParamUtil.scale3Data(TemplateData.editor_template, cls))
-            {
-                _textInput.text = JSON.stringify(SupportedWidget.DEFAULT_SCALE3_RATIO);
-                _scaleDataGroup.visible = true;
-            }
-            else if (ParamUtil.scale9Data(TemplateData.editor_template, cls))
-            {
-                _textInput.text = JSON.stringify(SupportedWidget.DEFAULT_SCALE9_RATIO);
-                _scaleDataGroup.visible = true;
-            }
-            else
-            {
-                _textInput.text = "";
-                _scaleDataGroup.visible = false;
-            }
-
-
-            if (ParamUtil.createButton(TemplateData.editor_template, cls))
-            {
-                _createButton.visible = true;
-            }
-            else
-            {
-                _createButton.visible = false;
-            }
         }
 
         override protected function onSearch(event:Event):void

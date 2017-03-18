@@ -13,8 +13,8 @@ package starlingbuilder.editor.ui
         {
             super();
 
-            createTabs([{"label":"layout"}, {"label":"asset"}, {"label":"text"}, {"label":"container"}, {"label":"feathers"}, {"label":"bg"}, {label:"files"}],
-                    [new LayoutTab(), new AssetTab(), new TextTab(), new ContainerTab(), new FeathersTab(), new BackgroundTab(), new FilesTab()]);
+            createTabs([{"label":"layout"}, {"label":"asset"}, {"label":"text"}, {"label":"common"}, {"label":"feathers"}, {"label":"bg"}, {label:"files"}],
+                    [new LayoutTab(), new AssetTab(), new TextTab(), new CommonTab(), new FeathersTab(), new BackgroundTab(), new FilesTab()]);
         }
 
         public function get assetTab():AssetTab
@@ -27,7 +27,7 @@ package starlingbuilder.editor.ui
             return _tabScreens[2];
         }
 
-        public function get containerTab():ContainerTab
+        public function get commonTab():CommonTab
         {
             return _tabScreens[3];
         }

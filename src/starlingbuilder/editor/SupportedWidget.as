@@ -8,11 +8,14 @@
 package starlingbuilder.editor
 {
     import feathers.controls.*;
+    import feathers.layout.AnchorLayoutData;
     import feathers.layout.FlowLayout;
     import feathers.layout.HorizontalLayout;
+    import feathers.layout.HorizontalLayoutData;
     import feathers.layout.TiledColumnsLayout;
     import feathers.layout.TiledRowsLayout;
     import feathers.layout.VerticalLayout;
+    import feathers.layout.VerticalLayoutData;
     import feathers.layout.VerticalSpinnerLayout;
     import feathers.layout.WaterfallLayout;
     import feathers.media.VideoPlayer;
@@ -100,6 +103,10 @@ package starlingbuilder.editor
             TiledColumnsLayout,
             VerticalSpinnerLayout,
             WaterfallLayout,
+
+            AnchorLayoutData,
+            HorizontalLayoutData,
+            VerticalLayoutData,
 
             BlurFilter,
             GlowFilter,

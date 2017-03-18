@@ -1,5 +1,12 @@
 # Starling Builder Release Notes:
 
+## 1.2.3 (2.2.3)
+* [engine] better support for external layout
+* [editor] all the left tabs are searchable
+* [editor] add AssetManager log button to asset tab
+* [editor] add WatchDog to detect crash
+* [template] add isHtmlText property to TextField
+
 ## 1.2.2 (2.2.2)
 * [editor] PositionToolbar supports align grid
 * [editor] PixelSnapper supports multiple selected objects

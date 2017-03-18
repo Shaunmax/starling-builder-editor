@@ -37,8 +37,7 @@
                 {"type":"Number", "value":50, "name":"height"}
             ],
             "createComponentClass":"starlingbuilder.editor.ui.DefaultCreateComponentPopup",
-            "createButton":true,
-            "tag":"asset"
+            "tag":"common"
         },
         {
             "cls":"starling.display.Button",
@@ -66,7 +65,7 @@
             "params":[
                 {"name":"width", "min":0},
                 {"name":"height", "min":0},
-                {"name":"text"},
+                {"name":"text", "component":"textAreaString"},
                 {"name":"autoScale", "component":"check", "default_value":false},
                 {"name":"autoSize", "component":"pickerList", "options":["none", "horizontal", "vertical", "bothDirections"], "default_value":"none"},
                 {"name":"format", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
@@ -89,7 +88,8 @@
             "params":[
                 {"name":"width", "min":0, "explicitField":"explicitWidth"},
                 {"name":"height", "min":0, "explicitField":"explicitHeight"},
-                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"},
+                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
+                    "supportedGroup":"mask"},
                 {"name":"layout", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
                 "supportedGroup":"layout"},
                 {"name":"layoutData", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
@@ -97,7 +97,7 @@
                 {"name":"includeInLayout", "component":"check", "default_value":true}
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -111,7 +111,7 @@
                     "supportedGroup":"layoutData"}
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -123,7 +123,7 @@
                 {"name":"scaleY", "step":0.01, "default_value":1}
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -142,7 +142,7 @@
 
             ],
             "container":true,
-            "tag":"container"
+            "tag":"common"
         },
 
         {
@@ -157,8 +157,7 @@
                 {"name":"numFrames", "read_only":true, "disable":true}
             ],
             "createComponentClass":"starlingbuilder.editor.ui.DefaultCreateComponentPopup",
-            "createButton":true,
-            "tag":"asset"
+            "tag":"common"
         },
 
         {
@@ -223,8 +222,9 @@
         {
             "cls":"feathers.controls.Label",
             "params":[
-                {"name":"text"},
-                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DisplayObjectPropertyPopup"},
+                {"name":"text", "component":"textAreaString"},
+                {"name":"backgroundSkin", "component":"popup", "cls":true, "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DefaultEditPropertyPopup",
+                    "supportedGroup":"mask"},
                 {"name":"padding", "default_value":0},
                 {"name":"wordWrap", "component":"check", "default_value":false}
             ],
@@ -326,7 +326,7 @@
         {
             "cls":"feathers.controls.TextArea",
             "params":[
-                {"name":"text"}
+                {"name":"text", "component":"textAreaString"}
             ],
             "tag":"feathers"
         },
@@ -453,8 +453,24 @@
                 {"name":"right", "default_value":"NaN"},
                 {"name":"bottom", "default_value":"NaN"},
                 {"name":"left", "default_value":"NaN"},
-                {"name":"horizontalCenter", "component":"slider", "min":-200, "max":200, "step":1, "default_value":"NaN"},
-                {"name":"verticalCenter", "component":"slider", "min":-200, "max":200, "step":1, "default_value":"NaN"},
+                {"name":"horizontalCenter", "default_value":"NaN"},
+                {"name":"verticalCenter", "default_value":"NaN"},
+                {"name":"percentWidth", "min":0, "default_value":"NaN"},
+                {"name":"percentHeight", "min":0, "default_value":"NaN"}
+            ]
+        },
+
+        {
+            "cls":"feathers.layout.HorizontalLayoutData",
+            "params":[
+                {"name":"percentWidth", "min":0, "default_value":"NaN"},
+                {"name":"percentHeight", "min":0, "default_value":"NaN"}
+            ]
+        },
+
+        {
+            "cls":"feathers.layout.VerticalLayoutData",
+            "params":[
                 {"name":"percentWidth", "min":0, "default_value":"NaN"},
                 {"name":"percentHeight", "min":0, "default_value":"NaN"}
             ]
@@ -606,13 +622,13 @@
     {
         "filter":[null, "starling.filters.BlurFilter", "starling.filters.DropShadowFilter", "starling.filters.GlowFilter", "starlingbuilder.extensions.filters.ColorFilter"],
         "layout":[null, "feathers.layout.HorizontalLayout", "feathers.layout.VerticalLayout", "feathers.layout.AnchorLayout", "feathers.layout.FlowLayout", "feathers.layout.TiledRowsLayout", "feathers.layout.TiledColumnsLayout", "feathers.layout.WaterfallLayout"],
-        "layoutData":[null, "feathers.layout.AnchorLayoutData"],
+        "layoutData":[null, "feathers.layout.AnchorLayoutData", "feathers.layout.HorizontalLayoutData", "feathers.layout.VerticalLayoutData"],
         "style":[null, "starling.styles.DistanceFieldStyle"],
         "mask":[null, "starling.display.Quad", "starling.display.Image"]
     },
 
     "version":2.0,
 
-    "revision":10008
+    "revision":10009
 
 }
