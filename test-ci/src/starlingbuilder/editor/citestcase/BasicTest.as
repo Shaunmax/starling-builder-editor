@@ -304,25 +304,25 @@ package starlingbuilder.editor.citestcase
             //container tab
             function():void{
                 documentManager.clear();
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(Sprite);
             },
 
             function():void{
                 documentManager.clear();
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(Sprite3D);
             },
 
             function():void{
                 documentManager.clear();
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(LayoutGroup);
             },
 
             function():void{
                 documentManager.clear();
-                selectTab("container");
+                selectTab("common");
                 selectListComponent(ScrollContainer);
             },
         ]
