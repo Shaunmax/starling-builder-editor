@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>1.2.3</versionNumber>
-       <url>http://starlingbuilder.github.io/download/1.x/v1.2.3/starling-builder.air</url>
+       <versionNumber>1.2.4</versionNumber>
+       <url>http://starlingbuilder.github.io/download/1.x/v1.2.4/starling-builder.air</url>
        <description>
 [engine] better support for external layout
 [editor] all the left tabs are searchable
