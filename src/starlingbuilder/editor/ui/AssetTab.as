@@ -66,8 +66,6 @@ package starlingbuilder.editor.ui
 
         private var _typePicker:PickerList;
 
-        private var _textInput:TextInput;
-
         private var _supportedTypes:Array;
 
         private var _bottomContainer:LayoutGroup;
@@ -159,10 +157,6 @@ package starlingbuilder.editor.ui
         {
             var editorData:Object = {name:label, textureName:label};
             editorData.cls = _supportedTypes[_typePicker.selectedIndex];
-            if (_textInput.text != "")
-            {
-                editorData.scaleData = JSON.parse(_textInput.text) as Array;
-            }
 
             if (position)
             {
