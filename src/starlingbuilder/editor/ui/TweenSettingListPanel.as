@@ -66,14 +66,6 @@ package starlingbuilder.editor.ui
             {
                 var renderer:DefaultListItemRenderer=new DefaultListItemRenderer();
                 renderer.labelField="text";
-                renderer.labelFactory=function():Label
-                {
-                    var label:Label=new Label();
-                    label.styleName=Label.ALTERNATE_STYLE_NAME_HEADING;
-                    label.wordWrap=true;
-                    label.validate();
-                    return label;
-                }
                 renderer.validate();
                 return renderer;
             }

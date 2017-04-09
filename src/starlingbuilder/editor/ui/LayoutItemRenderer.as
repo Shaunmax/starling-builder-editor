@@ -126,7 +126,6 @@ package starlingbuilder.editor.ui
             _group.layout = layout;
 
             _hiddenCheck = new ToggleButton();
-            _hiddenCheck.styleName = BaseMetalWorksDesktopTheme2.NO_THEME;
             _hiddenCheck.defaultSkin = getImage(eyeTexture, 0.5, 1);
             _hiddenCheck.defaultSelectedSkin = getImage(eyeTexture, 0.5, 0.3);
             //_hiddenCheck.label = "hidden";
@@ -138,7 +137,6 @@ package starlingbuilder.editor.ui
             _group.addChild(_hiddenCheck);
 
             _lockCheck = new ToggleButton();
-            _lockCheck.styleName = BaseMetalWorksDesktopTheme2.NO_THEME;
             _lockCheck.defaultSkin = getImage(lockTexture, 0.5, 0.3);
             _lockCheck.defaultSelectedSkin = getImage(lockTexture, 0.5, 1);
             //_lockCheck.label = "lock";
