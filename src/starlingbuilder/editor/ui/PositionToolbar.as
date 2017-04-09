@@ -102,7 +102,6 @@ package starlingbuilder.editor.ui
             {
                 trace(item.name.replace(" ", "_"));
                 var button:Button = new Button();
-                button.styleName = BaseMetalWorksDesktopTheme2.NO_THEME;
                 button.defaultSkin = new Image(atlas.getTexture(item.name.replace(" ", "_")));
                 button.scaleWhenDown = 0.9;
                 button.width = button.height = 22;
