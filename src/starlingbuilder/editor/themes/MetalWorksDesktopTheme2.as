@@ -24,6 +24,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 */
 package starlingbuilder.editor.themes
 {
+	import feathers.skins.IStyleProvider;
+	import feathers.skins.StyleProviderRegistry;
+
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 
@@ -60,9 +63,9 @@ package starlingbuilder.editor.themes
 		/**
 		 * Constructor.
 		 */
-		public function MetalWorksDesktopTheme2(themeMediator:IUIEditorThemeMediator = null)
+		public function MetalWorksDesktopTheme2()
 		{
-			super(themeMediator);
+			super();
 			this.initialize();
 		}
 
@@ -95,6 +98,16 @@ package starlingbuilder.editor.themes
 			var atlasBitmapData:BitmapData = Bitmap(new ATLAS_BITMAP()).bitmapData;
 			this.atlas.texture.root.uploadBitmapData(atlasBitmapData);
 			atlasBitmapData.dispose();
+		}
+
+		override protected function createRegistry():void
+		{
+			_registry = new StyleProviderRegistry(false, defaultStyleProviderFactory);
+		}
+
+		protected static function defaultStyleProviderFactory():IStyleProvider
+		{
+			return new ExtendedStyleNameFunctionStyleProvider();
 		}
 	}
 }

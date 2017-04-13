@@ -112,7 +112,7 @@ package starlingbuilder.editor.themes
 	 * @see MetalWorksDesktopTheme
 	 * @see MetalWorksDesktopThemeWithAssetManager
 	 */
-	public class BaseMetalWorksDesktopTheme2 extends UIEditorTheme
+	public class BaseMetalWorksDesktopTheme2 extends StyleNameFunctionTheme
 	{
 		[Embed(source="/../assets/fonts/SourceSansPro-Regular.ttf",fontFamily="SourceSansPro",fontWeight="normal",mimeType="application/x-font",embedAsCFF="true")]
 		protected static const SOURCE_SANS_PRO_REGULAR:Class;
@@ -317,9 +317,9 @@ package starlingbuilder.editor.themes
 		/**
 		 * Constructor.
 		 */
-		public function BaseMetalWorksDesktopTheme2(themeMediator:IUIEditorThemeMediator = null)
+		public function BaseMetalWorksDesktopTheme2()
 		{
-			super(false, themeMediator);
+			super();
 		}
 
 		/**
@@ -1095,7 +1095,7 @@ package starlingbuilder.editor.themes
 			layout.horizontalAlign = HorizontalAlign.JUSTIFY;
 			layout.verticalAlign = VerticalAlign.TOP;
 			layout.resetTypicalItemDimensionsOnMeasure = true;
-			layout.maxRowCount = 5;
+			layout.maxRowCount = 10;
 			list.layout = layout;
 		}
 
