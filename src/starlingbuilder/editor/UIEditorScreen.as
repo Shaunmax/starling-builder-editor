@@ -287,6 +287,8 @@ package starlingbuilder.editor
 
             var libFiles:Array = [];
 
+            var crashed:Boolean = false;
+
             var watchDog:WatchDog = new WatchDog(_workspaceDir.resolvePath("settings/crash.json"));
             if (watchDog.cleared)
             {
@@ -296,6 +298,7 @@ package starlingbuilder.editor
             }
             else
             {
+                crashed = true;
                 PopUpManager.addPopUp(new CrashPopup());
                 onComplete();
             }
@@ -316,7 +319,8 @@ package starlingbuilder.editor
 
                 libsMonitor.saveChange();
 
-                checkLibs(libsMonitor);
+                if (!crashed)
+                    checkLibs(libsMonitor);
 
                 UIEditorApp.instance.init();
 
