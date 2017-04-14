@@ -7,6 +7,7 @@
  */
 package starlingbuilder.editor.ui
 {
+    import feathers.controls.Button;
     import feathers.controls.ScrollContainer;
 
     import starling.display.DisplayObject;
@@ -32,6 +33,8 @@ package starlingbuilder.editor.ui
         public static const LOCALIZE_KEYS:String = "customParams.localizeKey";
 
         private var _propertiesPanel:PropertyPanel;
+
+        private var _resetButton:Button;
 
         private var _documentManager:DocumentManager;
 
@@ -67,6 +70,9 @@ package starlingbuilder.editor.ui
             _propertiesPanel = new PropertyPanel({}, []);
 
             addChild(_propertiesPanel);
+
+            _resetButton = FeathersUIUtil.buttonWithLabel("reset", reset);
+            addChild(_resetButton);
         }
 
         private function onChange(event:Event):void
@@ -112,6 +118,17 @@ package starlingbuilder.editor.ui
             PropertyPanel.globalDispatcher.removeEventListener(UIMapperEventType.PROPERTY_CHANGE, onPropertyChange);
 
             super.dispose();
+        }
+
+        private function reset():void
+        {
+            var obj:DisplayObject = _documentManager.singleSelectedObject;
+
+            if (obj)
+            {
+                _documentManager.extraParamsDict[obj].customParams = {};
+                _documentManager.setChanged();
+            }
         }
     }
 }

@@ -1,5 +1,11 @@
 # Starling Builder Release Notes:
 
+## 1.2.4 (2.2.4)
+* [editor] rename container tab to common tab in left panel
+* [editor] support textAreaString component in properties tab
+* [template] TextField.text, Label.text, TextArea.text use textAreaString component
+* [template] Add HorizontalLayoutData, VerticalLayoutData
+
 ## 1.2.3 (2.2.3)
 * [engine] better support for external layout
 * [editor] all the left tabs are searchable

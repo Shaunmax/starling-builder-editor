@@ -8,6 +8,7 @@
 package starlingbuilder.editor.ui
 {
     import feathers.layout.AnchorLayoutData;
+    import feathers.skins.ConditionalStyleProvider;
 
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.UIEditorScreen;
@@ -17,7 +18,7 @@ package starlingbuilder.editor.ui
     import starlingbuilder.editor.helper.FontHelper;
     import starlingbuilder.editor.history.CompositeHistoryOperation;
     import starlingbuilder.editor.history.ResetOperation;
-    import starlingbuilder.editor.themes.UIEditorStyleProvider;
+    import starlingbuilder.editor.themes.ExtendedStyleNameFunctionStyleProvider;
     import starlingbuilder.engine.util.ParamUtil;
     import starlingbuilder.util.feathers.FeathersUIUtil;
     import starlingbuilder.util.ui.inspector.DefaultPropertyRetriever;
@@ -245,13 +246,20 @@ package starlingbuilder.editor.ui
         {
             var array:Array = [];
 
-            if (fc.styleProvider is UIEditorStyleProvider)
+            var conditionalStyleProvider = fc.styleProvider as ConditionalStyleProvider;
+            if (conditionalStyleProvider)
             {
-                var styleNameMap:Object = (fc.styleProvider as UIEditorStyleProvider).styleNameMap;
+                var styleProvider:ExtendedStyleNameFunctionStyleProvider = conditionalStyleProvider.trueStyleProvider as ExtendedStyleNameFunctionStyleProvider;
 
-                for (var name:String in styleNameMap)
+                if (styleProvider)
                 {
-                    array.push(name);
+                    var styleNameMap:Object = styleProvider.styleNameMap;
+
+                    for (var name:String in styleNameMap)
+                    {
+                        array.push(name);
+                    }
+                    array.sort();
                 }
             }
 

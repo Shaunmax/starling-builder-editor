@@ -11,6 +11,8 @@ package starlingbuilder.util.feathers
     import feathers.data.ListCollection;
     import feathers.events.FeathersEventType;
 
+    import flash.utils.getTimer;
+
     import flash.utils.setTimeout;
 
     import starling.events.Event;
@@ -39,10 +41,19 @@ package starlingbuilder.util.feathers
 
         private function onFocusIn(event:Event):void
         {
-            setTimeout(function ():void
+            if(this._autoCompleteDelay == 0)
             {
-                dispatchEventWith(Event.CHANGE);
-            }, 1);
+                //just in case the enter frame listener was added before
+                //sourceUpdateDelay was set to 0.
+                this.removeEventListener(Event.ENTER_FRAME, autoComplete_enterFrameHandler);
+
+                this._source.load(this.text, this._listCollection);
+            }
+            else
+            {
+                this._lastChangeTime = getTimer();
+                this.addEventListener(Event.ENTER_FRAME, autoComplete_enterFrameHandler);
+            }
         }
 
         override public function dispose():void

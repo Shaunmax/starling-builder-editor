@@ -45,8 +45,7 @@ package starlingbuilder.editor
 
             setup();
 
-            //new MetalWorksMobileTheme2(false, _documentManager);
-            new MetalWorksDesktopTheme2(_documentManager);
+            new MetalWorksDesktopTheme2();
 
             addChild(createEditorScreen());
         }
