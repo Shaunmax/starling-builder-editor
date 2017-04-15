@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>2.2.4</versionNumber>
-       <url>http://starlingbuilder.github.io/download/2.x/v2.2.4/starling-builder.air</url>
+       <versionNumber>2.3</versionNumber>
+       <url>http://starlingbuilder.github.io/download/2.x/v2.3/starling-builder.air</url>
        <description>
-[editor] rename container tab to common tab in left panel
-[editor] support textAreaString component in properties tab
-[template] TextField.text, Label.text, TextArea.text use textAreaString component
-[template] Add HorizontalLayoutData, VerticalLayoutData
+[editor] Upgrade to feathers UI 3.2 (Please update libs accordingly)
+[editor] Better support for feathers theme
+[editor] various bug fixes
        </description>
     </update>
