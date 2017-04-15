@@ -10,6 +10,8 @@ package starlingbuilder.editor
     import starlingbuilder.editor.controller.ComponentRenderSupport;
     import starlingbuilder.editor.controller.DocumentManager;
     import starlingbuilder.editor.controller.LocalizationManager;
+    import starlingbuilder.editor.helper.DragHelper;
+    import starlingbuilder.editor.helper.SelectHelper;
     import starlingbuilder.editor.themes.MetalWorksDesktopTheme2;
 
     import starling.display.Sprite;
@@ -54,6 +56,9 @@ package starlingbuilder.editor
 
         private function setup():void
         {
+            SelectHelper.setup();
+            DragHelper.setup();
+
             _assetManager = new LogAssetManager();
             _assetManager.numConnections = 100;
             _assetManager.keepFontXmls = true;
