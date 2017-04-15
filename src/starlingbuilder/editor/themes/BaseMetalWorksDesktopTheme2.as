@@ -311,7 +311,9 @@ package starlingbuilder.editor.themes
 
 		protected static function pickerListButtonFactory():ToggleButton
 		{
-			return new ToggleButton();
+			var button:ToggleButton = new ToggleButton();
+			button.labelFactory = textRendererFactory;
+			return button;
 		}
 
 		/**
@@ -1157,6 +1159,8 @@ package starlingbuilder.editor.themes
 
 		protected function setButtonStyles(button:Button):void
 		{
+			button.labelFactory = textRendererFactory;
+
 			var skin:ImageSkin = new ImageSkin(this.buttonUpSkinTexture);
 			skin.setTextureForState(ButtonState.DOWN, this.buttonDownSkinTexture);
 			skin.setTextureForState(ButtonState.DISABLED, this.buttonDisabledSkinTexture);
@@ -1412,6 +1416,8 @@ package starlingbuilder.editor.themes
 
 		protected function setCheckStyles(check:Check):void
 		{
+			check.labelFactory = textRendererFactory;
+
 			var skin:Quad = new Quad(this.controlSize, this.controlSize);
 			skin.alpha = 0;
 			check.defaultSkin = skin;
@@ -1490,6 +1496,8 @@ package starlingbuilder.editor.themes
 
 		protected function setGroupedListHeaderRendererStyles(headerRenderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
+			headerRenderer.contentLabelFactory = textRendererFactory;
+
 			headerRenderer.backgroundSkin = new Quad(this.controlSize, this.controlSize, GROUPED_LIST_HEADER_BACKGROUND_COLOR);
 
 			headerRenderer.fontStyles = this.lightUIFontStyles;
@@ -1505,6 +1513,8 @@ package starlingbuilder.editor.themes
 
 		protected function setGroupedListFooterRendererStyles(footerRenderer:DefaultGroupedListHeaderOrFooterRenderer):void
 		{
+			footerRenderer.contentLabelFactory = textRendererFactory;
+
 			footerRenderer.backgroundSkin = new Quad(this.controlSize, this.controlSize, GROUPED_LIST_FOOTER_BACKGROUND_COLOR);
 
 			footerRenderer.fontStyles = this.lightFontStyles;
@@ -1524,6 +1534,8 @@ package starlingbuilder.editor.themes
 
 		protected function setHeaderStyles(header:Header):void
 		{
+			header.titleFactory = textRendererFactory;
+
 			header.paddingTop = this.smallGutterSize;
 			header.paddingBottom = this.smallGutterSize;
 			header.paddingRight = this.gutterSize;
@@ -1549,6 +1561,8 @@ package starlingbuilder.editor.themes
 
 		protected function setLabelStyles(label:Label):void
 		{
+			label.textRendererFactory = textRendererFactory;
+
 			label.fontStyles = this.lightFontStyles;
 			label.disabledFontStyles = this.lightDisabledFontStyles;
 		}
@@ -1628,6 +1642,8 @@ package starlingbuilder.editor.themes
 
 		protected function setItemRendererStyles(itemRenderer:BaseDefaultItemRenderer):void
 		{
+			itemRenderer.labelFactory = textRendererFactory;
+
 			var skin:ImageSkin = new ImageSkin(this.itemRendererUpSkinTexture);
 			skin.selectedTexture = this.itemRendererSelectedUpSkinTexture;
 			skin.setTextureForState(ButtonState.HOVER, this.itemRendererHoverSkinTexture);
@@ -1834,6 +1850,8 @@ package starlingbuilder.editor.themes
 
 		protected function setPopupHeaderStyles(header:Header):void
 		{
+			header.titleFactory = textRendererFactory;
+
 			var backgroundSkin:ImageSkin = new ImageSkin(this.headerPopupBackgroundSkinTexture);
 			backgroundSkin.tileGrid = new Rectangle();
 			backgroundSkin.width = this.controlSize;
@@ -1874,9 +1892,18 @@ package starlingbuilder.editor.themes
 
 		protected function setPickerListStyles(list:PickerList):void
 		{
+			list.listFactory = listFactory;
+
 			list.popUpContentManager = new DropDownPopUpContentManager();
 			list.toggleButtonOnOpenAndClose = true;
 			list.buttonFactory = pickerListButtonFactory;
+		}
+
+		private function listFactory():List
+		{
+			var list:List = new List();
+			list.styleName = "uiEditor";
+			return list;
 		}
 
 		protected function setPickerListButtonStyles(button:Button):void
@@ -2379,6 +2406,8 @@ package starlingbuilder.editor.themes
 
 		protected function setTabBarStyles(tabBar:TabBar):void
 		{
+			tabBar.tabFactory = pickerListButtonFactory;
+
 			tabBar.distributeTabSizes = false;
 			tabBar.horizontalAlign = HorizontalAlign.LEFT;
 			tabBar.verticalAlign = VerticalAlign.JUSTIFY;
@@ -2473,6 +2502,9 @@ package starlingbuilder.editor.themes
 
 		protected function setBaseTextInputStyles(input:TextInput):void
 		{
+			input.promptFactory = textRendererFactory;
+			input.textEditorFactory = textEditorFactory;
+
 			var skin:ImageSkin = new ImageSkin(this.backgroundSkinTexture);
 			skin.setTextureForState(TextInputState.DISABLED, this.backgroundDisabledSkinTexture);
 			skin.setTextureForState(TextInputState.FOCUSED, this.backgroundFocusedSkinTexture);
@@ -2534,6 +2566,8 @@ package starlingbuilder.editor.themes
 
 		protected function setToggleSwitchStyles(toggle:ToggleSwitch):void
 		{
+			toggle.labelFactory = textRendererFactory;
+
 			toggle.trackLayoutMode = TrackLayoutMode.SINGLE;
 
 			var focusIndicatorSkin:Image = new Image(this.focusIndicatorSkinTexture);
