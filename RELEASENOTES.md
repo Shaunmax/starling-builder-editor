@@ -1,5 +1,10 @@
 # Starling Builder Release Notes:
 
+## 2.3
+* [editor] Upgrade to feathers UI 3.2 (Please update libs accordingly)
+* [editor] Better support for feathers theme
+* [editor] various bug fixes
+
 ## 1.2.4 (2.2.4)
 * [editor] rename container tab to common tab in left panel
 * [editor] support textAreaString component in properties tab
