@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>2.3</versionNumber>
-       <url>http://starlingbuilder.github.io/download/2.x/v2.3/starling-builder.air</url>
+       <versionNumber>2.3.1</versionNumber>
+       <url>http://starlingbuilder.github.io/download/2.x/v2.3.1/starling-builder.air</url>
        <description>
-[editor] Upgrade to feathers UI 3.2 (Please update libs accordingly)
-[editor] Better support for feathers theme
-[editor] various bug fixes
+[editor] Fix new editor theme conflicted with extension theme with BitmapFontTextRenderer
+[editor] Fix exception when click on canvas when auto complete drop down is open
        </description>
     </update>
