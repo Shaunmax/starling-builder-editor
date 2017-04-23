@@ -7,15 +7,30 @@
  */
 package starlingbuilder.editor.helper
 {
+    import starling.core.Starling;
     import starling.display.DisplayObject;
+    import starling.events.Event;
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
 
     public class DragHelper
     {
-        public function DragHelper()
+        private static var _triggered:Boolean;
+
+        public static function setup():void
         {
+            Starling.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame)
+        }
+
+        public static function resetTrigger():void
+        {
+            _triggered = false;
+        }
+
+        private static function onEnterFrame(event:Event):void
+        {
+            _triggered = false;
         }
 
         public static function startDrag(obj:DisplayObject, onSelect:Function, onDrag:Function, onRelease:Function):void
@@ -25,6 +40,8 @@ package starlingbuilder.editor.helper
 
             function onTouch(event:TouchEvent):void
             {
+                if (_triggered) return;
+
                 var touch:Touch = event.getTouch(obj);
 
                 if (touch)
@@ -64,7 +81,7 @@ package starlingbuilder.editor.helper
                     }
                 }
 
-                event.stopPropagation();
+                _triggered = true;
             }
 
 

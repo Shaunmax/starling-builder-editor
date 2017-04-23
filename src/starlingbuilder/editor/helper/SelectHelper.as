@@ -7,17 +7,38 @@
  */
 package starlingbuilder.editor.helper
 {
+    import starling.core.Starling;
     import starling.display.DisplayObject;
+    import starling.events.Event;
     import starling.events.Touch;
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
 
     public class SelectHelper
     {
+        private static var _triggered:Boolean;
+
+        public static function setup():void
+        {
+            Starling.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+        }
+
+        public static function resetTrigger():void
+        {
+            _triggered = false;
+        }
+
+        private static function onEnterFrame(event:Event):void
+        {
+            _triggered = false;
+        }
+
         public static function startSelect(object:DisplayObject, onSelect:Function):void
         {
             function onTouch(event:TouchEvent):void
             {
+                if (_triggered) return;
+
                 var touch:Touch = event.getTouch(object);
 
                 if (touch)
@@ -28,7 +49,7 @@ package starlingbuilder.editor.helper
                     }
                 }
 
-                event.stopPropagation();
+                _triggered = true;
             }
 
             object.addEventListener(TouchEvent.TOUCH, onTouch);

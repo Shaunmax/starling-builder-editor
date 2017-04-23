@@ -39,6 +39,7 @@ package starlingbuilder.editor.ui
             super();
             title = "Starling Builder";
             buttons = ["OK"];
+            width = 300;
         }
 
         override protected function createContent(container:LayoutGroup):void
@@ -61,8 +62,8 @@ package starlingbuilder.editor.ui
             copyright = descriptor.ns::copyright[0].toString();
 
             container.addChild(new Image(_iconTexture));
-            container.addChild(FeathersUIUtil.labelWithText(version));
-            container.addChild(FeathersUIUtil.labelWithText(copyright));
+            container.addChild(FeathersUIUtil.labelWithText("Open source UI editor for Starling Framework"));
+            container.addChild(FeathersUIUtil.labelWithText("version: " + version));
             container.addChild(FeathersUIUtil.labelWithText("Starling version: " + Starling.VERSION));
             container.addChild(FeathersUIUtil.labelWithText("Feathers version: " + FEATHERS_VERSION));
             container.addChild(FeathersUIUtil.labelWithText("SWF version: " + UIEditorApp.SWF_VERSION));

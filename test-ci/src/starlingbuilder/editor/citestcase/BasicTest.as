@@ -280,9 +280,8 @@ package starlingbuilder.editor.citestcase
             //MovieClip
             function():void{
                 documentManager.clear();
-                selectTab("asset");
-                selectPickerListComponent(MovieClip);
-                selectGroupList(0, 0);
+                selectTab("common");
+                selectListComponent(MovieClip);
             },
 
             function():void{
