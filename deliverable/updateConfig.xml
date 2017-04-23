@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>1.2.4</versionNumber>
-       <url>http://starlingbuilder.github.io/download/1.x/v1.2.4/starling-builder.air</url>
+       <versionNumber>1.3.1</versionNumber>
+       <url>http://starlingbuilder.github.io/download/1.x/v1.3.1/starling-builder.air</url>
        <description>
-[engine] better support for external layout
-[editor] all the left tabs are searchable
-[editor] add AssetManager log button to asset tab
-[editor] add WatchDog to detect crash
-[template] add isHtmlText property to TextField
+[editor] Fix exception when click on canvas when auto complete drop down is open
        </description>
     </update>
