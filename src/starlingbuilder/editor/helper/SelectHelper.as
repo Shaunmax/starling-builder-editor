@@ -20,7 +20,12 @@ package starlingbuilder.editor.helper
 
         public static function setup():void
         {
-            Starling.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame)
+            Starling.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
+        }
+
+        public static function resetTrigger():void
+        {
+            _triggered = false;
         }
 
         private static function onEnterFrame(event:Event):void
