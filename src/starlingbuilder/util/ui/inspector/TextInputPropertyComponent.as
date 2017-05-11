@@ -89,7 +89,7 @@ package starlingbuilder.util.ui.inspector
 
             if (_check)
             {
-                _textInput.isEnabled = _check.isSelected = _propertyRetriever.get(_param.explicitField);
+                _textInput.isEnabled = _check.isSelected = !isNaN(_propertyRetriever.get(_param.explicitField) as Number);
             }
         }
 
