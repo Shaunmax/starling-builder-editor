@@ -375,6 +375,7 @@ package starlingbuilder.editor.controller
             if (obj is TextInput)
             {
                 (obj as TextInput).isFocusEnabled = false;
+                (obj as TextInput).isEnabled = false;
             }
 
             if (obj is TextField)
