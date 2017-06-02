@@ -52,6 +52,7 @@ package starlingbuilder.editor.ui
             _group.addChild(_container);
 
             _documentManager.container = _container;
+            _documentManager.scale = UIEditorScreen.instance.setting.defaultCanvasScale;
 
             width = 670;
             height = 900;
