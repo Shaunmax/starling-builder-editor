@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>1.3.1</versionNumber>
-       <url>http://starlingbuilder.github.io/download/1.x/v1.3.1/starling-builder.air</url>
+       <versionNumber>1.3.2</versionNumber>
+       <url>http://starlingbuilder.github.io/download/1.x/v1.3.2/starling-builder.air</url>
        <description>
-[editor] Fix exception when click on canvas when auto complete drop down is open
+[editor] Fix explicitWidth/explicitHeight not able to check when width/height is 0
+[editor] Add default canvas scale to Settings
        </description>
     </update>
