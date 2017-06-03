@@ -1,5 +1,10 @@
 # Starling Builder Release Notes:
 
+## 1.3.2 (2.3.2)
+* [editor] Fix an error when TextInput is in focus on canvas when using MetalWorksMobileTheme
+* [editor] Fix explicitWidth/explicitHeight not able to check when width/height is 0
+* [editor] Add default canvas scale to Settings
+
 ## 1.3.1 (2.3.1)
 * [editor] Fix new editor theme conflicted with extension theme with BitmapFontTextRenderer
 * [editor] Fix exception when click on canvas when auto complete drop down is open
