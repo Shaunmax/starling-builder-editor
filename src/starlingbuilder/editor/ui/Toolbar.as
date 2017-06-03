@@ -459,7 +459,7 @@ package starlingbuilder.editor.ui
 
         private function onResetZoom():void
         {
-            _documentManager.scale = 1;
+            _documentManager.scale = UIEditorScreen.instance.setting.defaultCanvasScale;
         }
 
         private function onCanvasSnapshot():void

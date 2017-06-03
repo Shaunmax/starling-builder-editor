@@ -1,5 +1,9 @@
 # Starling Builder Release Notes:
 
+## 1.3.1 (2.3.1)
+* [editor] Fix new editor theme conflicted with extension theme with BitmapFontTextRenderer
+* [editor] Fix exception when click on canvas when auto complete drop down is open
+
 ## 2.3
 * [editor] Upgrade to feathers UI 3.2 (Please update libs accordingly)
 * [editor] Better support for feathers theme

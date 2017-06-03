@@ -17,6 +17,10 @@ package starlingbuilder.editor
     import starling.events.TouchEvent;
     import starling.events.TouchPhase;
 
+    import starlingbuilder.editor.helper.DragHelper;
+
+    import starlingbuilder.editor.helper.SelectHelper;
+
     public class CITestUtil
     {
         public static function simulateTouch(target:DisplayObject, offsetX:Number = 0, offsetY:Number = 0, dx:Number = 0, dy:Number = 0):void
@@ -31,17 +35,28 @@ package starlingbuilder.editor
             var touches:Vector.<Touch> = new <Touch>[touch];
             target.dispatchEvent(new TouchEvent(TouchEvent.TOUCH, touches));
 
+            SelectHelper.resetTrigger();
+            DragHelper.resetTrigger();
+
             touch.phase = TouchPhase.MOVED;
             target.dispatchEvent(new TouchEvent(TouchEvent.TOUCH, touches));
+
+            SelectHelper.resetTrigger();
+            DragHelper.resetTrigger();
 
             touch.globalX += dx;
             touch.globalY += dy;
             touch.phase = TouchPhase.MOVED;
             target.dispatchEvent(new TouchEvent(TouchEvent.TOUCH, touches));
 
+            SelectHelper.resetTrigger();
+            DragHelper.resetTrigger();
 
             touch.phase = TouchPhase.ENDED;
             target.dispatchEvent(new TouchEvent(TouchEvent.TOUCH, touches));
+
+            SelectHelper.resetTrigger();
+            DragHelper.resetTrigger();
         }
 
         public static function findDisplayObjectWithCondition(condition:Function, container:DisplayObjectContainer = null):DisplayObject
