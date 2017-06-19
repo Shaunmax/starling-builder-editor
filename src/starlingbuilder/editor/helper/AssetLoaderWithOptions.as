@@ -65,7 +65,7 @@ package starlingbuilder.editor.helper
                 {
                     var file:File = rawAsset as File;
 
-                    rawAsset = unescape(file.url);
+                    rawAsset = decodeURI(file.url);
 
                     if (shouldIgnoreAssets(file.url))
                         continue;
