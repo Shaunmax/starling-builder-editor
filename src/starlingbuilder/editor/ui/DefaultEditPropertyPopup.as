@@ -69,7 +69,7 @@ package starlingbuilder.editor.ui
             for each (var clsName:String in _supportedClass)
             {
                 var param:Object = ParamUtil.getParamByClassName(TemplateData.editor_template, clsName);
-                UIMapperUtil.processParamsWithFonts(param as Array, FontHelper.getBitmapFontNames());
+                UIMapperUtil.processParamsWithFonts(param as Array, FontHelper.getFontNames());
                 _paramDict[clsName] = param;
             }
         }

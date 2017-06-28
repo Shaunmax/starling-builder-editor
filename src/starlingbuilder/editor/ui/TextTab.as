@@ -126,7 +126,7 @@ package starlingbuilder.editor.ui
 
         private function updateData():void
         {
-            var fonts:Array = FontHelper.getBitmapFontNames();
+            var fonts:Array = FontHelper.getFontNames();
 
             var data:ListCollection = new ListCollection();
 
