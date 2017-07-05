@@ -1,5 +1,11 @@
 # Starling Builder Release Notes:
 
+## 1.3.3 (2.3.3)
+* [editor] Fix asset load error if workspace path contains Chinese characters
+* [editor] Fix embedded fonts loaded by extension swfs not recognized by Starling TextField
+* [editor] List embedded fonts in TextTab and PropertyTab
+
+
 ## 1.3.2 (2.3.2)
 * [editor] Fix an error when TextInput is in focus on canvas when using MetalWorksMobileTheme
 * [editor] Fix explicitWidth/explicitHeight not able to check when width/height is 0
