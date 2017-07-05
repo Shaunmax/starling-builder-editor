@@ -8,6 +8,7 @@
 package starlingbuilder.editor.helper
 {
     import flash.text.Font;
+    import flash.text.FontType;
     import flash.utils.Dictionary;
 
     import starling.core.Starling;
@@ -32,6 +33,10 @@ package starlingbuilder.editor.helper
 
             for each (var font:Font in fonts)
             {
+                //skip cff font since Starling TextField does not support it
+                if (font.fontType == FontType.EMBEDDED_CFF)
+                    continue;
+
                 if (array.indexOf(font.fontName) == -1)
                     array.push(font.fontName);
             }
