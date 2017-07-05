@@ -12,6 +12,7 @@ package starlingbuilder.editor.ui
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.UIEditorScreen;
     import starlingbuilder.editor.data.TemplateData;
+    import starlingbuilder.editor.helper.FontHelper;
     import starlingbuilder.editor.helper.UIComponentHelper;
 
     import feathers.controls.List;
@@ -125,7 +126,7 @@ package starlingbuilder.editor.ui
 
         private function updateData():void
         {
-            var fonts:Array = UIEditorScreen.instance.getBitmapFontNames();
+            var fonts:Array = FontHelper.getFontNames();
 
             var data:ListCollection = new ListCollection();
 
