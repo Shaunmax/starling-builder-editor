@@ -11,6 +11,8 @@ package starlingbuilder.editor.helper
 
     import flash.utils.getDefinitionByName;
 
+    import starling.text.TextField;
+
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.themes.BaseMetalWorksDesktopTheme2;
 
@@ -27,6 +29,7 @@ package starlingbuilder.editor.helper
                 var cls:Class = getDefinitionByName(NAME) as Class;
                 new cls.theme(UIEditorApp.instance.documentManager);
                 initializeStage();
+                TextField.updateEmbeddedFonts();
             }
             catch (e:Error){}
         }
