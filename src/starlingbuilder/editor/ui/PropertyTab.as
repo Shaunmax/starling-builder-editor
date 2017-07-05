@@ -163,7 +163,7 @@ package starlingbuilder.editor.ui
                 {
                     var params:Array = ParamUtil.getParams(_template, _documentManager.singleSelectedObject);
 
-                    UIMapperUtil.processParamsWithFonts(params, FontHelper.getBitmapFontNames());
+                    UIMapperUtil.processParamsWithFonts(params, FontHelper.getFontNames());
 
                     _paramCache[target.constructor] = params;
                 }
