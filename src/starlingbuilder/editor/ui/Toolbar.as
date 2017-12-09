@@ -136,7 +136,7 @@ package starlingbuilder.editor.ui
             layout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
             layout.gap = 5;
             group.layout = layout;
-            group.addChild(FeathersUIUtil.labelWithText("cavas size:"));
+            group.addChild(FeathersUIUtil.labelWithText("canvas size:"));
 
             _canvasSizeWidth = new TextInput();
             _canvasSizeWidth.addEventListener(FeathersEventType.ENTER, onCanvasChange);
