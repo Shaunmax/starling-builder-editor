@@ -1,32 +1,29 @@
 /*
-Copyright 2012-2016 Bowler Hat LLC
+ Copyright 2012-2017 Bowler Hat LLC
 
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-*/
-package starlingbuilder.editor.themes
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ */
+package feathers.themes
 {
-	import feathers.skins.IStyleProvider;
-	import feathers.skins.StyleProviderRegistry;
-
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 
@@ -41,18 +38,18 @@ package starlingbuilder.editor.themes
 	 *
 	 * @see http://feathersui.com/help/theme-assets.html
 	 */
-	public class MetalWorksDesktopTheme2 extends BaseMetalWorksDesktopTheme2
+	public class MetalWorksDesktopTheme extends BaseMetalWorksDesktopTheme
 	{
 		/**
 		 * @private
 		 */
-		[Embed(source="../../../../assets/images/metalworks_desktop.xml",mimeType="application/octet-stream")]
+		[Embed(source="/../assets/images/metalworks_desktop.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
 
 		/**
 		 * @private
 		 */
-		[Embed(source="../../../../assets/images/metalworks_desktop.png")]
+		[Embed(source="/../assets/images/metalworks_desktop.png")]
 		protected static const ATLAS_BITMAP:Class;
 
 		/**
@@ -63,7 +60,7 @@ package starlingbuilder.editor.themes
 		/**
 		 * Constructor.
 		 */
-		public function MetalWorksDesktopTheme2()
+		public function MetalWorksDesktopTheme()
 		{
 			super();
 			this.initialize();
@@ -98,16 +95,6 @@ package starlingbuilder.editor.themes
 			var atlasBitmapData:BitmapData = Bitmap(new ATLAS_BITMAP()).bitmapData;
 			this.atlas.texture.root.uploadBitmapData(atlasBitmapData);
 			atlasBitmapData.dispose();
-		}
-
-		override protected function createRegistry():void
-		{
-			_registry = new StyleProviderRegistry(false, defaultStyleProviderFactory);
-		}
-
-		protected static function defaultStyleProviderFactory():IStyleProvider
-		{
-			return new ExtendedStyleNameFunctionStyleProvider();
 		}
 	}
 }
