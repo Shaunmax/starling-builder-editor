@@ -22,7 +22,7 @@
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
  */
-package feathers.themes
+package starlingbuilder.editor.themes
 {
 	import feathers.controls.Alert;
 	import feathers.controls.AutoComplete;
@@ -94,6 +94,7 @@ package feathers.themes
 	import feathers.media.VideoPlayer;
 	import feathers.media.VolumeSlider;
 	import feathers.skins.ImageSkin;
+	import feathers.themes.StyleNameFunctionTheme;
 
 	import flash.geom.Rectangle;
 
@@ -115,7 +116,7 @@ package feathers.themes
 	 * @see MetalWorksDesktopTheme
 	 * @see MetalWorksDesktopThemeWithAssetManager
 	 */
-	public class BaseMetalWorksDesktopTheme extends StyleNameFunctionTheme
+	public class BaseMetalWorksDesktopTheme2 extends StyleNameFunctionTheme
 	{
 		[Embed(source="/../assets/fonts/SourceSansPro-Regular.ttf",fontFamily="SourceSansPro",fontWeight="normal",mimeType="application/x-font",embedAsCFF="true")]
 		protected static const SOURCE_SANS_PRO_REGULAR:Class;
@@ -134,7 +135,7 @@ package feathers.themes
 		 */
 		public static const FONT_NAME_STACK:String = "Source Sans Pro,Helvetica,_sans";
 
-		protected static const PRIMARY_BACKGROUND_COLOR:uint = 0x4a4137;
+		public static const PRIMARY_BACKGROUND_COLOR:uint = 0x4a4137;
 		protected static const LIGHT_TEXT_COLOR:uint = 0xe5e5e5;
 		protected static const DARK_TEXT_COLOR:uint = 0x1a1816;
 		protected static const SELECTED_TEXT_COLOR:uint = 0xff9900;
@@ -146,7 +147,7 @@ package feathers.themes
 		protected static const SCROLL_BAR_TRACK_DOWN_COLOR:uint = 0xff7700;
 		protected static const TEXT_SELECTION_BACKGROUND_COLOR:uint = 0x574f46;
 		protected static const MODAL_OVERLAY_COLOR:uint = 0x29241e;
-		protected static const MODAL_OVERLAY_ALPHA:Number = 0.8;
+		protected static const MODAL_OVERLAY_ALPHA:Number = 0;
 		protected static const DRAWER_OVERLAY_COLOR:uint = 0x29241e;
 		protected static const DRAWER_OVERLAY_ALPHA:Number = 0.4;
 		protected static const VIDEO_OVERLAY_COLOR:uint = 0x1a1816;
@@ -316,7 +317,7 @@ package feathers.themes
 			return new ScrollBar();
 		}
 
-		protected static function popUpOverlayFactory():DisplayObject
+		public static function popUpOverlayFactory():DisplayObject
 		{
 			var quad:Quad = new Quad(100, 100, MODAL_OVERLAY_COLOR);
 			quad.alpha = MODAL_OVERLAY_ALPHA;
@@ -331,7 +332,7 @@ package feathers.themes
 		/**
 		 * Constructor.
 		 */
-		public function BaseMetalWorksDesktopTheme()
+		public function BaseMetalWorksDesktopTheme2()
 		{
 			super();
 		}
@@ -889,7 +890,7 @@ package feathers.themes
 
 			//button group
 			this.getStyleProviderForClass(ButtonGroup).defaultStyleFunction = this.setButtonGroupStyles;
-			this.getStyleProviderForClass(Button).setFunctionForStyleName(ButtonGroup.DEFAULT_CHILD_STYLE_NAME_BUTTON, this.setButtonGroupButtonStyles);
+			//this.getStyleProviderForClass(Button).setFunctionForStyleName(ButtonGroup.DEFAULT_CHILD_STYLE_NAME_BUTTON, this.setButtonGroupButtonStyles);
 
 			//callout
 			this.getStyleProviderForClass(Callout).defaultStyleFunction = this.setCalloutStyles;

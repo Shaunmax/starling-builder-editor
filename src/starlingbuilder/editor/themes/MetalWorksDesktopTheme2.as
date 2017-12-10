@@ -22,7 +22,7 @@
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  OTHER DEALINGS IN THE SOFTWARE.
  */
-package feathers.themes
+package starlingbuilder.editor.themes
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -38,18 +38,18 @@ package feathers.themes
 	 *
 	 * @see http://feathersui.com/help/theme-assets.html
 	 */
-	public class MetalWorksDesktopTheme extends BaseMetalWorksDesktopTheme
+	public class MetalWorksDesktopTheme2 extends BaseMetalWorksDesktopTheme2
 	{
 		/**
 		 * @private
 		 */
-		[Embed(source="/../assets/images/metalworks_desktop.xml",mimeType="application/octet-stream")]
+		[Embed(source="../../../../assets/images/metalworks_desktop.xml",mimeType="application/octet-stream")]
 		protected static const ATLAS_XML:Class;
 
 		/**
 		 * @private
 		 */
-		[Embed(source="/../assets/images/metalworks_desktop.png")]
+		[Embed(source="../../../../assets/images/metalworks_desktop.png")]
 		protected static const ATLAS_BITMAP:Class;
 
 		/**
@@ -60,7 +60,7 @@ package feathers.themes
 		/**
 		 * Constructor.
 		 */
-		public function MetalWorksDesktopTheme()
+		public function MetalWorksDesktopTheme2()
 		{
 			super();
 			this.initialize();
