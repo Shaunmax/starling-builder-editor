@@ -12,6 +12,8 @@ package starlingbuilder.editor.ui
     import feathers.dragDrop.IDropTarget;
     import feathers.events.DragDropEvent;
 
+    import flash.events.KeyboardEvent;
+
     import flash.geom.Point;
 
     import starling.events.KeyboardEvent;
@@ -122,10 +124,10 @@ package starlingbuilder.editor.ui
         {
         }
 
-        override protected function stage_keyDownHandler(event:KeyboardEvent):void
+        override protected function nativeStage_keyDownHandler(event:flash.events.KeyboardEvent):void
         {
             if(_documentManager.selectedIndex == -1)
-                super.stage_keyDownHandler(event);
+                super.nativeStage_keyDownHandler(event);
         }
     }
 }
