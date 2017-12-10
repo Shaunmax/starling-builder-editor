@@ -11,6 +11,7 @@ package starlingbuilder.editor.ui
 
     import starlingbuilder.engine.util.ParamUtil;
 
+    [Deprecated(replacement="starlingbuilder.editor.ui.DataProviderPopup")]
     public class HierarchicalCollectionPopup extends ListCollectionPopup
     {
         public function HierarchicalCollectionPopup(owner:Object, target:Object, targetParam:Object, customParam:Object, onComplete:Function)
