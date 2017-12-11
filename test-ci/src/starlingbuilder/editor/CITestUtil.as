@@ -3,6 +3,7 @@
  */
 package starlingbuilder.editor
 {
+    import feathers.data.IListCollection;
     import feathers.data.ListCollection;
 
     import flash.geom.Point;
@@ -101,7 +102,7 @@ package starlingbuilder.editor
             }, container);
         }
 
-        public static function findListCollectionIndex(listCollection:ListCollection, text:String):int
+        public static function findListCollectionIndex(listCollection:IListCollection, text:String):int
         {
             for (var i:int = 0; i < listCollection.length; ++i)
             {

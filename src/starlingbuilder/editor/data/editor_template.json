@@ -188,7 +188,12 @@
         {
             "cls":"feathers.controls.DataGrid",
             "params":[
-                {"name":"dataProvider", "component":"popup", "cls":"feathers.data.ArrayCollection", "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DataProviderPopup"}
+                {"name":"dataProvider", "component":"popup", "cls":"feathers.data.ArrayCollection", "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DataProviderPopup"},
+                {"name":"isSelectable", "component":"check", "default_value":true},
+                {"name":"reorderColumns", "component":"check", "default_value":false},
+                {"name":"resizableColumns", "component":"check", "default_value":false},
+                {"name":"sortableColumns", "component":"check", "default_value":false}
+
             ],
             "tag":"feathers"
         },
@@ -368,7 +373,8 @@
         {
             "cls":"feathers.controls.Tree",
             "params":[
-                {"name":"dataProvider", "component":"popup", "cls":"feathers.data.ArrayHierarchicalCollection", "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DataProviderPopup"}
+                {"name":"dataProvider", "component":"popup", "cls":"feathers.data.ArrayHierarchicalCollection", "disable":true, "default_value":null, "editPropertyClass":"starlingbuilder.editor.ui.DataProviderPopup"},
+                {"name":"isSelectable", "component":"check", "default_value":true}
             ],
             "tag":"feathers"
         },
@@ -645,6 +651,6 @@
 
     "version":2.0,
 
-    "revision":10009
+    "revision":10010
 
 }
