@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>1.3.3</versionNumber>
-       <url>http://starlingbuilder.github.io/download/1.x/v1.3.3/starling-builder.air</url>
+       <versionNumber>1.4</versionNumber>
+       <url>http://starlingbuilder.github.io/download/1.x/v1.4/starling-builder.air</url>
        <description>
-[editor] Fix asset load error if workspace path contains Chinese characters
-[editor] Fix embedded fonts loaded by extension swfs not recognized by Starling TextField
-[editor] List embedded fonts in TextTab and PropertyTab
+[editor] Support zoom with mouse wheel and drag with right mouse button
        </description>
     </update>
