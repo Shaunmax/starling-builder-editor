@@ -11,6 +11,9 @@ package starlingbuilder.editor
 
     import flash.utils.getTimer;
 
+    import starling.utils.HAlign;
+    import starling.utils.VAlign;
+
     import starlingbuilder.editor.data.EmbeddedData;
 
     import starlingbuilder.editor.data.TemplateData;
@@ -424,6 +427,7 @@ package starlingbuilder.editor
         {
             width = Starling.current.stage.stageWidth = Starling.current.viewPort.width = event.width;
             height = Starling.current.stage.stageHeight = Starling.current.viewPort.height = event.height;
+            Starling.current.showStatsAt(HAlign.RIGHT, VAlign.TOP);
         }
 
         private function createToolbar():void
