@@ -246,7 +246,7 @@ package starlingbuilder.editor.ui
         {
             var array:Array = [];
 
-            var conditionalStyleProvider = fc.styleProvider as ConditionalStyleProvider;
+            var conditionalStyleProvider:ConditionalStyleProvider = fc.styleProvider as ConditionalStyleProvider;
             if (conditionalStyleProvider)
             {
                 var styleProvider:ExtendedStyleNameFunctionStyleProvider = conditionalStyleProvider.trueStyleProvider as ExtendedStyleNameFunctionStyleProvider;

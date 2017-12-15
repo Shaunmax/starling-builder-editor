@@ -7,6 +7,8 @@
  */
 package starlingbuilder.util.feathers.popup
 {
+    import feathers.layout.HorizontalAlign;
+
     import starlingbuilder.util.feathers.FeathersUIUtil;
 
     import feathers.controls.Button;
@@ -38,7 +40,7 @@ package starlingbuilder.util.feathers.popup
 
             var layout:VerticalLayout = new VerticalLayout();
             layout.gap = 10;
-            layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_CENTER;
+            layout.horizontalAlign = HorizontalAlign.CENTER;
             container.layout = layout;
 
             _buttonContainer = new LayoutGroup();//FeathersUIUtil.scrollContainerWithHorizontalLayout();

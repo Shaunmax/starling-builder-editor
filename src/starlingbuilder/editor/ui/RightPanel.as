@@ -11,6 +11,7 @@ package starlingbuilder.editor.ui
     import feathers.layout.AnchorLayout;
     import feathers.layout.AnchorLayoutData;
     import feathers.layout.HorizontalLayout;
+    import feathers.layout.VerticalAlign;
 
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.UIEditorScreen;
@@ -49,7 +50,7 @@ package starlingbuilder.editor.ui
 
             var group:LayoutGroup = FeathersUIUtil.layoutGroupWithHorizontalLayout();
             group.y = 40;
-            (group.layout as HorizontalLayout).verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
+            (group.layout as HorizontalLayout).verticalAlign = VerticalAlign.MIDDLE;
             group.addChild(_label);
             group.addChild(_helpButton);
             addChild(group);

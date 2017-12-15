@@ -10,6 +10,7 @@ package starlingbuilder.util.feathers.popup
     import feathers.controls.Header;
     import feathers.controls.Panel;
     import feathers.core.PopUpManager;
+    import feathers.layout.HorizontalAlign;
     import feathers.layout.VerticalLayout;
 
     import starling.core.Starling;
@@ -42,7 +43,7 @@ package starlingbuilder.util.feathers.popup
         {
             var layout:VerticalLayout = new VerticalLayout();
             layout.gap = 3;
-            layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_CENTER;
+            layout.horizontalAlign = HorizontalAlign.CENTER;
             this.layout = layout;
 
             super.initialize();
