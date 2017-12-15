@@ -1795,7 +1795,7 @@ package starlingbuilder.editor.controller
             return _keyboardWatcher.hasKeyPressed(Keyboard.SPACE);
         }
 
-        private function dragCanvas(dx:Number, dy:Number):void
+        public function dragCanvas(dx:Number, dy:Number):void
         {
             var centerPanel:CenterPanel = UIEditorScreen.instance.centerPanel;
 
