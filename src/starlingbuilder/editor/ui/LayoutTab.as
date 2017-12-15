@@ -8,6 +8,9 @@
 package starlingbuilder.editor.ui
 {
     import feathers.controls.TextInput;
+    import feathers.layout.Direction;
+    import feathers.layout.HorizontalAlign;
+    import feathers.layout.VerticalAlign;
     import feathers.layout.VerticalLayout;
 
     import flash.desktop.NativeApplication;
@@ -91,8 +94,8 @@ package starlingbuilder.editor.ui
             layout.useVirtualLayout = true;
             layout.padding = 0;
             layout.gap = 1;
-            layout.horizontalAlign = VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
-            layout.verticalAlign = VerticalLayout.VERTICAL_ALIGN_TOP;
+            layout.horizontalAlign = HorizontalAlign.JUSTIFY;
+            layout.verticalAlign = VerticalAlign.TOP;
             _list.layout = layout;
 
             var anchorLayoutData:AnchorLayoutData = new AnchorLayoutData();
@@ -144,7 +147,7 @@ package starlingbuilder.editor.ui
             var group:ButtonGroup = new ButtonGroup();
             group.paddingTop = 5;
             group.paddingBottom = 5;
-            group.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+            group.direction = Direction.HORIZONTAL;
             group.maxWidth = 200;
             group.dataProvider = new ListCollection(buttons);
 

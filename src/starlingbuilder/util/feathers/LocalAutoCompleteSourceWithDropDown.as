@@ -7,6 +7,7 @@
  */
 package starlingbuilder.util.feathers
 {
+    import feathers.data.IListCollection;
     import feathers.data.ListCollection;
     import feathers.data.LocalAutoCompleteSource;
 
@@ -24,7 +25,7 @@ package starlingbuilder.util.feathers
          * @param textToMatch
          * @param result
          */
-        override public function load(textToMatch:String, result:ListCollection = null):void
+        override public function load(textToMatch:String, result:IListCollection = null):void
         {
             if(result)
             {

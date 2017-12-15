@@ -9,20 +9,18 @@ package starlingbuilder.editor.ui
 {
     import feathers.controls.LayoutGroup;
     import feathers.controls.TextArea;
-    import feathers.data.ListCollection;
+
+    import flash.utils.getDefinitionByName;
 
     import starling.events.Event;
 
-    import starlingbuilder.editor.controller.ComponentRenderSupport;
     import starlingbuilder.engine.format.StableJSONEncoder;
-    import starlingbuilder.engine.util.ParamUtil;
 
-    [Deprecated(replacement="starlingbuilder.editor.ui.DataProviderPopup")]
-    public class ListCollectionPopup extends AbstractPropertyPopup
+    public class DataProviderPopup extends AbstractPropertyPopup
     {
         protected var _textArea:TextArea;
 
-        public function ListCollectionPopup(owner:Object, target:Object, targetParam:Object, customParam:Object, onComplete:Function)
+        public function DataProviderPopup(owner:Object, target:Object, targetParam:Object, customParam:Object, onComplete:Function)
         {
             super(owner, target, targetParam, customParam, onComplete);
 
@@ -73,12 +71,6 @@ package starlingbuilder.editor.ui
 
         protected function setCustomParam(obj:Object):void
         {
-            /*
-             TODO:
-             this is a temparary solution to store a custom value since Texture doesn't contain it.
-             This problem will be resolved when we use an intermediate format for the inspector in future version
-             */
-
             if (_customParam)
             {
                 if (_customParam.params == undefined)
@@ -99,8 +91,6 @@ package starlingbuilder.editor.ui
                     delete _customParam.params[_targetParam.name];
                 }
             }
-
-
         }
 
         protected function complete():void
@@ -110,12 +100,13 @@ package starlingbuilder.editor.ui
 
         protected function createData(data:Object):Object
         {
-            return new ListCollection(data);
+            var cls:Class = getDefinitionByName(getClsName()) as Class;
+            return new cls(data);
         }
 
         protected function getClsName():String
         {
-            return ParamUtil.getClassName(ListCollection);
+            return _targetParam.cls;
         }
     }
 }

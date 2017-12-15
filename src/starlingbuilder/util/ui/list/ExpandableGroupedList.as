@@ -6,6 +6,7 @@ package starlingbuilder.util.ui.list
     import feathers.controls.GroupedList;
     import feathers.controls.renderers.IGroupedListHeaderRenderer;
     import feathers.data.HierarchicalCollection;
+    import feathers.data.IHierarchicalCollection;
 
     import org.as3commons.lang.ObjectUtils;
 
@@ -17,7 +18,7 @@ package starlingbuilder.util.ui.list
 
         private var _collapseMap:Object;
 
-        private var _originalDataProvider:HierarchicalCollection;
+        private var _originalDataProvider:IHierarchicalCollection;
 
         public function ExpandableGroupedList()
         {
@@ -50,7 +51,7 @@ package starlingbuilder.util.ui.list
             updateDataProvider();
         }
 
-        override public function set dataProvider(value:HierarchicalCollection):void
+        override public function set dataProvider(value:IHierarchicalCollection):void
         {
             if (_originalDataProvider == value)
             {

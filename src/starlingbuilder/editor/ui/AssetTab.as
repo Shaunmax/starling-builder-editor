@@ -7,11 +7,28 @@
  */
 package starlingbuilder.editor.ui
 {
+    import feathers.controls.ButtonGroup;
+    import feathers.controls.LayoutGroup;
+    import feathers.controls.PickerList;
+    import feathers.controls.renderers.IGroupedListItemRenderer;
     import feathers.core.PopUpManager;
+    import feathers.data.HierarchicalCollection;
+    import feathers.data.ListCollection;
+    import feathers.layout.AnchorLayout;
+    import feathers.layout.AnchorLayoutData;
+    import feathers.layout.Direction;
 
+    import flash.filesystem.File;
     import flash.geom.Point;
+    import flash.utils.Dictionary;
 
-    import starlingbuilder.editor.SupportedWidget;
+    import starling.display.DisplayObject;
+    import starling.display.Sprite;
+    import starling.events.Event;
+    import starling.text.TextField;
+    import starling.textures.TextureAtlas;
+    import starling.utils.AssetManager;
+
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.UIEditorScreen;
     import starlingbuilder.editor.controller.DocumentManager;
@@ -21,40 +38,10 @@ package starlingbuilder.editor.ui
     import starlingbuilder.util.feathers.FeathersUIUtil;
     import starlingbuilder.util.ui.list.ExpandableGroupedList;
 
-    import feathers.controls.Button;
-    import feathers.controls.ButtonGroup;
-    import feathers.controls.GroupedList;
-    import feathers.controls.Label;
-    import feathers.controls.LayoutGroup;
-    import feathers.controls.List;
-    import feathers.controls.PickerList;
-    import feathers.controls.TextInput;
-    import feathers.controls.renderers.IGroupedListHeaderOrFooterRenderer;
-    import feathers.controls.renderers.IGroupedListItemRenderer;
-    import feathers.controls.renderers.IListItemRenderer;
-    import feathers.data.HierarchicalCollection;
-    import feathers.data.ListCollection;
-    import feathers.layout.AnchorLayout;
-    import feathers.layout.AnchorLayoutData;
-    import feathers.layout.HorizontalLayout;
-    import feathers.layout.VerticalLayout;
-
-    import flash.filesystem.File;
-    import flash.utils.Dictionary;
-
-    import starling.display.DisplayObject;
-
-    import starling.display.Sprite;
-    import starling.events.Event;
-    import starling.text.TextField;
-    import starling.utils.AssetManager;
-
-    import starling.textures.TextureAtlas;
-
     public class AssetTab extends SearchableTab
     {
         private static const linker:Array = [DefaultCreateComponentPopup, DefaultEditPropertyPopup, ImageGridPopup, TexturePropertyPopup, DisplayObjectPropertyPopup, TextureConstructorPopup,
-            ObjectPropertyPopup, XmlPropertyPopup, ListCollectionPopup, HierarchicalCollectionPopup];
+            ObjectPropertyPopup, XmlPropertyPopup, ListCollectionPopup, HierarchicalCollectionPopup, DataProviderPopup];
 
         public static var assetList:Vector.<String>;
 
@@ -290,7 +277,7 @@ package starlingbuilder.editor.ui
             var group:ButtonGroup = new ButtonGroup();
             group.paddingTop = 5;
             group.paddingBottom = 5;
-            group.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+            group.direction = Direction.HORIZONTAL;
             group.width = 280;
             group.dataProvider = new ListCollection(buttons);
 

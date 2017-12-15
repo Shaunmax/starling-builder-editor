@@ -4,6 +4,7 @@
 package starlingbuilder.util.ui.inspector
 {
     import feathers.controls.PickerList;
+    import feathers.data.IListCollection;
     import feathers.data.ListCollection;
 
     import starling.events.Event;
@@ -56,7 +57,7 @@ package starlingbuilder.util.ui.inspector
         {
             var value:String = getValue();
 
-            var data:ListCollection = _pickerList.dataProvider;
+            var data:IListCollection = _pickerList.dataProvider;
 
             for (var i:int = 0; i < data.length; ++i)
             {

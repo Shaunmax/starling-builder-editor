@@ -1,27 +1,27 @@
 /*
-Copyright 2012-2016 Bowler Hat LLC
+ Copyright 2012-2017 Bowler Hat LLC
 
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-*/
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.
+ */
 package starlingbuilder.editor.themes
 {
 	import feathers.controls.Alert;
@@ -67,14 +67,15 @@ package starlingbuilder.editor.themes
 	import feathers.controls.ToggleButton;
 	import feathers.controls.ToggleSwitch;
 	import feathers.controls.TrackLayoutMode;
+	import feathers.controls.Tree;
 	import feathers.controls.popups.DropDownPopUpContentManager;
 	import feathers.controls.renderers.BaseDefaultItemRenderer;
 	import feathers.controls.renderers.DefaultGroupedListHeaderOrFooterRenderer;
 	import feathers.controls.renderers.DefaultGroupedListItemRenderer;
 	import feathers.controls.renderers.DefaultListItemRenderer;
+	import feathers.controls.renderers.DefaultTreeItemRenderer;
 	import feathers.controls.text.TextBlockTextEditor;
 	import feathers.controls.text.TextBlockTextRenderer;
-	import feathers.controls.text.TextFieldTextEditor;
 	import feathers.controls.text.TextFieldTextEditorViewPort;
 	import feathers.core.FeathersControl;
 	import feathers.core.FocusManager;
@@ -104,6 +105,9 @@ package starlingbuilder.editor.themes
 	import starling.text.TextFormat;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
+	import feathers.controls.DataGrid;
+	import feathers.controls.renderers.DefaultDataGridHeaderRenderer;
+	import feathers.controls.renderers.DefaultDataGridCellRenderer;
 
 	/**
 	 * The base class for the "Metal Works" theme for desktop Feathers apps.
@@ -148,6 +152,8 @@ package starlingbuilder.editor.themes
 		protected static const DRAWER_OVERLAY_ALPHA:Number = 0.4;
 		protected static const VIDEO_OVERLAY_COLOR:uint = 0x1a1816;
 		protected static const VIDEO_OVERLAY_ALPHA:Number = 0.2;
+		protected static const DATA_GRID_COLUMN_OVERLAY_COLOR:uint = 0x383430;
+		protected static const DATA_GRID_COLUMN_OVERLAY_ALPHA:Number = 0.4;
 
 		protected static const DEFAULT_SCALE9_GRID:Rectangle = new Rectangle(3, 3, 1, 1);
 		protected static const SIMPLE_SCALE9_GRID:Rectangle = new Rectangle(2, 2, 1, 1);
@@ -161,7 +167,11 @@ package starlingbuilder.editor.themes
 		protected static const TAB_SCALE9_GRID:Rectangle = new Rectangle(7, 7, 1, 11);
 		protected static const HORIZONTAL_SCROLL_BAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(5, 0, 14, 10);
 		protected static const VERTICAL_SCROLL_BAR_THUMB_SCALE_9_GRID:Rectangle = new Rectangle(0, 5, 10, 14);
-		
+		protected static const DATA_GRID_HEADER_DIVIDER_SCALE_9_GRID:Rectangle = new Rectangle(0, 1, 2, 4);
+		protected static const DATA_GRID_VERTICAL_DIVIDER_SCALE_9_GRID:Rectangle = new Rectangle(0, 1, 1, 4);
+		protected static const DATA_GRID_COLUMN_RESIZE_SCALE_9_GRID:Rectangle = new Rectangle(0, 1, 3, 28);
+		protected static const DATA_GRID_COLUMN_DROP_INDICATOR_SCALE_9_GRID:Rectangle = new Rectangle(0, 1, 3, 3);
+
 		protected static const ITEM_RENDERER_SKIN_TEXTURE_REGION:Rectangle = new Rectangle(1, 1, 1, 1);
 		protected static const ITEM_RENDERER_SELECTED_SKIN_TEXTURE_REGION:Rectangle = new Rectangle(1, 1, 1, 22);
 
@@ -277,6 +287,11 @@ package starlingbuilder.editor.themes
 		protected static const THEME_STYLE_NAME_DATE_TIME_SPINNER_LIST_ITEM_RENDERER:String = "metalworks-desktop-date-time-spinner-list-item-renderer";
 
 		/**
+		 * @private
+		 */
+		protected static const THEME_STYLE_NAME_ALERT_BUTTON_GROUP_BUTTON:String = "metalworks-desktop-alert-button-group-button";
+
+		/**
 		 * The default global text renderer factory for this theme creates a
 		 * TextBlockTextRenderer.
 		 */
@@ -289,9 +304,9 @@ package starlingbuilder.editor.themes
 		 * The default global text editor factory for this theme creates a
 		 * TextBlockTextEditor.
 		 */
-		protected static function textEditorFactory():TextFieldTextEditor
+		protected static function textEditorFactory():TextBlockTextEditor
 		{
-			return new TextFieldTextEditor();
+			return new TextBlockTextEditor();
 		}
 
 		/**
@@ -327,77 +342,77 @@ package starlingbuilder.editor.themes
 		/**
 		 * A smaller font size for details.
 		 */
-		protected var smallFontSize:int;
+		protected var smallFontSize:int = 11;
 
 		/**
 		 * A normal font size.
 		 */
-		protected var regularFontSize:int;
+		protected var regularFontSize:int = 14;
 
 		/**
 		 * A larger font size for headers.
 		 */
-		protected var largeFontSize:int;
+		protected var largeFontSize:int = 18;
 
 		/**
 		 * The size, in pixels, of major regions in the grid. Used for sizing
 		 * containers and larger UI controls.
 		 */
-		protected var gridSize:int;
+		protected var gridSize:int = 32;
 
 		/**
 		 * The size, in pixels, of minor regions in the grid. Used for larger
 		 * padding and gaps.
 		 */
-		protected var gutterSize:int;
+		protected var gutterSize:int = 8;
 
 		/**
 		 * The size, in pixels, of smaller padding and gaps within the major
 		 * regions in the grid.
 		 */
-		protected var smallGutterSize:int;
+		protected var smallGutterSize:int = 4;
 
 		/**
 		 * The size, in pixels, of very smaller padding and gaps.
 		 */
-		protected var extraSmallGutterSize:int;
+		protected var extraSmallGutterSize:int = 2;
 
 		/**
 		 * The minimum width, in pixels, of some types of buttons.
 		 */
-		protected var buttonMinWidth:int;
+		protected var buttonMinWidth:int = 68;
 
 		/**
 		 * The width, in pixels, of UI controls that span across multiple grid regions.
 		 */
-		protected var wideControlSize:int;
+		protected var wideControlSize:int = 144;
 
 		/**
 		 * The size, in pixels, of a typical UI control.
 		 */
-		protected var controlSize:int;
+		protected var controlSize:int = 26;
 
 		/**
 		 * The size, in pixels, of smaller UI controls.
 		 */
-		protected var smallControlSize:int;
+		protected var smallControlSize:int = 12;
 
 		/**
 		 * The size, in pixels, of a border around any control.
 		 */
-		protected var borderSize:int;
+		protected var borderSize:int = 1;
 
 		/**
 		 * The size, in pixels, of the focus indicator skin's padding.
 		 */
-		protected var focusPaddingSize:int;
+		protected var focusPaddingSize:int = -2;
 
-		protected var calloutArrowOverlapGap:int;
-		protected var calloutBackgroundMinSize:int;
-		protected var progressBarFillMinSize:int;
-		protected var scrollBarGutterSize:int;
-		protected var popUpSize:int;
-		protected var popUpVolumeSliderPaddingSize:int;
+		protected var calloutArrowOverlapGap:int = -2;
+		protected var calloutBackgroundMinSize:int = 5;
+		protected var progressBarFillMinSize:int = 7;
+		protected var scrollBarGutterSize:int = 4;
+		protected var popUpSize:int = 336;
+		protected var popUpVolumeSliderPaddingSize:int = 10;
 
 		/**
 		 * The font styles for standard-sized, light text.
@@ -582,6 +597,16 @@ package starlingbuilder.editor.themes
 		protected var searchIconDisabledTexture:Texture;
 		protected var listDrillDownAccessoryTexture:Texture;
 		protected var listDrillDownAccessorySelectedTexture:Texture;
+		protected var treeDisclosureOpenIconTexture:Texture;
+		protected var treeDisclosureOpenSelectedIconTexture:Texture;
+		protected var treeDisclosureClosedIconTexture:Texture;
+		protected var treeDisclosureClosedSelectedIconTexture:Texture;
+		protected var dataGridHeaderSortAscendingIconTexture:Texture;
+		protected var dataGridHeaderSortDescendingIconTexture:Texture;
+		protected var dataGridHeaderDividerSkinTexture:Texture;
+		protected var dataGridVerticalDividerSkinTexture:Texture;
+		protected var dataGridColumnResizeSkinTexture:Texture;
+		protected var dataGridColumnDropIndicatorSkinTexture:Texture;
 
 		//media textures
 		protected var playPauseButtonPlayUpIconTexture:Texture;
@@ -613,7 +638,7 @@ package starlingbuilder.editor.themes
 				//if anything is keeping a reference to the texture, we don't
 				//want it to keep a reference to the theme too.
 				this.atlas.texture.root.onRestore = null;
-				
+
 				this.atlas.dispose();
 				this.atlas = null;
 			}
@@ -632,7 +657,6 @@ package starlingbuilder.editor.themes
 		 */
 		protected function initialize():void
 		{
-			this.initializeDimensions();
 			this.initializeFonts();
 			this.initializeTextures();
 			this.initializeGlobals();
@@ -666,37 +690,10 @@ package starlingbuilder.editor.themes
 		}
 
 		/**
-		 * Initializes common values used for setting the dimensions of components.
-		 */
-		protected function initializeDimensions():void
-		{
-			this.gridSize = 30;
-			this.extraSmallGutterSize = 2;
-			this.smallGutterSize = 4;
-			this.gutterSize = 8;
-			this.borderSize = 1;
-			this.controlSize = 22;
-			this.smallControlSize = 12;
-			this.calloutBackgroundMinSize = 5;
-			this.progressBarFillMinSize = 7;
-			this.scrollBarGutterSize = 4;
-			this.calloutArrowOverlapGap = -2;
-			this.focusPaddingSize = -2;
-			this.buttonMinWidth = this.gridSize * 2 + this.gutterSize;
-			this.wideControlSize = this.gridSize * 4 + this.gutterSize * 3;
-			this.popUpSize = this.gridSize * 10 + this.smallGutterSize * 9;
-			this.popUpVolumeSliderPaddingSize = 10;
-		}
-
-		/**
 		 * Initializes font sizes and formats.
 		 */
 		protected function initializeFonts():void
 		{
-			this.smallFontSize = 11;
-			this.regularFontSize = 14;
-			this.largeFontSize = 18;
-
 			this.lightFontStyles = new TextFormat(FONT_NAME, this.regularFontSize, LIGHT_TEXT_COLOR, HorizontalAlign.LEFT, VerticalAlign.TOP);
 			this.darkFontStyles = new TextFormat(FONT_NAME, this.regularFontSize, DARK_TEXT_COLOR, HorizontalAlign.LEFT, VerticalAlign.TOP);
 			this.selectedFontStyles = new TextFormat(FONT_NAME, this.regularFontSize, SELECTED_TEXT_COLOR, HorizontalAlign.LEFT, VerticalAlign.TOP);
@@ -838,6 +835,18 @@ package starlingbuilder.editor.themes
 			this.listDrillDownAccessoryTexture = this.atlas.getTexture("item-renderer-drill-down-accessory-icon0000");
 			this.listDrillDownAccessorySelectedTexture = this.atlas.getTexture("item-renderer-drill-down-accessory-selected-icon0000");
 
+			this.treeDisclosureOpenIconTexture = this.atlas.getTexture("tree-disclosure-open-icon0000");
+			this.treeDisclosureOpenSelectedIconTexture = this.atlas.getTexture("tree-disclosure-open-selected-icon0000");
+			this.treeDisclosureClosedIconTexture = this.atlas.getTexture("tree-disclosure-closed-icon0000");
+			this.treeDisclosureClosedSelectedIconTexture = this.atlas.getTexture("tree-disclosure-closed-selected-icon0000");
+
+			this.dataGridHeaderSortAscendingIconTexture = this.atlas.getTexture("data-grid-header-sort-ascending-icon0000");
+			this.dataGridHeaderSortDescendingIconTexture = this.atlas.getTexture("data-grid-header-sort-descending-icon0000");
+			this.dataGridHeaderDividerSkinTexture = this.atlas.getTexture("data-grid-header-divider-skin0000");
+			this.dataGridVerticalDividerSkinTexture = this.atlas.getTexture("data-grid-vertical-divider-skin0000");
+			this.dataGridColumnResizeSkinTexture = this.atlas.getTexture("data-grid-column-resize-skin0000");
+			this.dataGridColumnDropIndicatorSkinTexture = this.atlas.getTexture("data-grid-column-drop-indicator-skin0000");
+
 			this.playPauseButtonPlayUpIconTexture = this.atlas.getTexture("play-pause-toggle-button-play-up-icon0000");
 			this.playPauseButtonPlayDownIconTexture = this.atlas.getTexture("play-pause-toggle-button-play-down-icon0000");
 			this.playPauseButtonPauseUpIconTexture = this.atlas.getTexture("play-pause-toggle-button-pause-up-icon0000");
@@ -867,6 +876,7 @@ package starlingbuilder.editor.themes
 			this.getStyleProviderForClass(Alert).defaultStyleFunction = this.setAlertStyles;
 			this.getStyleProviderForClass(Header).setFunctionForStyleName(Alert.DEFAULT_CHILD_STYLE_NAME_HEADER, this.setPopupHeaderStyles);
 			this.getStyleProviderForClass(ButtonGroup).setFunctionForStyleName(Alert.DEFAULT_CHILD_STYLE_NAME_BUTTON_GROUP, this.setAlertButtonGroupStyles);
+			this.getStyleProviderForClass(Button).setFunctionForStyleName(THEME_STYLE_NAME_ALERT_BUTTON_GROUP_BUTTON, this.setAlertButtonGroupButtonStyles);
 
 			//autocomplete
 			this.getStyleProviderForClass(AutoComplete).defaultStyleFunction = this.setTextInputStyles;
@@ -890,6 +900,9 @@ package starlingbuilder.editor.themes
 			//check
 			this.getStyleProviderForClass(Check).defaultStyleFunction = this.setCheckStyles;
 
+			//data grid (see also: item renderers)
+			this.getStyleProviderForClass(DataGrid).defaultStyleFunction = this.setDataGridStyles;
+
 			//date time spinner
 			this.getStyleProviderForClass(DateTimeSpinner).defaultStyleFunction = this.setDateTimeSpinnerStyles;
 			this.getStyleProviderForClass(DefaultListItemRenderer).setFunctionForStyleName(THEME_STYLE_NAME_DATE_TIME_SPINNER_LIST_ITEM_RENDERER, this.setDateTimeSpinnerListItemRendererStyles);
@@ -907,6 +920,9 @@ package starlingbuilder.editor.themes
 			this.getStyleProviderForClass(DefaultGroupedListHeaderOrFooterRenderer).defaultStyleFunction = this.setGroupedListHeaderRendererStyles;
 			this.getStyleProviderForClass(DefaultGroupedListHeaderOrFooterRenderer).setFunctionForStyleName(GroupedList.DEFAULT_CHILD_STYLE_NAME_FOOTER_RENDERER, this.setGroupedListFooterRendererStyles);
 
+			//header renderers for data grid
+			this.getStyleProviderForClass(DefaultDataGridHeaderRenderer).defaultStyleFunction = this.setDataGridHeaderRendererStyles;
+
 			//item renderers for lists
 			this.getStyleProviderForClass(DefaultGroupedListItemRenderer).defaultStyleFunction = this.setItemRendererStyles;
 			this.getStyleProviderForClass(DefaultGroupedListItemRenderer).setFunctionForStyleName(DefaultGroupedListItemRenderer.ALTERNATE_STYLE_NAME_DRILL_DOWN, this.setDrillDownItemRendererStyles);
@@ -914,6 +930,7 @@ package starlingbuilder.editor.themes
 			this.getStyleProviderForClass(DefaultListItemRenderer).defaultStyleFunction = this.setItemRendererStyles;
 			this.getStyleProviderForClass(DefaultListItemRenderer).setFunctionForStyleName(DefaultListItemRenderer.ALTERNATE_STYLE_NAME_DRILL_DOWN, this.setDrillDownItemRendererStyles);
 			this.getStyleProviderForClass(DefaultListItemRenderer).setFunctionForStyleName(DefaultListItemRenderer.ALTERNATE_STYLE_NAME_CHECK, this.setCheckItemRendererStyles);
+			this.getStyleProviderForClass(DefaultDataGridCellRenderer).defaultStyleFunction = this.setDataGridCellRendererStyles;
 
 			//labels
 			this.getStyleProviderForClass(Label).defaultStyleFunction = this.setLabelStyles;
@@ -992,7 +1009,7 @@ package starlingbuilder.editor.themes
 			this.getStyleProviderForClass(Button).setFunctionForStyleName(THEME_STYLE_NAME_HORIZONTAL_SLIDER_MAXIMUM_TRACK, this.setHorizontalSliderMaximumTrackStyles);
 			this.getStyleProviderForClass(Button).setFunctionForStyleName(THEME_STYLE_NAME_VERTICAL_SLIDER_MINIMUM_TRACK, this.setVerticalSliderMinimumTrackStyles);
 			this.getStyleProviderForClass(Button).setFunctionForStyleName(THEME_STYLE_NAME_VERTICAL_SLIDER_MAXIMUM_TRACK, this.setVerticalSliderMaximumTrackStyles);
-			
+
 			//spinner list
 			this.getStyleProviderForClass(SpinnerList).defaultStyleFunction = this.setSpinnerListStyles;
 
@@ -1025,6 +1042,10 @@ package starlingbuilder.editor.themes
 			this.getStyleProviderForClass(Button).setFunctionForStyleName(ToggleSwitch.DEFAULT_CHILD_STYLE_NAME_ON_TRACK, this.setToggleSwitchTrackStyles);
 			//we don't need a style function for the off track in this theme
 			//the toggle switch layout uses a single track
+
+			//tree
+			this.getStyleProviderForClass(Tree).defaultStyleFunction = this.setTreeStyles;
+			this.getStyleProviderForClass(DefaultTreeItemRenderer).defaultStyleFunction = this.setTreeItemRendererStyles;
 
 			//media controls
 			this.getStyleProviderForClass(VideoPlayer).defaultStyleFunction = this.setVideoPlayerStyles;
@@ -1069,9 +1090,23 @@ package starlingbuilder.editor.themes
 			return symbol;
 		}
 
-	//-------------------------
-	// Shared
-	//-------------------------
+		protected function dataGridHeaderDividerFactory():DisplayObject
+		{
+			var skin:ImageSkin = new ImageSkin(this.dataGridHeaderDividerSkinTexture);
+			skin.scale9Grid = DATA_GRID_HEADER_DIVIDER_SCALE_9_GRID;
+			return skin;
+		}
+
+		protected function dataGridVerticalDividerFactory():DisplayObject
+		{
+			var skin:ImageSkin = new ImageSkin(this.dataGridVerticalDividerSkinTexture);
+			skin.scale9Grid = DATA_GRID_VERTICAL_DIVIDER_SCALE_9_GRID;
+			return skin;
+		}
+
+		//-------------------------
+		// Shared
+		//-------------------------
 
 		protected function setScrollerStyles(scroller:Scroller):void
 		{
@@ -1097,13 +1132,13 @@ package starlingbuilder.editor.themes
 			layout.horizontalAlign = HorizontalAlign.JUSTIFY;
 			layout.verticalAlign = VerticalAlign.TOP;
 			layout.resetTypicalItemDimensionsOnMeasure = true;
-			layout.maxRowCount = 10;
+			layout.maxRowCount = 5;
 			list.layout = layout;
 		}
 
-	//-------------------------
-	// Alert
-	//-------------------------
+		//-------------------------
+		// Alert
+		//-------------------------
 
 		protected function setAlertStyles(alert:Alert):void
 		{
@@ -1113,8 +1148,8 @@ package starlingbuilder.editor.themes
 			backgroundSkin.scale9Grid = SIMPLE_SCALE9_GRID;
 			alert.backgroundSkin = backgroundSkin;
 
-			alert.fontStyles = this.lightFontStyles;
-			alert.disabledFontStyles = this.lightDisabledFontStyles;
+			alert.fontStyles = this.lightFontStyles.clone();
+			alert.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			alert.paddingTop = this.gutterSize;
 			alert.paddingRight = this.gutterSize;
@@ -1130,6 +1165,7 @@ package starlingbuilder.editor.themes
 
 		protected function setAlertButtonGroupStyles(group:ButtonGroup):void
 		{
+			group.customButtonStyleName = THEME_STYLE_NAME_ALERT_BUTTON_GROUP_BUTTON;
 			group.direction = Direction.HORIZONTAL;
 			group.horizontalAlign = HorizontalAlign.CENTER;
 			group.verticalAlign = VerticalAlign.JUSTIFY;
@@ -1138,9 +1174,14 @@ package starlingbuilder.editor.themes
 			group.padding = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// Button
-	//-------------------------
+		protected function setAlertButtonGroupButtonStyles(button:Button):void
+		{
+			this.setButtonStyles(button);
+		}
+
+		//-------------------------
+		// Button
+		//-------------------------
 
 		protected function setBaseButtonStyles(button:Button):void
 		{
@@ -1182,8 +1223,8 @@ package starlingbuilder.editor.themes
 				ToggleButton(button).defaultSelectedSkin = selectedSkin;
 			}
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 		}
@@ -1200,8 +1241,8 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			button.defaultSkin = skin;
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 		}
@@ -1233,14 +1274,14 @@ package starlingbuilder.editor.themes
 			otherSkin.minWidth = this.controlSize;
 			otherSkin.minHeight = this.controlSize;
 
-			button.fontStyles = this.lightUIFontStyles;
-			button.disabledFontStyles = this.lightDisabledUIFontStyles;
-			button.setFontStylesForState(ButtonState.DOWN, this.darkUIFontStyles);
-			button.setFontStylesForState(ButtonState.DISABLED, this.lightDisabledUIFontStyles);
+			button.fontStyles = this.lightUIFontStyles.clone();
+			button.disabledFontStyles = this.lightDisabledUIFontStyles.clone();
+			button.setFontStylesForState(ButtonState.DOWN, this.darkUIFontStyles.clone());
+			button.setFontStylesForState(ButtonState.DISABLED, this.lightDisabledUIFontStyles.clone());
 			if(button is ToggleButton)
 			{
-				toggleButton.selectedFontStyles = this.darkUIFontStyles;
-				toggleButton.setFontStylesForState(ButtonState.DISABLED_AND_SELECTED, this.darkDisabledUIFontStyles);
+				toggleButton.selectedFontStyles = this.darkUIFontStyles.clone();
+				toggleButton.setFontStylesForState(ButtonState.DISABLED_AND_SELECTED, this.darkDisabledUIFontStyles.clone());
 			}
 
 			var focusIndicatorSkin:Image = new Image(this.focusIndicatorSkinTexture);
@@ -1268,8 +1309,8 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			button.defaultSkin = skin;
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 		}
@@ -1286,8 +1327,8 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			button.defaultSkin = skin;
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 
@@ -1306,17 +1347,17 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			button.defaultSkin = skin;
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 
 			button.paddingRight = 2 * this.gutterSize;
 		}
 
-	//-------------------------
-	// ButtonGroup
-	//-------------------------
+		//-------------------------
+		// ButtonGroup
+		//-------------------------
 
 		protected function setButtonGroupStyles(group:ButtonGroup):void
 		{
@@ -1346,15 +1387,15 @@ package starlingbuilder.editor.themes
 				ToggleButton(button).defaultSelectedSkin = selectedSkin;
 			}
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 		}
 
-	//-------------------------
-	// Callout
-	//-------------------------
+		//-------------------------
+		// Callout
+		//-------------------------
 
 		protected function setCalloutStyles(callout:Callout):void
 		{
@@ -1410,9 +1451,9 @@ package starlingbuilder.editor.themes
 			callout.padding = this.gutterSize;
 		}
 
-	//-------------------------
-	// Check
-	//-------------------------
+		//-------------------------
+		// Check
+		//-------------------------
 
 		protected function setCheckStyles(check:Check):void
 		{
@@ -1436,16 +1477,122 @@ package starlingbuilder.editor.themes
 			check.focusPaddingLeft = this.focusPaddingSize;
 			check.focusPaddingRight = this.focusPaddingSize;
 
-			check.fontStyles = this.lightUIFontStyles;
-			check.disabledFontStyles = this.lightDisabledUIFontStyles;
+			check.fontStyles = this.lightUIFontStyles.clone();
+			check.disabledFontStyles = this.lightDisabledUIFontStyles.clone();
 
 			check.horizontalAlign = HorizontalAlign.LEFT;
 			check.gap = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// DateTimeSpinner
-	//-------------------------
+		//-------------------------
+		// DataGrid
+		//-------------------------
+
+		protected function setDataGridStyles(grid:DataGrid):void
+		{
+			this.setScrollerStyles(grid);
+
+			grid.padding = this.borderSize;
+
+			var backgroundSkin:Image = new Image(this.listBackgroundSkinTexture);
+			backgroundSkin.scale9Grid = DEFAULT_SCALE9_GRID;
+			backgroundSkin.width = this.controlSize;
+			backgroundSkin.height = this.controlSize;
+			grid.backgroundSkin = backgroundSkin;
+
+			var backgroundDisabledSkin:Image = new Image(this.backgroundDisabledSkinTexture);
+			backgroundDisabledSkin.scale9Grid = DEFAULT_SCALE9_GRID;
+			backgroundDisabledSkin.width = this.controlSize;
+			backgroundDisabledSkin.height = this.controlSize;
+			grid.backgroundDisabledSkin = backgroundDisabledSkin;
+
+			grid.headerBackgroundSkin = new Quad(this.controlSize, this.controlSize, GROUPED_LIST_HEADER_BACKGROUND_COLOR);
+
+			var columnResizeSkin:ImageSkin = new ImageSkin(this.dataGridColumnResizeSkinTexture);
+			columnResizeSkin.scale9Grid = DATA_GRID_COLUMN_RESIZE_SCALE_9_GRID;
+			grid.columnResizeSkin = columnResizeSkin;
+
+			var columnDragOverlaySkin:Quad = new Quad(1, 1, DATA_GRID_COLUMN_OVERLAY_COLOR);
+			columnDragOverlaySkin.alpha = DATA_GRID_COLUMN_OVERLAY_ALPHA;
+			grid.columnDragOverlaySkin = columnDragOverlaySkin;
+
+			var columnDropIndicatorSkin:ImageSkin = new ImageSkin(this.dataGridColumnDropIndicatorSkinTexture);
+			columnDropIndicatorSkin.scale9Grid = DATA_GRID_COLUMN_DROP_INDICATOR_SCALE_9_GRID;
+			grid.columnDropIndicatorSkin = columnDropIndicatorSkin;
+			grid.extendedColumnDropIndicator = true;
+
+			grid.headerDividerFactory = this.dataGridHeaderDividerFactory;
+			grid.verticalDividerFactory = this.dataGridVerticalDividerFactory;
+
+			grid.verticalScrollPolicy = ScrollPolicy.AUTO;
+		}
+
+		protected function setDataGridCellRendererStyles(cellRenderer:DefaultDataGridCellRenderer):void
+		{
+			var skin:ImageSkin = new ImageSkin(this.itemRendererUpSkinTexture);
+			skin.selectedTexture = this.itemRendererSelectedUpSkinTexture;
+			skin.setTextureForState(ButtonState.HOVER, this.itemRendererHoverSkinTexture);
+			skin.setTextureForState(ButtonState.DOWN, this.itemRendererSelectedUpSkinTexture);
+			skin.width = this.controlSize;
+			skin.height = this.controlSize;
+			skin.minWidth = this.controlSize;
+			skin.minHeight = this.controlSize;
+			cellRenderer.defaultSkin = skin;
+
+			cellRenderer.fontStyles = this.lightFontStyles.clone();
+			cellRenderer.disabledFontStyles = this.lightDisabledFontStyles.clone();
+			cellRenderer.selectedFontStyles = this.darkFontStyles.clone();
+			cellRenderer.setFontStylesForState(ButtonState.DOWN, this.darkFontStyles.clone());
+			cellRenderer.setFontStylesForState(ButtonState.HOVER, this.darkFontStyles.clone());
+
+			cellRenderer.iconLabelFontStyles = this.lightFontStyles.clone();
+			cellRenderer.iconLabelDisabledFontStyles = this.lightDisabledFontStyles.clone();
+			cellRenderer.iconLabelSelectedFontStyles = this.darkFontStyles.clone();
+			cellRenderer.setIconLabelFontStylesForState(ButtonState.DOWN, this.darkFontStyles.clone());
+			cellRenderer.setIconLabelFontStylesForState(ButtonState.HOVER, this.darkFontStyles.clone());
+
+			cellRenderer.accessoryLabelFontStyles = this.lightFontStyles.clone();
+			cellRenderer.accessoryLabelDisabledFontStyles = this.lightDisabledFontStyles.clone();
+			cellRenderer.accessoryLabelSelectedFontStyles = this.darkFontStyles.clone();
+			cellRenderer.setAccessoryLabelFontStylesForState(ButtonState.DOWN, this.darkFontStyles.clone());
+			cellRenderer.setAccessoryLabelFontStylesForState(ButtonState.HOVER, this.darkFontStyles.clone());
+
+			cellRenderer.horizontalAlign = HorizontalAlign.LEFT;
+			cellRenderer.paddingTop = this.smallGutterSize;
+			cellRenderer.paddingBottom = this.smallGutterSize;
+			cellRenderer.paddingLeft = this.gutterSize;
+			cellRenderer.paddingRight = this.gutterSize;
+			cellRenderer.gap = this.smallGutterSize;
+			cellRenderer.minGap = this.smallGutterSize;
+			cellRenderer.iconPosition = RelativePosition.LEFT;
+			cellRenderer.accessoryGap = Number.POSITIVE_INFINITY;
+			cellRenderer.minAccessoryGap = this.smallGutterSize;
+			cellRenderer.accessoryPosition = RelativePosition.RIGHT;
+
+			cellRenderer.useStateDelayTimer = false;
+		}
+
+		protected function setDataGridHeaderRendererStyles(headerRenderer:DefaultDataGridHeaderRenderer):void
+		{
+			headerRenderer.backgroundSkin = new Quad(this.controlSize, this.controlSize, GROUPED_LIST_HEADER_BACKGROUND_COLOR);
+
+			headerRenderer.sortAscendingIcon = new ImageSkin(this.dataGridHeaderSortAscendingIconTexture);
+			headerRenderer.sortDescendingIcon = new ImageSkin(this.dataGridHeaderSortDescendingIconTexture);
+
+			headerRenderer.fontStyles = this.lightUIFontStyles.clone();
+			headerRenderer.disabledFontStyles = this.lightDisabledUIFontStyles.clone();
+
+			headerRenderer.horizontalAlign = HorizontalAlign.LEFT;
+
+			headerRenderer.paddingTop = this.smallGutterSize;
+			headerRenderer.paddingBottom = this.smallGutterSize;
+			headerRenderer.paddingLeft = this.gutterSize;
+			headerRenderer.paddingRight = this.gutterSize;
+		}
+
+		//-------------------------
+		// DateTimeSpinner
+		//-------------------------
 
 		protected function setDateTimeSpinnerStyles(spinner:DateTimeSpinner):void
 		{
@@ -1460,9 +1607,9 @@ package starlingbuilder.editor.themes
 			itemRenderer.accessoryGap = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// Drawers
-	//-------------------------
+		//-------------------------
+		// Drawers
+		//-------------------------
 
 		protected function setDrawersStyles(drawers:Drawers):void
 		{
@@ -1471,9 +1618,9 @@ package starlingbuilder.editor.themes
 			drawers.overlaySkin = overlaySkin;
 		}
 
-	//-------------------------
-	// GroupedList
-	//-------------------------
+		//-------------------------
+		// GroupedList
+		//-------------------------
 
 		protected function setGroupedListStyles(list:GroupedList):void
 		{
@@ -1500,8 +1647,8 @@ package starlingbuilder.editor.themes
 
 			headerRenderer.backgroundSkin = new Quad(this.controlSize, this.controlSize, GROUPED_LIST_HEADER_BACKGROUND_COLOR);
 
-			headerRenderer.fontStyles = this.lightUIFontStyles;
-			headerRenderer.disabledFontStyles = this.lightDisabledUIFontStyles;
+			headerRenderer.fontStyles = this.lightUIFontStyles.clone();
+			headerRenderer.disabledFontStyles = this.lightDisabledUIFontStyles.clone();
 
 			headerRenderer.horizontalAlign = HorizontalAlign.LEFT;
 
@@ -1517,8 +1664,8 @@ package starlingbuilder.editor.themes
 
 			footerRenderer.backgroundSkin = new Quad(this.controlSize, this.controlSize, GROUPED_LIST_FOOTER_BACKGROUND_COLOR);
 
-			footerRenderer.fontStyles = this.lightFontStyles;
-			footerRenderer.disabledFontStyles = this.lightDisabledFontStyles;
+			footerRenderer.fontStyles = this.lightFontStyles.clone();
+			footerRenderer.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			footerRenderer.horizontalAlign = HorizontalAlign.CENTER;
 
@@ -1528,9 +1675,9 @@ package starlingbuilder.editor.themes
 			footerRenderer.paddingRight = this.gutterSize;
 		}
 
-	//-------------------------
-	// Header
-	//-------------------------
+		//-------------------------
+		// Header
+		//-------------------------
 
 		protected function setHeaderStyles(header:Header):void
 		{
@@ -1543,8 +1690,8 @@ package starlingbuilder.editor.themes
 			header.gap = this.smallGutterSize;
 			header.titleGap = this.smallGutterSize;
 
-			header.fontStyles = this.lightFontStyles;
-			header.disabledFontStyles = this.lightDisabledFontStyles;
+			header.fontStyles = this.lightFontStyles.clone();
+			header.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			var backgroundSkin:ImageSkin = new ImageSkin(this.headerBackgroundSkinTexture);
 			backgroundSkin.tileGrid = new Rectangle();
@@ -1555,28 +1702,28 @@ package starlingbuilder.editor.themes
 			header.backgroundSkin = backgroundSkin;
 		}
 
-	//-------------------------
-	// Label
-	//-------------------------
+		//-------------------------
+		// Label
+		//-------------------------
 
 		protected function setLabelStyles(label:Label):void
 		{
 			label.textRendererFactory = textRendererFactory;
 
-			label.fontStyles = this.lightFontStyles;
-			label.disabledFontStyles = this.lightDisabledFontStyles;
+			label.fontStyles = this.lightFontStyles.clone();
+			label.disabledFontStyles = this.lightDisabledFontStyles.clone();
 		}
 
 		protected function setHeadingLabelStyles(label:Label):void
 		{
-			label.fontStyles = this.largeLightFontStyles;
-			label.disabledFontStyles = this.largeLightDisabledFontStyles;
+			label.fontStyles = this.largeLightFontStyles.clone();
+			label.disabledFontStyles = this.largeLightDisabledFontStyles.clone();
 		}
 
 		protected function setDetailLabelStyles(label:Label):void
 		{
-			label.fontStyles = this.smallLightFontStyles;
-			label.disabledFontStyles = this.smallLightDisabledFontStyles;
+			label.fontStyles = this.smallLightFontStyles.clone();
+			label.disabledFontStyles = this.smallLightDisabledFontStyles.clone();
 		}
 
 		protected function setToolTipLabelStyles(label:Label):void
@@ -1585,15 +1732,15 @@ package starlingbuilder.editor.themes
 			backgroundSkin.scale9Grid = DEFAULT_SCALE9_GRID;
 			label.backgroundSkin = backgroundSkin;
 
-			label.fontStyles = this.lightFontStyles;
-			label.disabledFontStyles = this.lightDisabledFontStyles;
+			label.fontStyles = this.lightFontStyles.clone();
+			label.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			label.padding = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// LayoutGroup
-	//-------------------------
+		//-------------------------
+		// LayoutGroup
+		//-------------------------
 
 		protected function setToolbarLayoutGroupStyles(group:LayoutGroup):void
 		{
@@ -1615,9 +1762,9 @@ package starlingbuilder.editor.themes
 			group.backgroundSkin = backgroundSkin;
 		}
 
-	//-------------------------
-	// List
-	//-------------------------
+		//-------------------------
+		// List
+		//-------------------------
 
 		protected function setListStyles(list:List):void
 		{
@@ -1654,23 +1801,23 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			itemRenderer.defaultSkin = skin;
 
-			itemRenderer.fontStyles = this.lightFontStyles;
-			itemRenderer.disabledFontStyles = this.lightDisabledFontStyles;
-			itemRenderer.selectedFontStyles = this.darkFontStyles;
-			itemRenderer.setFontStylesForState(ButtonState.DOWN, this.darkFontStyles);
-			itemRenderer.setFontStylesForState(ButtonState.HOVER, this.darkFontStyles);
+			itemRenderer.fontStyles = this.lightFontStyles.clone();
+			itemRenderer.disabledFontStyles = this.lightDisabledFontStyles.clone();
+			itemRenderer.selectedFontStyles = this.darkFontStyles.clone();
+			itemRenderer.setFontStylesForState(ButtonState.DOWN, this.darkFontStyles.clone());
+			itemRenderer.setFontStylesForState(ButtonState.HOVER, this.darkFontStyles.clone());
 
-			itemRenderer.iconLabelFontStyles = this.lightFontStyles;
-			itemRenderer.iconLabelDisabledFontStyles = this.lightDisabledFontStyles;
-			itemRenderer.iconLabelSelectedFontStyles = this.darkFontStyles;
-			itemRenderer.setIconLabelFontStylesForState(ButtonState.DOWN, this.darkFontStyles);
-			itemRenderer.setIconLabelFontStylesForState(ButtonState.HOVER, this.darkFontStyles);
+			itemRenderer.iconLabelFontStyles = this.lightFontStyles.clone();
+			itemRenderer.iconLabelDisabledFontStyles = this.lightDisabledFontStyles.clone();
+			itemRenderer.iconLabelSelectedFontStyles = this.darkFontStyles.clone();
+			itemRenderer.setIconLabelFontStylesForState(ButtonState.DOWN, this.darkFontStyles.clone());
+			itemRenderer.setIconLabelFontStylesForState(ButtonState.HOVER, this.darkFontStyles.clone());
 
-			itemRenderer.accessoryLabelFontStyles = this.lightFontStyles;
-			itemRenderer.accessoryLabelDisabledFontStyles = this.lightDisabledFontStyles;
-			itemRenderer.accessoryLabelSelectedFontStyles = this.darkFontStyles;
-			itemRenderer.setAccessoryLabelFontStylesForState(ButtonState.DOWN, this.darkFontStyles);
-			itemRenderer.setAccessoryLabelFontStylesForState(ButtonState.HOVER, this.darkFontStyles);
+			itemRenderer.accessoryLabelFontStyles = this.lightFontStyles.clone();
+			itemRenderer.accessoryLabelDisabledFontStyles = this.lightDisabledFontStyles.clone();
+			itemRenderer.accessoryLabelSelectedFontStyles = this.darkFontStyles.clone();
+			itemRenderer.setAccessoryLabelFontStylesForState(ButtonState.DOWN, this.darkFontStyles.clone());
+			itemRenderer.setAccessoryLabelFontStylesForState(ButtonState.HOVER, this.darkFontStyles.clone());
 
 			itemRenderer.horizontalAlign = HorizontalAlign.LEFT;
 			itemRenderer.paddingTop = this.smallGutterSize;
@@ -1717,12 +1864,12 @@ package starlingbuilder.editor.themes
 			icon.setTextureForState(ButtonState.DOWN_AND_SELECTED, this.checkSelectedDownIconTexture);
 			itemRenderer.defaultIcon = icon;
 
-			itemRenderer.fontStyles = this.lightFontStyles;
-			itemRenderer.disabledFontStyles = this.lightDisabledFontStyles;
-			itemRenderer.iconLabelFontStyles = this.lightFontStyles;
-			itemRenderer.iconLabelDisabledFontStyles = this.lightDisabledFontStyles;
-			itemRenderer.accessoryLabelFontStyles = this.lightFontStyles;
-			itemRenderer.accessoryLabelDisabledFontStyles = this.lightDisabledFontStyles;
+			itemRenderer.fontStyles = this.lightFontStyles.clone();
+			itemRenderer.disabledFontStyles = this.lightDisabledFontStyles.clone();
+			itemRenderer.iconLabelFontStyles = this.lightFontStyles.clone();
+			itemRenderer.iconLabelDisabledFontStyles = this.lightDisabledFontStyles.clone();
+			itemRenderer.accessoryLabelFontStyles = this.lightFontStyles.clone();
+			itemRenderer.accessoryLabelDisabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			itemRenderer.horizontalAlign = HorizontalAlign.LEFT;
 			itemRenderer.paddingTop = this.smallGutterSize;
@@ -1739,9 +1886,9 @@ package starlingbuilder.editor.themes
 			itemRenderer.useStateDelayTimer = false;
 		}
 
-	//-------------------------
-	// NumericStepper
-	//-------------------------
+		//-------------------------
+		// NumericStepper
+		//-------------------------
 
 		protected function setNumericStepperStyles(stepper:NumericStepper):void
 		{
@@ -1765,8 +1912,8 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			input.backgroundSkin = skin;
 
-			input.fontStyles = this.lightCenteredUIFontStyles;
-			input.disabledFontStyles = this.lightCenteredDisabledUIFontStyles;
+			input.fontStyles = this.lightCenteredUIFontStyles.clone();
+			input.disabledFontStyles = this.lightCenteredDisabledUIFontStyles.clone();
 
 			input.gap = this.smallGutterSize;
 			input.paddingTop = this.smallGutterSize;
@@ -1817,9 +1964,9 @@ package starlingbuilder.editor.themes
 			button.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// PageIndicator
-	//-------------------------
+		//-------------------------
+		// PageIndicator
+		//-------------------------
 
 		protected function setPageIndicatorStyles(pageIndicator:PageIndicator):void
 		{
@@ -1832,9 +1979,9 @@ package starlingbuilder.editor.themes
 			pageIndicator.padding = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// Panel
-	//-------------------------
+		//-------------------------
+		// Panel
+		//-------------------------
 
 		protected function setPanelStyles(panel:Panel):void
 		{
@@ -1860,8 +2007,8 @@ package starlingbuilder.editor.themes
 			backgroundSkin.minHeight = this.gridSize;
 			header.backgroundSkin = backgroundSkin;
 
-			header.fontStyles = this.lightFontStyles;
-			header.disabledFontStyles = this.lightDisabledFontStyles;
+			header.fontStyles = this.lightFontStyles.clone();
+			header.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			header.paddingTop = this.smallGutterSize;
 			header.paddingBottom = this.smallGutterSize;
@@ -1871,9 +2018,9 @@ package starlingbuilder.editor.themes
 			header.titleGap = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// PanelScreen
-	//-------------------------
+		//-------------------------
+		// PanelScreen
+		//-------------------------
 
 		protected function setPanelScreenStyles(screen:PanelScreen):void
 		{
@@ -1886,9 +2033,9 @@ package starlingbuilder.editor.themes
 			header.useExtraPaddingForOSStatusBar = true;
 		}
 
-	//-------------------------
-	// PickerList
-	//-------------------------
+		//-------------------------
+		// PickerList
+		//-------------------------
 
 		protected function setPickerListStyles(list:PickerList):void
 		{
@@ -1929,8 +2076,8 @@ package starlingbuilder.editor.themes
 			}
 			button.defaultIcon = icon;
 
-			button.fontStyles = this.darkUIFontStyles;
-			button.disabledFontStyles = this.darkDisabledUIFontStyles;
+			button.fontStyles = this.darkUIFontStyles.clone();
+			button.disabledFontStyles = this.darkDisabledUIFontStyles.clone();
 
 			this.setBaseButtonStyles(button);
 
@@ -1941,9 +2088,9 @@ package starlingbuilder.editor.themes
 
 		//for the PickerList's pop-up list, see setDropDownListStyles()
 
-	//-------------------------
-	// ProgressBar
-	//-------------------------
+		//-------------------------
+		// ProgressBar
+		//-------------------------
 
 		protected function setProgressBarStyles(progress:ProgressBar):void
 		{
@@ -2004,9 +2151,9 @@ package starlingbuilder.editor.themes
 			progress.fillDisabledSkin = fillDisabledSkin;
 		}
 
-	//-------------------------
-	// Radio
-	//-------------------------
+		//-------------------------
+		// Radio
+		//-------------------------
 
 		protected function setRadioStyles(radio:Radio):void
 		{
@@ -2028,16 +2175,16 @@ package starlingbuilder.editor.themes
 			radio.focusPaddingLeft = this.focusPaddingSize;
 			radio.focusPaddingRight = this.focusPaddingSize;
 
-			radio.fontStyles = this.lightUIFontStyles;
-			radio.disabledFontStyles = this.lightDisabledUIFontStyles;
+			radio.fontStyles = this.lightUIFontStyles.clone();
+			radio.disabledFontStyles = this.lightDisabledUIFontStyles.clone();
 
 			radio.horizontalAlign = HorizontalAlign.LEFT;
 			radio.gap = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// ScrollBar
-	//-------------------------
+		//-------------------------
+		// ScrollBar
+		//-------------------------
 
 		protected function setHorizontalScrollBarStyles(scrollBar:ScrollBar):void
 		{
@@ -2202,9 +2349,9 @@ package starlingbuilder.editor.themes
 			track.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// ScrollContainer
-	//-------------------------
+		//-------------------------
+		// ScrollContainer
+		//-------------------------
 
 		protected function setScrollContainerStyles(container:ScrollContainer):void
 		{
@@ -2231,32 +2378,32 @@ package starlingbuilder.editor.themes
 			container.backgroundSkin = backgroundSkin;
 		}
 
-	//-------------------------
-	// ScrollScreen
-	//-------------------------
+		//-------------------------
+		// ScrollScreen
+		//-------------------------
 
 		protected function setScrollScreenStyles(screen:ScrollScreen):void
 		{
 			this.setScrollerStyles(screen);
 		}
 
-	//-------------------------
-	// ScrollText
-	//-------------------------
+		//-------------------------
+		// ScrollText
+		//-------------------------
 
 		protected function setScrollTextStyles(text:ScrollText):void
 		{
 			this.setScrollerStyles(text);
 
-			text.fontStyles = this.lightScrollTextFontStyles;
-			text.disabledFontStyles = this.lightDisabledScrollTextFontStyles;
+			text.fontStyles = this.lightScrollTextFontStyles.clone();
+			text.disabledFontStyles = this.lightDisabledScrollTextFontStyles.clone();
 
 			text.padding = this.gutterSize;
 		}
 
-	//-------------------------
-	// SimpleScrollBar
-	//-------------------------
+		//-------------------------
+		// SimpleScrollBar
+		//-------------------------
 
 		protected function setSimpleScrollBarStyles(scrollBar:SimpleScrollBar):void
 		{
@@ -2296,9 +2443,9 @@ package starlingbuilder.editor.themes
 			thumb.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// Slider
-	//-------------------------
+		//-------------------------
+		// Slider
+		//-------------------------
 
 		protected function setSliderStyles(slider:Slider):void
 		{
@@ -2391,18 +2538,18 @@ package starlingbuilder.editor.themes
 			track.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// SpinnerList
-	//-------------------------
+		//-------------------------
+		// SpinnerList
+		//-------------------------
 
 		protected function setSpinnerListStyles(list:SpinnerList):void
 		{
 			this.setListStyles(list);
 		}
 
-	//-------------------------
-	// TabBar
-	//-------------------------
+		//-------------------------
+		// TabBar
+		//-------------------------
 
 		protected function setTabBarStyles(tabBar:TabBar):void
 		{
@@ -2427,11 +2574,11 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			tab.defaultSkin = skin;
 
-			tab.fontStyles = this.lightUIFontStyles;
-			tab.selectedFontStyles = this.darkUIFontStyles;
-			tab.setFontStylesForState(ButtonState.DOWN, this.darkUIFontStyles);
-			tab.setFontStylesForState(ButtonState.DISABLED, this.lightDisabledUIFontStyles);
-			tab.setFontStylesForState(ButtonState.DISABLED_AND_SELECTED, this.darkDisabledUIFontStyles);
+			tab.fontStyles = this.lightUIFontStyles.clone();
+			tab.selectedFontStyles = this.darkUIFontStyles.clone();
+			tab.setFontStylesForState(ButtonState.DOWN, this.darkUIFontStyles.clone());
+			tab.setFontStylesForState(ButtonState.DISABLED, this.lightDisabledUIFontStyles.clone());
+			tab.setFontStylesForState(ButtonState.DISABLED_AND_SELECTED, this.darkDisabledUIFontStyles.clone());
 
 			var focusIndicatorSkin:Image = new Image(this.focusIndicatorSkinTexture);
 			focusIndicatorSkin.scale9Grid = FOCUS_INDICATOR_SCALE_9_GRID;
@@ -2445,9 +2592,9 @@ package starlingbuilder.editor.themes
 			tab.gap = this.smallGutterSize;
 		}
 
-	//-------------------------
-	// TextArea
-	//-------------------------
+		//-------------------------
+		// TextArea
+		//-------------------------
 
 		protected function setTextAreaStyles(textArea:TextArea):void
 		{
@@ -2462,8 +2609,8 @@ package starlingbuilder.editor.themes
 			skin.height = this.wideControlSize;
 			textArea.backgroundSkin = skin;
 
-			textArea.fontStyles = this.lightScrollTextFontStyles;
-			textArea.disabledFontStyles = this.lightDisabledScrollTextFontStyles;
+			textArea.fontStyles = this.lightScrollTextFontStyles.clone();
+			textArea.disabledFontStyles = this.lightDisabledScrollTextFontStyles.clone();
 
 			textArea.padding = this.borderSize;
 		}
@@ -2477,28 +2624,28 @@ package starlingbuilder.editor.themes
 		{
 			this.setDangerCalloutStyles(callout);
 
-			callout.fontStyles = this.lightFontStyles;
-			callout.disabledFontStyles = this.lightDisabledFontStyles;
+			callout.fontStyles = this.lightFontStyles.clone();
+			callout.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			callout.horizontalAlign = HorizontalAlign.LEFT;
 			callout.verticalAlign = VerticalAlign.TOP;
 		}
 
-	//-------------------------
-	// TextCallout
-	//-------------------------
+		//-------------------------
+		// TextCallout
+		//-------------------------
 
 		protected function setTextCalloutStyles(callout:TextCallout):void
 		{
 			this.setCalloutStyles(callout);
 
-			callout.fontStyles = this.lightFontStyles;
-			callout.disabledFontStyles = this.lightDisabledFontStyles;
+			callout.fontStyles = this.lightFontStyles.clone();
+			callout.disabledFontStyles = this.lightDisabledFontStyles.clone();
 		}
 
-	//-------------------------
-	// TextInput
-	//-------------------------
+		//-------------------------
+		// TextInput
+		//-------------------------
 
 		protected function setBaseTextInputStyles(input:TextInput):void
 		{
@@ -2516,11 +2663,11 @@ package starlingbuilder.editor.themes
 			skin.minHeight = this.controlSize;
 			input.backgroundSkin = skin;
 
-			input.fontStyles = this.lightFontStyles;
-			input.disabledFontStyles = this.lightDisabledFontStyles;
+			input.fontStyles = this.lightFontStyles.clone();
+			input.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
-			input.promptFontStyles = this.lightFontStyles;
-			input.promptDisabledFontStyles = this.lightDisabledFontStyles;
+			input.promptFontStyles = this.lightFontStyles.clone();
+			input.promptDisabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			input.gap = this.smallGutterSize;
 			input.paddingTop = this.smallGutterSize;
@@ -2544,8 +2691,8 @@ package starlingbuilder.editor.themes
 		{
 			this.setDangerCalloutStyles(callout);
 
-			callout.fontStyles = this.lightFontStyles;
-			callout.disabledFontStyles = this.lightDisabledFontStyles;
+			callout.fontStyles = this.lightFontStyles.clone();
+			callout.disabledFontStyles = this.lightDisabledFontStyles.clone();
 
 			callout.horizontalAlign = HorizontalAlign.LEFT;
 			callout.verticalAlign = VerticalAlign.TOP;
@@ -2560,9 +2707,9 @@ package starlingbuilder.editor.themes
 			input.defaultIcon = icon;
 		}
 
-	//-------------------------
-	// ToggleSwitch
-	//-------------------------
+		//-------------------------
+		// ToggleSwitch
+		//-------------------------
 
 		protected function setToggleSwitchStyles(toggle:ToggleSwitch):void
 		{
@@ -2575,11 +2722,11 @@ package starlingbuilder.editor.themes
 			toggle.focusIndicatorSkin = focusIndicatorSkin;
 			toggle.focusPadding = this.focusPaddingSize;
 
-			toggle.offLabelFontStyles = this.lightUIFontStyles;
-			toggle.offLabelDisabledFontStyles = this.lightDisabledUIFontStyles;
+			toggle.offLabelFontStyles = this.lightUIFontStyles.clone();
+			toggle.offLabelDisabledFontStyles = this.lightDisabledUIFontStyles.clone();
 
-			toggle.onLabelFontStyles = this.selectedUIFontStyles;
-			toggle.onLabelDisabledFontStyles = this.lightDisabledUIFontStyles;
+			toggle.onLabelFontStyles = this.selectedUIFontStyles.clone();
+			toggle.onLabelDisabledFontStyles = this.lightDisabledUIFontStyles.clone();
 		}
 
 		protected function setToggleSwitchThumbStyles(thumb:Button):void
@@ -2609,18 +2756,58 @@ package starlingbuilder.editor.themes
 			track.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// VideoPlayer
-	//-------------------------
+		//-------------------------
+		// Tree
+		//-------------------------
+
+		protected function setTreeStyles(tree:Tree):void
+		{
+			this.setScrollerStyles(tree);
+
+			tree.padding = this.borderSize;
+
+			var backgroundSkin:Image = new Image(this.listBackgroundSkinTexture);
+			backgroundSkin.scale9Grid = DEFAULT_SCALE9_GRID;
+			backgroundSkin.width = this.controlSize;
+			backgroundSkin.height = this.controlSize;
+			tree.backgroundSkin = backgroundSkin;
+
+			var backgroundDisabledSkin:Image = new Image(this.backgroundDisabledSkinTexture);
+			backgroundDisabledSkin.scale9Grid = DEFAULT_SCALE9_GRID;
+			backgroundDisabledSkin.width = this.controlSize;
+			backgroundDisabledSkin.height = this.controlSize;
+			tree.backgroundDisabledSkin = backgroundDisabledSkin;
+
+			tree.verticalScrollPolicy = ScrollPolicy.AUTO;
+		}
+
+		protected function setTreeItemRendererStyles(itemRenderer:DefaultTreeItemRenderer):void
+		{
+			this.setItemRendererStyles(itemRenderer);
+
+			itemRenderer.indentation = this.treeDisclosureOpenIconTexture.width;
+
+			var disclosureOpenIcon:ImageSkin = new ImageSkin(this.treeDisclosureOpenIconTexture);
+			disclosureOpenIcon.selectedTexture = this.treeDisclosureOpenSelectedIconTexture;
+			itemRenderer.disclosureOpenIcon = disclosureOpenIcon;
+
+			var disclosureClosedIcon:ImageSkin = new ImageSkin(this.treeDisclosureClosedIconTexture);
+			disclosureClosedIcon.selectedTexture = this.treeDisclosureClosedSelectedIconTexture;
+			itemRenderer.disclosureClosedIcon = disclosureClosedIcon;
+		}
+
+		//-------------------------
+		// VideoPlayer
+		//-------------------------
 
 		protected function setVideoPlayerStyles(player:VideoPlayer):void
 		{
 			player.backgroundSkin = new Quad(1, 1, 0x000000);
 		}
 
-	//-------------------------
-	// PlayPauseToggleButton
-	//-------------------------
+		//-------------------------
+		// PlayPauseToggleButton
+		//-------------------------
 
 		protected function setPlayPauseToggleButtonStyles(button:PlayPauseToggleButton):void
 		{
@@ -2659,9 +2846,9 @@ package starlingbuilder.editor.themes
 			button.hoverSkin = overlaySkin;
 		}
 
-	//-------------------------
-	// FullScreenToggleButton
-	//-------------------------
+		//-------------------------
+		// FullScreenToggleButton
+		//-------------------------
 
 		protected function setFullScreenToggleButtonStyles(button:FullScreenToggleButton):void
 		{
@@ -2678,9 +2865,9 @@ package starlingbuilder.editor.themes
 			button.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// VolumeSlider
-	//-------------------------
+		//-------------------------
+		// VolumeSlider
+		//-------------------------
 
 		protected function setVolumeSliderStyles(slider:VolumeSlider):void
 		{
@@ -2724,9 +2911,9 @@ package starlingbuilder.editor.themes
 			track.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// MuteToggleButton
-	//-------------------------
+		//-------------------------
+		// MuteToggleButton
+		//-------------------------
 
 		protected function setMuteToggleButtonStyles(button:MuteToggleButton):void
 		{
@@ -2771,9 +2958,9 @@ package starlingbuilder.editor.themes
 			track.hasLabelTextRenderer = false;
 		}
 
-	//-------------------------
-	// SeekSlider
-	//-------------------------
+		//-------------------------
+		// SeekSlider
+		//-------------------------
 
 		protected function setSeekSliderStyles(slider:SeekSlider):void
 		{

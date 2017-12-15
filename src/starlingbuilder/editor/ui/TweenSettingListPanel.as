@@ -6,10 +6,12 @@ package starlingbuilder.editor.ui
     import feathers.controls.Label;
     import feathers.controls.LayoutGroup;
     import feathers.controls.List;
+    import feathers.controls.ScrollPolicy;
     import feathers.controls.renderers.DefaultListItemRenderer;
     import feathers.controls.renderers.IListItemRenderer;
     import feathers.core.PopUpManager;
     import feathers.data.ListCollection;
+    import feathers.layout.HorizontalAlign;
     import feathers.layout.VerticalLayout;
     
     import starling.display.DisplayObject;
@@ -53,11 +55,11 @@ package starlingbuilder.editor.ui
             var v:VerticalLayout=new VerticalLayout();
             v.gap=1;
             v.hasVariableItemDimensions=true;
-            v.horizontalAlign=VerticalLayout.HORIZONTAL_ALIGN_JUSTIFY;
+            v.horizontalAlign=HorizontalAlign.JUSTIFY;
             _tweenList=new List();
             _tweenList.width=380;
             _tweenList.height=320;
-            _tweenList.horizontalScrollPolicy=List.SCROLL_POLICY_OFF;
+            _tweenList.horizontalScrollPolicy=ScrollPolicy.OFF;
             _tweenList.layout=v;
             addChild(_tweenList);
 

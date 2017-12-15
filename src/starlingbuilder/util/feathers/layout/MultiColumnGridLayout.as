@@ -259,5 +259,10 @@ package starlingbuilder.util.feathers.layout
         {
             return new Point();
         }
+
+        public function calculateNavigationDestination(items:Vector.<starling.display.DisplayObject>,index:int,keyCode:uint,bounds:feathers.layout.LayoutBoundsResult):int
+        {
+            return 0;
+        }
     }
 }

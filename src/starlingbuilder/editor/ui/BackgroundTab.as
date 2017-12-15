@@ -9,6 +9,7 @@ package starlingbuilder.editor.ui
 {
     import feathers.controls.ButtonGroup;
     import feathers.controls.TextInput;
+    import feathers.layout.Direction;
 
     import flash.geom.Rectangle;
 
@@ -108,7 +109,7 @@ package starlingbuilder.editor.ui
         private function createResetButton():void
         {
             _buttonGroup = new ButtonGroup();
-            _buttonGroup.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+            _buttonGroup.direction = Direction.HORIZONTAL;
             _buttonGroup.dataProvider = new ListCollection([
                 {label:"reset", triggered:onButton},
                 {label:"fit", triggered:onButton}

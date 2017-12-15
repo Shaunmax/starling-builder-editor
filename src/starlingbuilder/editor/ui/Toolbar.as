@@ -14,7 +14,9 @@ package starlingbuilder.editor.ui
     import feathers.core.PopUpManager;
     import feathers.data.ListCollection;
     import feathers.events.FeathersEventType;
+    import feathers.layout.Direction;
     import feathers.layout.HorizontalLayout;
+    import feathers.layout.VerticalAlign;
 
     import flash.display.NativeMenu;
     import flash.display.NativeMenuItem;
@@ -94,7 +96,7 @@ package starlingbuilder.editor.ui
             _loadExternalSerializer = new DocumentSerializer(new LoadExternalDocumentMediator(UIEditorApp.instance.documentManager));
 
             var group:ButtonGroup = new ButtonGroup();
-            group.direction = ButtonGroup.DIRECTION_HORIZONTAL;
+            group.direction = Direction.HORIZONTAL;
             group.dataProvider = new ListCollection(createTextButtons());
             addChild(group);
 
@@ -133,10 +135,10 @@ package starlingbuilder.editor.ui
             var group:LayoutGroup = new LayoutGroup();
 
             var layout:HorizontalLayout = new HorizontalLayout();
-            layout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
+            layout.verticalAlign = VerticalAlign.MIDDLE;
             layout.gap = 5;
             group.layout = layout;
-            group.addChild(FeathersUIUtil.labelWithText("cavas size:"));
+            group.addChild(FeathersUIUtil.labelWithText("canvas size:"));
 
             _canvasSizeWidth = new TextInput();
             _canvasSizeWidth.addEventListener(FeathersEventType.ENTER, onCanvasChange);

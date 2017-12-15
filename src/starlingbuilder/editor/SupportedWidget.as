@@ -8,6 +8,10 @@
 package starlingbuilder.editor
 {
     import feathers.controls.*;
+    import feathers.data.ArrayCollection;
+    import feathers.data.ArrayHierarchicalCollection;
+    import feathers.data.HierarchicalCollection;
+    import feathers.data.ListCollection;
     import feathers.layout.AnchorLayoutData;
     import feathers.layout.FlowLayout;
     import feathers.layout.HorizontalLayout;
@@ -59,6 +63,7 @@ package starlingbuilder.editor
             ButtonGroup,
             Callout,
             Check,
+            DataGrid,
             DateTimeSpinner,
             Drawers,
             GroupedList,
@@ -93,6 +98,7 @@ package starlingbuilder.editor
             TextInput,
             ToggleButton,
             ToggleSwitch,
+            Tree,
             VideoPlayer,
             WebView,
 
@@ -107,6 +113,11 @@ package starlingbuilder.editor
             AnchorLayoutData,
             HorizontalLayoutData,
             VerticalLayoutData,
+
+            ArrayCollection,
+            ArrayHierarchicalCollection,
+            HierarchicalCollection,
+            ListCollection,
 
             BlurFilter,
             GlowFilter,

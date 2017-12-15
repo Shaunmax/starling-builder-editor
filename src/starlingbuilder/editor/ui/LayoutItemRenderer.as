@@ -7,6 +7,7 @@
  */
 package starlingbuilder.editor.ui
 {
+    import feathers.controls.ButtonState;
     import feathers.controls.Check;
     import feathers.controls.Label;
     import feathers.controls.LayoutGroup;
@@ -20,6 +21,7 @@ package starlingbuilder.editor.ui
     import feathers.events.DragDropEvent;
     import feathers.events.FeathersEventType;
     import feathers.layout.HorizontalLayout;
+    import feathers.layout.VerticalAlign;
     import feathers.layout.VerticalLayout;
 
     import flash.geom.Point;
@@ -148,7 +150,7 @@ package starlingbuilder.editor.ui
 
             layout = new HorizontalLayout();
             layout.gap = 2;
-            layout.verticalAlign = HorizontalLayout.VERTICAL_ALIGN_MIDDLE;
+            layout.verticalAlign = VerticalAlign.MIDDLE;
             _group2 = new LayoutGroup();
             _group2.layout = layout;
 
@@ -177,7 +179,7 @@ package starlingbuilder.editor.ui
             _sign.rotation = item.collapse ? 0 : Math.PI / 2;
             _data = item;
 
-            changeState(STATE_UP);
+            changeState(ButtonState.UP);
 
             if (item.isContainer)
             {
