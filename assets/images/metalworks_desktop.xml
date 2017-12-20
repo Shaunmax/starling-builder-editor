@@ -3,13 +3,13 @@
 	<!-- Created with Adobe Animate version 16.5.1.104 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="back-button-disabled-skin0000" x="469" y="175" width="37" height="45" pivotX="0.1" pivotY="0"/>
-	<SubTexture name="back-button-down-skin0000" x="462" y="309" width="37" height="45" pivotX="0.1" pivotY="0"/>
-	<SubTexture name="back-button-up-skin0000" x="149" y="308" width="37" height="45" pivotX="0.1" pivotY="0"/>
+	<SubTexture name="back-button-down-skin0000" x="462" y="309" width="37" height="45" pivotX="0" pivotY="0"/>
+	<SubTexture name="back-button-up-skin0000" x="149" y="308" width="37" height="45" pivotX="0" pivotY="0"/>
 	<SubTexture name="background-danger-popup-skin0000" x="300" y="444" width="13" height="12" pivotX="1" pivotY="1"/>
 	<SubTexture name="background-danger-skin0000" x="420" y="436" width="16" height="16" pivotX="0" pivotY="0"/>
 	<SubTexture name="background-disabled-skin0000" x="2" y="439" width="16" height="16" pivotX="0" pivotY="0"/>
 	<SubTexture name="background-focused-skin0000" x="402" y="401" width="16" height="16" pivotX="0" pivotY="0"/>
-	<SubTexture name="background-popup-skin0000" x="80" y="443" width="13" height="12" pivotX="1" pivotY="1"/>
+	<SubTexture name="background-popup-skin0000" x="80" y="443" width="13" height="12" pivotX="0" pivotY="0"/>
 	<SubTexture name="background-skin0000" x="402" y="419" width="16" height="16" pivotX="0" pivotY="0"/>
 	<SubTexture name="button-disabled-skin0000" x="420" y="390" width="14" height="44" pivotX="0" pivotY="0"/>
 	<SubTexture name="button-down-skin0000" x="468" y="390" width="14" height="44" pivotX="0" pivotY="0"/>
@@ -18,7 +18,7 @@
 	<SubTexture name="call-to-action-button-up-skin0000" x="224" y="389" width="14" height="45" pivotX="0" pivotY="0"/>
 	<SubTexture name="callout-arrow-bottom-skin0000" x="2" y="351" width="40" height="26" pivotX="0" pivotY="0"/>
 	<SubTexture name="callout-arrow-left-skin0000" x="472" y="265" width="26" height="40" pivotX="0" pivotY="0"/>
-	<SubTexture name="callout-arrow-right-skin0000" x="232" y="262" width="26" height="41" pivotX="0.05" pivotY="0"/>
+	<SubTexture name="callout-arrow-right-skin0000" x="232" y="262" width="26" height="41" pivotX="0" pivotY="0"/>
 	<SubTexture name="callout-arrow-top-skin0000" x="86" y="351" width="40" height="26" pivotX="0" pivotY="0"/>
 	<SubTexture name="check-disabled-icon0000" x="326" y="358" width="32" height="32" pivotX="0" pivotY="0"/>
 	<SubTexture name="check-down-icon0000" x="2" y="379" width="32" height="32" pivotX="0" pivotY="0"/>
@@ -30,7 +30,7 @@
 	<SubTexture name="danger-button-up-skin0000" x="491" y="356" width="14" height="45" pivotX="0" pivotY="0"/>
 	<SubTexture name="danger-callout-arrow-bottom-skin0000" x="128" y="355" width="40" height="26" pivotX="0" pivotY="0"/>
 	<SubTexture name="danger-callout-arrow-left-skin0000" x="232" y="305" width="26" height="40" pivotX="0" pivotY="0"/>
-	<SubTexture name="danger-callout-arrow-right-skin0000" x="469" y="222" width="26" height="41" pivotX="0.05" pivotY="0"/>
+	<SubTexture name="danger-callout-arrow-right-skin0000" x="469" y="222" width="26" height="41" pivotX="0" pivotY="0"/>
 	<SubTexture name="danger-callout-arrow-top-skin0000" x="44" y="351" width="40" height="26" pivotX="0" pivotY="0"/>
 	<SubTexture name="data-grid-column-drop-indicator-skin0000" x="501" y="334" width="6" height="10" pivotX="0" pivotY="0"/>
 	<SubTexture name="data-grid-column-resize-skin0000" x="500" y="222" width="6" height="60" pivotX="0" pivotY="0"/>
