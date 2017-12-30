@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?> 
      <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5"> 
-       <versionNumber>2.4</versionNumber>
-       <url>http://starlingbuilder.github.io/download/2.x/v2.4/starling-builder.air</url>
+       <versionNumber>2.5</versionNumber>
+       <url>http://starlingbuilder.github.io/download/2.x/v2.5/starling-builder.air</url>
        <description>
-[editor] Upgrade to Starling 2.2 and FeathersUI 3.4
-[editor] Support zoom with mouse wheel and drag with right mouse button
-[template] Support Tree and DataGrid component
+[editor] Upgrade to Starling 2.3
+[editor] Upgrade to AIR SDK 27
+[editor] Support latest muti-channel SDF font
+[editor] Fix tween property editor data grid not functioning correctly
+[extensions] Support QuadSection and GodRayPlane
+[extensions] Updated PixelMaskDisplayObject
+[demo_workspace] Add pixel mask test
        </description>
     </update>
