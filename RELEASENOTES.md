@@ -1,22 +1,31 @@
 # Starling Builder Release Notes:
 
-## 1.4 (2.4)
+## 2.5
+* [editor] Upgrade to Starling 2.3
+* [editor] Upgrade to AIR SDK 27
+* [editor] Support latest muti-channel SDF font
+* [editor] Fix tween property editor data grid not functioning correctly
+* [extensions] Support QuadSection and GodRayPlane
+* [extensions] Update PixelMaskDisplayObject
+* [demo_workspace] Add pixel mask test
+
+## 2.4 (1.4)
 * [editor] Upgrade to Starling 2.2 and Feathers UI 3.4 (Please update libs accordingly)
 * [editor] Support zoom with mouse wheel and drag with right mouse button
 * [template] Support Tree and DataGrid component
 * [editor] Various bug fixes
 
-## 1.3.3 (2.3.3)
+## 2.3.3 (1.3.3)
 * [editor] Fix asset load error if workspace path contains Chinese characters
 * [editor] Fix embedded fonts loaded by extension swfs not recognized by Starling TextField
 * [editor] List embedded fonts in TextTab and PropertyTab
 
-## 1.3.2 (2.3.2)
+## 2.3.2 (1.3.2)
 * [editor] Fix an error when TextInput is in focus on canvas when using MetalWorksMobileTheme
 * [editor] Fix explicitWidth/explicitHeight not able to check when width/height is 0
 * [editor] Add default canvas scale to Settings
 
-## 1.3.1 (2.3.1)
+## 2.3.1 (1.3.1)
 * [editor] Fix new editor theme conflicted with extension theme with BitmapFontTextRenderer
 * [editor] Fix exception when click on canvas when auto complete drop down is open
 
@@ -25,20 +34,20 @@
 * [editor] Better support for feathers theme
 * [editor] various bug fixes
 
-## 1.2.4 (2.2.4)
+## 2.2.4 (1.2.4)
 * [editor] rename container tab to common tab in left panel
 * [editor] support textAreaString component in properties tab
 * [template] TextField.text, Label.text, TextArea.text use textAreaString component
 * [template] Add HorizontalLayoutData, VerticalLayoutData
 
-## 1.2.3 (2.2.3)
+## 2.2.3 (1.2.3)
 * [engine] better support for external layout
 * [editor] all the left tabs are searchable
 * [editor] add AssetManager log button to asset tab
 * [editor] add WatchDog to detect crash
 * [template] add isHtmlText property to TextField
 
-## 1.2.2 (2.2.2)
+## 2.2.2 (1.2.2)
 * [editor] PositionToolbar supports align grid
 * [editor] PixelSnapper supports multiple selected objects
 * [editor] double click on LayoutItemRenderer can change name
@@ -46,7 +55,7 @@
 * [editor] fix custom theme with BitmapFontTextRenderer breaks TweenSettingPanel
 * [template] add more properties to feathers layouts
 
-## 1.2 (2.2)
+## 2.2 (1.2)
 * [editor] Update to Starling 2.1 and Feathers 3.0.4
 * [editor] Improve template merge strategy
 * [editor] Support multiple custom components extensions
