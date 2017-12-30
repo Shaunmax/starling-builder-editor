@@ -7,6 +7,8 @@
  */
 package starlingbuilder.editor.ui
 {
+    import starling.animation.IAnimatable;
+
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.controller.DocumentManager;
     import starlingbuilder.util.feathers.FeathersUIUtil;
@@ -19,7 +21,7 @@ package starlingbuilder.editor.ui
     import starling.display.MovieClip;
     import starling.events.Event;
 
-    public class MovieClipTool extends LayoutGroup
+    public class AnimatableTool extends LayoutGroup
     {
         private var _movieClipTool:LayoutGroup;
         private var _playButton:Button;
@@ -27,7 +29,7 @@ package starlingbuilder.editor.ui
 
         private var _documentManager:DocumentManager;
 
-        public function MovieClipTool()
+        public function AnimatableTool()
         {
             _documentManager = UIEditorApp.instance.documentManager;
             initMovieClipTool();
@@ -40,7 +42,7 @@ package starlingbuilder.editor.ui
             _playButton = FeathersUIUtil.buttonWithLabel("play", onPlayButton);
             _stopButton = FeathersUIUtil.buttonWithLabel("stop", onStopButton);
 
-            _movieClipTool.addChild(FeathersUIUtil.labelWithText("MovieClip: "))
+            _movieClipTool.addChild(FeathersUIUtil.labelWithText("IAnimatable: "))
             _movieClipTool.addChild(_playButton);
             _movieClipTool.addChild(_stopButton);
 
@@ -49,31 +51,36 @@ package starlingbuilder.editor.ui
 
         public function updateMovieClipTool():void
         {
-            var mv:MovieClip = _documentManager.singleSelectedObject as MovieClip;
+            var animatable:IAnimatable = _documentManager.singleSelectedObject as IAnimatable;
 
-            _movieClipTool.visible = (mv != null);
+            _movieClipTool.visible = (animatable != null);
         }
 
         private function onPlayButton(event:Event):void
         {
-            var mv:MovieClip = _documentManager.singleSelectedObject as MovieClip;
+            var animatable:IAnimatable = _documentManager.singleSelectedObject as IAnimatable;
 
-            if (mv)
+            if (animatable)
             {
-                Starling.current.juggler.add(mv);
-                mv.play();
+                Starling.current.juggler.add(animatable);
+
+                if (animatable is MovieClip)
+                    (animatable as MovieClip).play();
+
                 _documentManager.setChanged();
             }
         }
 
         private function onStopButton(event:Event):void
         {
-            var mv:MovieClip = _documentManager.singleSelectedObject as MovieClip;
+            var animatable:IAnimatable = _documentManager.singleSelectedObject as IAnimatable;
 
-            if (mv)
+            if (animatable)
             {
-                mv.stop();
-                Starling.current.juggler.remove(mv);
+                if (animatable is MovieClip)
+                    (animatable as MovieClip).stop();
+
+                Starling.current.juggler.remove(animatable);
                 _documentManager.setChanged();
             }
         }

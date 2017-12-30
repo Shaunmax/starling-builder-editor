@@ -53,7 +53,7 @@ package starlingbuilder.editor.ui
         private var _assetManager:AssetManager;
 
         private var _pivotTool:PivotTool;
-        private var _movieClipTool:MovieClipTool;
+        private var _animatableTool:AnimatableTool;
 
         private var _paramCache:Dictionary;
         private var _propertyPanelCache:Dictionary;
@@ -74,6 +74,7 @@ package starlingbuilder.editor.ui
             layout.paddingTop = layout.gap = 20;
             this.layout = layout;
 
+
             layoutData = FeathersUIUtil.anchorLayoutData(60, 0);
 
             _template = TemplateData.editor_template;
@@ -91,8 +92,8 @@ package starlingbuilder.editor.ui
             _pivotTool = new PivotTool();
             addChild(_pivotTool);
 
-            _movieClipTool = new MovieClipTool();
-            addChild(_movieClipTool);
+            _animatableTool = new AnimatableTool();
+            addChild(_animatableTool);
         }
 
         private function displayObjectPropertyFactory(target:Object, param:Object):IPropertyRetriever
@@ -215,7 +216,7 @@ package starlingbuilder.editor.ui
                 }
             }
 
-            _movieClipTool.updateMovieClipTool();
+            _animatableTool.updateMovieClipTool();
         }
 
 
