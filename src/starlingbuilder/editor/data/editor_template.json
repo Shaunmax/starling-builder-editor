@@ -579,7 +579,8 @@
                 {"name":"outerAlphaStart", "component":"slider", "min":0, "max":1, "step":0.01, "default_value":0},
                 {"name":"outerAlphaEnd", "component":"slider", "min":0, "max":1, "step":0.01, "default_value":0},
                 {"name":"shadowOffsetX", "component":"slider", "min":-8, "max":8, "step":1, "default_value":0},
-                {"name":"shadowOffsetY", "component":"slider", "min":-8, "max":8, "step":1, "default_value":0}
+                {"name":"shadowOffsetY", "component":"slider", "min":-8, "max":8, "step":1, "default_value":0},
+                {"name":"multiChannel", "component":"check", "default_value":false}
             ],
             "tag":"ignore_default"
         }
@@ -651,6 +652,6 @@
 
     "version":2.0,
 
-    "revision":10010
+    "revision":10011
 
 }

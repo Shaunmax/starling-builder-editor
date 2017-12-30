@@ -78,8 +78,8 @@ package starlingbuilder.editor.ui
             {
                 if (item.cls == clsName)
                 {
-                    if (item.hasOwnProperty("document_url"))
-                        return item.document_url;
+                    if (item.hasOwnProperty("documentUrl"))
+                        return item.documentUrl;
                     else
                         return null;
                 }

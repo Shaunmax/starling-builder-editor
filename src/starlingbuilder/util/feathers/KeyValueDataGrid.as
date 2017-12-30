@@ -7,6 +7,7 @@
  */
 package starlingbuilder.util.feathers
 {
+    import feathers.controls.LayoutGroup;
     import starlingbuilder.util.ObjectUtil;
 
     import feathers.controls.Button;
@@ -29,7 +30,7 @@ package starlingbuilder.util.feathers
 
         private var _data:Object = {};
 
-        private var _container:ScrollContainer;
+        private var _container:LayoutGroup;
 
         private var _gridLayout:MultiColumnGridLayout;
 
@@ -49,7 +50,7 @@ package starlingbuilder.util.feathers
 
         private function init():void
         {
-            _container = new ScrollContainer();
+            _container = new LayoutGroup();
 
             _gridLayout = new MultiColumnGridLayout();
             _container.layout = _gridLayout;
@@ -193,13 +194,13 @@ package starlingbuilder.util.feathers
 
             var label:Label = new Label();
             label.text = "key";
-            var container:ScrollContainer = new ScrollContainer();
+            var container:LayoutGroup = new LayoutGroup();
             container.addChild(label);
             _container.addChild(container);
 
             label = new Label();
             label.text = "value";
-            container = new ScrollContainer();
+            container = new LayoutGroup();
             container.addChild(label);
             _container.addChild(container);
 
