@@ -8,8 +8,9 @@
 package starlingbuilder.editor
 {
     import flash.events.ErrorEvent;
+import flash.trace.Trace;
 
-    import starling.utils.Align;
+import starling.utils.Align;
 
     import starlingbuilder.util.AppUpdater;
     import starlingbuilder.util.feathers.popup.InfoPopup;
@@ -67,6 +68,7 @@ package starlingbuilder.editor
             _starling.stage3D.addEventListener(Event.CONTEXT3D_CREATE, _start);
 
             trace("width : " + Starling.current.viewPort.width + ", height : " + Starling.current.viewPort.height);
+            trace("Starling Version = ",Starling.VERSION);
 
             loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 
