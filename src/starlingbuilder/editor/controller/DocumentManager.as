@@ -1269,6 +1269,35 @@ package starlingbuilder.editor.controller
             }
         }
 
+        private function chk_naming(obj_name:String):String{
+            if(obj_name.substr(0,1)== "_")
+            {
+                var name_array:Array = obj_name.split("_");
+
+                if(name_array.length > 0){
+                    var value = name_array[name_array.length - 1];
+                    var isNumeric:Boolean = !isNaN(Number(value));
+
+                    if(isNumeric){
+                        obj_name = getFullName(name_array) + String(++value);
+                        trace("new obj_name = ",obj_name);
+                    }
+                }
+            }
+
+            return obj_name;
+
+        }
+
+        private function getFullName(arr:Array):String{
+            var str:String = "";
+            for(var i:int =0;i < arr.length-1;i++){
+                str+= String(arr[i] + "_");
+            }
+
+            return str;
+        }
+
         public function paste():void
         {
             try
@@ -1281,6 +1310,7 @@ package starlingbuilder.editor.controller
 
                     var result:Object = _uiBuilder.load(data, false);
                     var root:DisplayObject = result.object;
+                    root.name = chk_naming(root.name);
                     var paramDict:Dictionary = result.params;
 
                     var p:Point = getNewObjectPosition();
@@ -1313,6 +1343,7 @@ package starlingbuilder.editor.controller
             }
             catch(e:Error)
             {
+                trace(e);
                 info("Invalid Format");
             }
         }
