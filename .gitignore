@@ -8,3 +8,4 @@ bin-debug/
 demo_workspace/settings/editor_template.json
 demo_workspace/settings/recent_open.json
 demo_workspace/settings/libs.json
+/src/feathers/
