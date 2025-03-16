@@ -18,7 +18,7 @@ package starlingbuilder.editor
     import starling.events.EventDispatcher;
 
     import starlingbuilder.util.AppUpdater;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.util.LogAssetManager;
 
@@ -59,7 +59,7 @@ package starlingbuilder.editor
 
             _assetManager = new LogAssetManager();
             _assetManager.numConnections = 100;
-            _assetManager.keepFontXmls = true;
+            //_assetManager.keepFontXmls = true;
             _notificationDispatcher = new EventDispatcher();
 
             _instance = this;

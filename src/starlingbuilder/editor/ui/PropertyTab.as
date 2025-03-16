@@ -40,7 +40,7 @@ package starlingbuilder.editor.ui
     import starling.display.DisplayObject;
     import starling.display.DisplayObjectContainer;
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     public class PropertyTab extends ScrollContainer
     {

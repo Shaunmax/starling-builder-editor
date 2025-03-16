@@ -29,7 +29,7 @@ package starlingbuilder.editor.ui
     import starling.display.Quad;
     import starling.display.Sprite;
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
     import starling.utils.RectangleUtil;
 
     public class ScaleTexturePopup extends InfoPopup

@@ -25,7 +25,7 @@ package starlingbuilder.editor.ui
     import feathers.layout.AnchorLayoutData;
 
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     public class CommonTab extends SearchableTab
     {

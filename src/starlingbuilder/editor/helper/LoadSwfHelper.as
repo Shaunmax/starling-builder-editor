@@ -9,7 +9,7 @@ package starlingbuilder.editor.helper
     import flash.system.LoaderContext;
     import flash.utils.ByteArray;
 
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     public class LoadSwfHelper
     {

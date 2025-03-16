@@ -15,7 +15,7 @@ package starlingbuilder.editor.helper
     import flash.filesystem.FileStream;
 
     import starling.textures.Texture;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.util.feathers.popup.InfoPopup;
 

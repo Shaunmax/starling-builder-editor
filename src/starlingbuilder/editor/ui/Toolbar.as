@@ -30,7 +30,7 @@ package starlingbuilder.editor.ui
     import starling.core.Starling;
     import starling.display.Sprite;
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.UIEditorScreen;

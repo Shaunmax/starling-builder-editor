@@ -37,7 +37,7 @@ package starlingbuilder.editor.ui
 
     import starling.display.Image;
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     public class BackgroundTab extends SearchableTab
     {

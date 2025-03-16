@@ -11,7 +11,9 @@ package starlingbuilder.editor
 
     import flash.utils.getTimer;
 
-    import starling.utils.Align;
+import starling.assets.AssetManager;
+
+import starling.utils.Align;
 
     import starlingbuilder.editor.data.EmbeddedData;
 
@@ -60,7 +62,6 @@ package starlingbuilder.editor
     import starling.display.Stage;
     import starling.events.Event;
     import starling.events.ResizeEvent;
-    import starling.utils.AssetManager;
 
     import starlingbuilder.util.feathers.popup.InfoPopup;
 
@@ -175,22 +176,34 @@ package starlingbuilder.editor
 
             t = getTimer();
 
-            assetManager.loadQueue(function(ratio:Number):void{
+            assetManager.loadQueue(onComplete, onError, onProgress);
+
+            function onComplete():void {
+                trace("done!");
+                trace("Loading time: ", getTimer() - t);
+
+                setTimeout(function():void{
+
+                    PopUpManager.removePopUp(loadingPopup, true);
+                    init();
+
+                }, 1);
+            }
+            function onError(error:String):void { trace("error:", error); }
+            function onProgress(ratio:Number):void {
+                trace("progress:", ratio);
+                loadingPopup.ratio = ratio;
+            }
+
+            /*assetManager.loadQueue(function(ratio:Number):void{
 
                 loadingPopup.ratio = ratio;
 
                 if (ratio == 1)
                 {
-                    trace("Loading time: ", getTimer() - t);
 
-                    setTimeout(function():void{
-
-                        PopUpManager.removePopUp(loadingPopup, true);
-                        init();
-
-                    }, 1);
                 }
-            });
+            });*/
 
         }
 

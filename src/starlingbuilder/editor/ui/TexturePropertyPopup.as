@@ -17,7 +17,7 @@ package starlingbuilder.editor.ui
     import feathers.layout.VerticalLayout;
 
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.editor.controller.ComponentRenderSupport;
 

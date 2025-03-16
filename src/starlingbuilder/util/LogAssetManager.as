@@ -3,15 +3,15 @@
  */
 package starlingbuilder.util
 {
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     public class LogAssetManager extends AssetManager
     {
         private var _logs:Array = [];
 
-        public function LogAssetManager(scaleFactor:Number = 1, useMipmaps:Boolean = false)
+        public function LogAssetManager(scaleFactor:Number = 1)
         {
-            super(scaleFactor, useMipmaps);
+            super(scaleFactor);
         }
 
         override protected function log(message:String):void

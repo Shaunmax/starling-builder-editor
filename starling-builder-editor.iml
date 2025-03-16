@@ -14,9 +14,6 @@
             <entry library-id="08011c12-ce9c-4cee-9c3d-c1f76e999a10">
               <dependency linkage="Merged" />
             </entry>
-            <entry library-id="bba55579-a0bc-4b4c-abdd-3e5f8f91962c">
-              <dependency linkage="Merged" />
-            </entry>
             <entry library-id="d497df1d-f97c-4ed2-b068-bc4e343f25b9">
               <dependency linkage="Merged" />
             </entry>
@@ -223,16 +220,6 @@
         <JAVADOC />
         <SOURCES />
         <jarDirectory url="file://$MODULE_DIR$/libs" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library type="flex">
-        <properties id="bba55579-a0bc-4b4c-abdd-3e5f8f91962c" />
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/feathers.swc!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">

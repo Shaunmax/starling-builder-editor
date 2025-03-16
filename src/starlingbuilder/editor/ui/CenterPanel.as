@@ -31,7 +31,7 @@ package starlingbuilder.editor.ui
 
     import starling.display.Sprite;
     import starling.events.Event;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.editor.helper.DragToCanvasHelper;
 

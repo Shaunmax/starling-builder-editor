@@ -27,7 +27,7 @@ package starlingbuilder.editor.ui
     import starling.events.Event;
     import starling.text.TextField;
     import starling.textures.TextureAtlas;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.editor.UIEditorApp;
     import starlingbuilder.editor.UIEditorScreen;

@@ -12,7 +12,7 @@ package starlingbuilder.editor.helper
     import flash.filesystem.FileStream;
 
     import starling.textures.TextureOptions;
-    import starling.utils.AssetManager;
+    import starling.assets.AssetManager;
 
     import starlingbuilder.util.feathers.popup.InfoPopup;
 
@@ -76,7 +76,8 @@ package starlingbuilder.editor.helper
                     }
                     else
                     {
-                        _assetManager.enqueueWithName(rawAsset, null, getTextureOptions(file.url))
+                        _assetManager.enqueueSingle(rawAsset, null, getTextureOptions(file.url))
+                        //_assetManager.enqueueWithName(rawAsset, null, getTextureOptions(file.url))
                     }
                 }
                 else
