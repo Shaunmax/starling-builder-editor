@@ -276,7 +276,7 @@ package starlingbuilder.editor.ui
 
         private function onEnterFrame(event:starling.events.Event):void
         {
-            var title:String = "Starling Builder 2";
+            var title:String = "Starling Builder 6";
 
             var str:String = title;
 
