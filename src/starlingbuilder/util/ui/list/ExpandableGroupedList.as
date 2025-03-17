@@ -43,7 +43,7 @@ package starlingbuilder.util.ui.list
 
         public function collapseAll():void
         {
-            for each (var item:Object in _originalDataProvider.getLength())
+            for each (var item:Object in (_originalDataProvider as HierarchicalCollection).data)
             {
                 _collapseMap[item.header.label] = true;
             }
@@ -53,7 +53,7 @@ package starlingbuilder.util.ui.list
 
         override public function set dataProvider(value:IHierarchicalCollection):void
         {
-            if (_originalDataProvider == value.getLength())
+            if (_originalDataProvider == value)
             {
                 return;
             }
@@ -69,7 +69,7 @@ package starlingbuilder.util.ui.list
         {
             if (_originalDataProvider)
             {
-                var data:Object = ObjectUtils.clone(_originalDataProvider.getLength());
+                var data:Object = ObjectUtils.clone((_originalDataProvider as HierarchicalCollection).data);
 
                 for each (var item:Object in data)
                 {
