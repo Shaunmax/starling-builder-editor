@@ -41,7 +41,7 @@ package starlingbuilder.editor.ui
     public class AssetTab extends SearchableTab
     {
         private static const linker:Array = [DefaultCreateComponentPopup, DefaultEditPropertyPopup, ImageGridPopup, TexturePropertyPopup, DisplayObjectPropertyPopup, TextureConstructorPopup,
-            ObjectPropertyPopup, XmlPropertyPopup, ListCollectionPopup, HierarchicalCollectionPopup, DataProviderPopup];
+            ObjectPropertyPopup, XmlPropertyPopup, DataProviderPopup];
 
         public static var assetList:Vector.<String>;
 
@@ -181,24 +181,24 @@ package starlingbuilder.editor.ui
 
         private function getTextureNames():Vector.<String>
         {
-            var array:Vector.<String> = _assetManager.getTextureNames();
+            var array_names:Vector.<String> = Vector.<String>(_assetManager.getTextureNames());
 
-            for (var i:int = array.length - 1; i >= 0; --i)
+            for (var i:int = array_names.length - 1; i >= 0; --i)
             {
-                var name:String = array[i];
+                var name:String = array_names[i];
 
                 if (_assetManager.getTextureAtlas(name) || TextField.getBitmapFont(name))
                 {
-                    array.splice(i, 1);
+                    array_names.splice(i, 1);
                 }
             }
 
-            return array;
+            return array_names;
         }
 
         private function getGroupAssets():HierarchicalCollection
         {
-            var atlasNames:Vector.<String> = _assetManager.getTextureAtlasNames();
+            var atlasNames:Vector.<String> = Vector.<String>(_assetManager.getTextureAtlasNames());
             var atlasName:String;
 
             var data:Array = [];
