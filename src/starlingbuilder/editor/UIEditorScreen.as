@@ -103,8 +103,6 @@ import starling.utils.Align;
 
             new MainMenu();
 
-
-
             _assetManager = UIEditorApp.instance.assetManager;
 
 
