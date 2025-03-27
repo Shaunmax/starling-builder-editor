@@ -23,6 +23,7 @@ package starlingbuilder.util.feathers.popup
     public class InfoPopup extends BasePopupDev
     {
         protected var _buttonContainer:LayoutGroup;
+        private var _buttons:Array;
 
         public function InfoPopup(w:Number = 400, h:Number = 400)
         {

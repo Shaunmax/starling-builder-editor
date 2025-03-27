@@ -9,10 +9,7 @@ package starlingbuilder.editor.controller
 {
     import flash.geom.Rectangle;
     import flash.utils.Dictionary;
-
     import starling.core.Starling;
-    import starling.display.DisplayObject;
-
     import starling.display.DisplayObject;
     import starling.display.DisplayObjectContainer;
     import starling.events.EventDispatcher;

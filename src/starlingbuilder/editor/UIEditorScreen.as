@@ -8,6 +8,8 @@
 package starlingbuilder.editor {
 import adobe.utils.ProductManager;
 
+import feathers.controls.Toast;
+
 import flash.utils.getTimer;
 
 import starling.assets.AssetManager;
@@ -101,7 +103,6 @@ public class UIEditorScreen extends LayoutGroup {
 
         _assetManager = UIEditorApp.instance.assetManager;
 
-
         this.layout = new AnchorLayout();
 
         _stage = Starling.current.stage;
@@ -116,7 +117,6 @@ public class UIEditorScreen extends LayoutGroup {
 
     private function initWorkspaceDir():void {
         _setting = new Setting();
-
 
         if (_setting.workspaceUrl) {
             _workspaceDir = new File(_setting.workspaceUrl);
@@ -182,16 +182,6 @@ public class UIEditorScreen extends LayoutGroup {
             trace("progress:", ratio);
             loadingPopup.ratio = ratio;
         }
-
-        /*assetManager.loadQueue(function(ratio:Number):void{
-
-            loadingPopup.ratio = ratio;
-
-            if (ratio == 1)
-            {
-
-            }
-        });*/
 
     }
 
@@ -351,24 +341,26 @@ public class UIEditorScreen extends LayoutGroup {
         var t:int = getTimer();
 
         _assetLoader.enqueue.apply(null, files);
-        _assetManager.loadQueue(function (ratio:Number):void {
+        _assetManager.loadQueue(onComplete, onError, onProgress);
 
-            loadingPopup.ratio = ratio;
-            if (ratio == 1) {
-                var duration:int = getTimer() - t;
-                if (duration < 500) {
-                    setTimeout(function ():void {
-                        PopUpManager.removePopUp(loadingPopup);
-                    }, 500 - duration);
-                } else {
-                    PopUpManager.removePopUp(loadingPopup);
-                }
+        function onComplete():void {
+            setTimeout(function ():void {
 
+                PopUpManager.removePopUp(loadingPopup, true);
                 _leftPanel.assetTab.refreshAsset();
                 _filesMonitor.start();
-            }
-        });
+                //reload();
+            }, 1);
+        }
 
+        function onError(error:String):void {
+            trace("error:", error);
+        }
+
+        function onProgress(ratio:Number):void {
+            trace("progress:", ratio);
+            loadingPopup.ratio = ratio;
+        }
     }
 
 

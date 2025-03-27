@@ -17,38 +17,36 @@ package starlingbuilder.editor.helper
 
     public class KeyboardHelper
     {
+        private static var documentManager:DocumentManager;
         public function KeyboardHelper()
         {
         }
 
-        public static function startKeyboard(documentManager:DocumentManager):void
+        public static function startKeyboard(dm:DocumentManager):void
         {
+            documentManager = dm;
             var stage:Stage = Starling.current.stage;
 
             stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-
-            function onKeyDown(event:KeyboardEvent):void
-            {
-                switch (event.keyCode)
-                {
-                    case Keyboard.UP:
-                        if (documentManager.hasFocus) documentManager.move(0, -1, true);
-                        break;
-                    case Keyboard.DOWN:
-                        if (documentManager.hasFocus) documentManager.move(0, 1, true);
-                        break;
-                    case Keyboard.LEFT:
-                        if (documentManager.hasFocus) documentManager.move(-1, 0, true);
-                        break;
-                    case Keyboard.RIGHT:
-                        if (documentManager.hasFocus) documentManager.move(1, 0, true);
-                        break;
-                }
-            }
         }
 
-
-
-
+        private static function onKeyDown(event:KeyboardEvent):void
+        {
+            switch (event.keyCode)
+            {
+                case Keyboard.UP:
+                    if (documentManager.hasFocus) documentManager.move(0, -1, true);
+                    break;
+                case Keyboard.DOWN:
+                    if (documentManager.hasFocus) documentManager.move(0, 1, true);
+                    break;
+                case Keyboard.LEFT:
+                    if (documentManager.hasFocus) documentManager.move(-1, 0, true);
+                    break;
+                case Keyboard.RIGHT:
+                    if (documentManager.hasFocus) documentManager.move(1, 0, true);
+                    break;
+            }
+        }
     }
 }
